@@ -1,0 +1,155 @@
+
+<!DOCTYPE html>
+<html>
+<head>
+<title>jQuery Scrollbox Plugin Examples</title>
+<link href="css/demo.css" rel="stylesheet">
+<script src="http://ajax.googleapis.com/ajax/libs/jquery/1.10.2/jquery.min.js"></script>
+<script src="js/jquery.scrollbox.js"></script>
+</head>
+<body>
+  
+
+   
+    <div id="demo5" class="scroll-img" style="height:150px">
+      <ul>
+        <li><a href="http://www.faceyourmanga.com/mangatar.php?id=234" target="_blank"><img src="img1/normal_234.png"></a></li>
+        <li><a href="http://www.faceyourmanga.com/mangatar.php?id=485" target="_blank"><img src="img1/normal_485.png"></a></li>
+        <li><a href="http://www.faceyourmanga.com/mangatar.php?id=511" target="_blank"><img src="img1/normal_511.png"></a></li>
+        <li><a href="http://www.faceyourmanga.com/mangatar.php?id=725" target="_blank"><img src="img1/normal_725.png"></a></li>
+        <li><a href="http://www.faceyourmanga.com/mangatar.php?id=840" target="_blank"><img src="img1/normal_840.png"></a></li>
+        <li><a href="http://www.faceyourmanga.com/mangatar.php?id=934" target="_blank"><img src="img1/normal_934.png"></a></li>
+        <li><a href="http://www.faceyourmanga.com/mangatar.php?id=1295" target="_blank"><img src="img1/normal_1295.png"></a></li>
+        <li><a href="http://www.faceyourmanga.com/mangatar.php?id=1459" target="_blank"><img src="img1/normal_1459.png"></a></li>
+        <li><a href="http://www.faceyourmanga.com/mangatar.php?id=1590" target="_blank"><img src="img1/normal_1590.png"></a></li>
+        <li><a href="http://www.faceyourmanga.com/mangatar.php?id=234" target="_blank"><img src="img1/normal_234.png"></a></li>
+        <li><a href="http://www.faceyourmanga.com/mangatar.php?id=485" target="_blank"><img src="img1/normal_485.png"></a></li>
+        <li><a href="http://www.faceyourmanga.com/mangatar.php?id=511" target="_blank"><img src="img1/normal_511.png"></a></li>
+        <li><a href="http://www.faceyourmanga.com/mangatar.php?id=725" target="_blank"><img src="img1/normal_725.png"></a></li>
+        <li><a href="http://www.faceyourmanga.com/mangatar.php?id=840" target="_blank"><img src="img1/normal_840.png"></a></li>
+        <li><a href="http://www.faceyourmanga.com/mangatar.php?id=934" target="_blank"><img src="img1/normal_934.png"></a></li>
+        <li><a href="http://www.faceyourmanga.com/mangatar.php?id=1295" target="_blank"><img src="img1/normal_1295.png"></a></li>
+        <li><a href="http://www.faceyourmanga.com/mangatar.php?id=1459" target="_blank"><img src="img1/normal_1459.png"></a></li>
+        <li><a href="http://www.faceyourmanga.com/mangatar.php?id=1590" target="_blank"><img src="img1/normal_1590.png"></a></li>x
+       
+        <li><a href="http://www.faceyourmanga.com/mangatar.php?id=7004" target="_blank"><img src="img/normal_7004.png"></a></li>
+      </ul>
+    </div>
+    <div id="demo5-btn" class="text-center">
+      <button class="btn" id="demo5-backward"><i class="icon-chevron-left"></i> Backward</button>
+      <button class="btn" id="demo5-forward">Forward <i class="icon-chevron-right"></i></button>
+    </div>
+    <script>
+$(function () {
+  $('#demo1').scrollbox();
+  $('#demo2').scrollbox({
+    linear: true,
+    step: 1,
+    delay: 0,
+    speed: 100
+  });
+  $('#demo3').scrollbox({
+    switchItems: 5,
+    distance: 144
+  });
+  $('#demo4').scrollbox({
+    direction: 'h',
+    switchItems: 5,
+    distance: 670
+  });
+  $('#demo5').scrollbox({
+    direction: 'h',
+    distance: 134
+  });
+  $('#demo5-backward').click(function () {
+    $('#demo5').trigger('backward');
+  });
+  $('#demo5-forward').click(function () {
+    $('#demo5').trigger('forward');
+  });
+});
+</script>
+<script type="text/javascript">
+
+  var _gaq = _gaq || [];
+  _gaq.push(['_setAccount', 'UA-36251023-1']);
+  _gaq.push(['_setDomainName', 'jqueryscript.net']);
+  _gaq.push(['_trackPageview']);
+
+  (function() {
+    var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+    ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+    var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+  })();
+
+</script>
+
+
+
+
+    <div id="demo4" class="scroll-img">
+      <ul>
+        <li><a href="http://www.faceyourmanga.com/mangatar.php?id=234" target="_blank"><img src="img1/normal_485.png"></a></li>
+        <li><a href="http://www.faceyourmanga.com/mangatar.php?id=485" target="_blank"><img src="img1/normal_511.png"></a></li>
+        <li><a href="http://www.faceyourmanga.com/mangatar.php?id=511" target="_blank"><img src="img1/normal_511.png"></a></li>
+        <li><a href="http://www.faceyourmanga.com/mangatar.php?id=725" target="_blank"><img src="img1/normal_725.png"></a></li>
+        <li><a href="http://www.faceyourmanga.com/mangatar.php?id=840" target="_blank"><img src="img1/normal_840.png"></a></li>
+        <li><a href="http://www.faceyourmanga.com/mangatar.php?id=934" target="_blank"><img src="img1/normal_934.png"></a></li>
+        <li><a href="http://www.faceyourmanga.com/mangatar.php?id=1295" target="_blank"><img src="img1/normal_1295.png"></a></li>
+        <li><a href="http://www.faceyourmanga.com/mangatar.php?id=1459" target="_blank"><img src="img1/normal_1459.png"></a></li>
+        <li><a href="http://www.faceyourmanga.com/mangatar.php?id=1590" target="_blank"><img src="img1/normal_1590.png"></a></li>
+       
+        <li><a href="http://www.faceyourmanga.com/mangatar.php?id=7004" target="_blank"><img src="img/normal_7004.png"></a></li>
+      </ul>
+    </div>
+    <div id="demo4-btn" class="text-center">
+      <button class="btn" id="demo4-backward"><i class="icon-chevron-left"></i> Backward</button>
+      <button class="btn" id="demo4-forward">Forward <i class="icon-chevron-right"></i></button>
+    </div>
+</div>
+<script>
+$(function () {
+  $('#demo11').scrollbox();
+  $('#demo12').scrollbox({
+    linear: true,
+    step: 1,
+    delay: 0,
+    speed: 100
+  });
+  $('#demo13').scrollbox({
+    switchItems: 5,
+    distance: 144
+  });
+  $('#demo14').scrollbox({
+    direction: 'h',
+    switchItems: 5,
+    distance: 670
+  });
+  $('#demo15').scrollbox({
+    direction: 'h',
+    distance: 134
+  });
+  $('#demo4-backward').click(function () {
+    $('#demo4').trigger('backward');
+  });
+  $('#demo4-forward').click(function () {
+    $('#demo4').trigger('forward');
+  });
+});
+</script>
+<script type="text/javascript">
+
+  var _gaq = _gaq || [];
+  _gaq.push(['_setAccount', 'UA-36251023-1']);
+  _gaq.push(['_setDomainName', 'jqueryscript.net']);
+  _gaq.push(['_trackPageview']);
+
+  (function() {
+    var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+    ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+    var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+  })();
+
+</script>
+</body>
+</html>

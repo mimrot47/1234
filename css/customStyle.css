@@ -1,0 +1,26 @@
+
+body {
+  padding : 10px ;
+  
+}
+
+#exTab1 .tab-content {
+  border-top: #FFCF43 solid 1px;
+  padding : 5px 15px;
+  
+}
+
+#exTab1 .nav-pills > li > a {
+  border-radius: 0;
+}
+
+
+.nav-pills > li.active > a, .nav-pills > li.active > a:hover, .nav-pills > li.active > a:focus {
+    color: #720700;
+    background-color: #FFCF43;
+}
+
+
+
+
+
