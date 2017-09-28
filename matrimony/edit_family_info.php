@@ -109,41 +109,88 @@ $parent_conatct_no=$row['parent_conatct_no'];
                                 <div class="form-group" style="padding-bottom:30px">
                                     <label class="col-sm-4 control-label" for="no_of_siblings">No of Brother  </label>  
                                     <div class="col-sm-8">
-                                        <input id="no_of_siblings" name="no_of_brother" type="text" value="<?php echo $no_of_brother ?>" class="form-control input-md" >
+                                        <!--<input id="no_of_siblings" name="no_of_brother" type="text" value="<?php echo $no_of_brother ?>" class="form-control input-md" >-->
+										<select id="no_of_siblings" name="no_of_brother"   class="form-control input-md" required>
+                                        	<option value="0"<?php if($no_of_brother=='0') echo "selected";?>>0</option>
+                                            <option value="1"<?php if($no_of_brother=='1') echo "selected";?>>1</option>
+                                            <option value="2"<?php if($no_of_brother=='2') echo "selected";?>>2</option>
+                                            <option value="3"<?php if($no_of_brother=='3') echo "selected";?>>3</option>
+                                            <option value="4"<?php if($no_of_brother=='4') echo "selected";?>>4</option>
+                                            <option value="5"<?php if($no_of_brother=='5') echo "selected";?>>5</option>
+                                            <option value="6"<?php if($no_of_brother=='6') echo "selected";?>>6</option>
+                                            <option value="None"<?php if($no_of_brother=='None') echo "selected";?>>None</option>
+                                        </select>
                                     </div>
                                 </div>
                             
                                 <div class="form-group" style="padding-bottom:30px">
                                     <label class="col-sm-4 control-label" for="marital_satus_of_siblings">Married Brother</label>  
                                     <div class="col-sm-8">
-                                        <input id="marital_satus_of_siblings" name="married_brother" value="<?php echo $married_brother ?>" type="text"  class="form-control input-md"> 
+                                       <!-- <input id="marital_satus_of_siblings" name="married_brother" value="<?php echo $married_brother; ?>" type="text"  class="form-control input-md"> -->
+									<select id="marital_satus_of_siblings" name="married_brother"   class="form-control input-md" required>
+                                    	<option value="0"<?php if($married_brother=='0') echo "selected";?>>0</option>
+										<option value="1"<?php if($married_brother=='1') echo "selected";?>>1</option>
+										<option value="2"<?php if($married_brother=='2') echo "selected";?>>2</option>
+										<option value="3"<?php if($married_brother=='3') echo "selected";?>>3</option>
+										<option value="4"<?php if($married_brother=='4') echo "selected";?>>4</option>
+										<option value="5"<?php if($married_brother=='5') echo "selected";?>>5</option>                                    </select>
                                     </div>
                                 </div>
                                 <div class="form-group" style="padding-bottom:30px">
                                     <label class="col-sm-4 control-label" for="marital_satus_of_siblings">Unmarried Brother</label>  
                                     <div class="col-sm-8">
-                                        <input id="marital_satus_of_siblings" name="unmarried_brother" value="<?php echo $unmarried_brother ?>" type="text"  class="form-control input-md"> 
+                                        <!--<input id="marital_satus_of_siblings" name="unmarried_brother" value="<?php echo $unmarried_brother ?>" type="text"  class="form-control input-md"> -->
+										<select id="marital_satus_of_siblings" name="unmarried_brother"   class="form-control input-md" required>
+                                    	<option value="0"<?php if($unmarried_brother=='0') echo "selected";?>>0</option>
+										<option value="1"<?php if($unmarried_brother=='1') echo "selected";?>>1</option>
+										<option value="2"<?php if($unmarried_brother=='2') echo "selected";?>>2</option>
+										<option value="3"<?php if($unmarried_brother=='3') echo "selected";?>>3</option>
+										<option value="4"<?php if($unmarried_brother=='4') echo "selected";?>>4</option>
+										<option value="5"<?php if($unmarried_brother=='5') echo "selected";?>>5</option>                                        </select>
                                     </div>
                                 </div>
                                  <div class="form-group" style="padding-bottom:30px">
                                     <label class="col-sm-4 control-label" for="no_of_siblings">No of Sister  </label>  
                                     <div class="col-sm-8">
-                                        <input id="no_of_siblings" name="no_of_sister" type="text" 
-                                        value="<?php echo $no_of_sister ?>" class="form-control input-md" >
+                                        <!--<input id="no_of_siblings" name="no_of_sister" type="text" value="<?php echo $no_of_sister ?>" class="form-control input-md" >-->
+										 <select id="no_of_siblings" name="no_of_sister"   class="form-control input-md" required>
+                                        	<option value="0"<?php if($no_of_sister=='0') echo "selected";?>>0</option>
+                                            <option value="1"<?php if($no_of_sister=='1') echo "selected";?>>1</option>
+                                            <option value="2"<?php if($no_of_sister=='2') echo "selected";?>>2</option>
+                                            <option value="3"<?php if($no_of_sister=='3') echo "selected";?>>3</option>
+                                            <option value="4"<?php if($no_of_sister=='4') echo "selected";?>>4</option>
+                                            <option value="5"<?php if($no_of_sister=='5') echo "selected";?>>5</option>
+                                            <option value="6"<?php if($no_of_sister=='6') echo "selected";?>>6</option>
+                                            <option value="None"<?php if($no_of_sister=='None') echo "selected";?>>None</option>
+                                        </select>
                                     </div>
                                 </div>
                             
                                 <div class="form-group" style="padding-bottom:30px">
                                     <label class="col-sm-4 control-label" for="marital_satus_of_siblings">Married Sister</label>  
                                     <div class="col-sm-8">
-                                        <input id="marital_satus_of_siblings" name="married_sister" value="<?php echo $married_sister ?>" type="text"  class="form-control input-md"> 
+                                       <!-- <input id="marital_satus_of_siblings" name="married_sister" value="<?php echo $married_sister ?>" type="text"  class="form-control input-md"> -->
+									<select id="marital_satus_of_siblings" name="married_sister"   class="form-control input-md" required>
+                                     	<option value="0"<?php if($married_sister=='0') echo "selected";?>>0</option>
+										<option value="1"<?php if($married_sister=='1') echo "selected";?>>1</option>
+										<option value="2"<?php if($married_sister=='2') echo "selected";?>>2</option>
+										<option value="3"<?php if($married_sister=='3') echo "selected";?>>3</option>
+										<option value="4"<?php if($married_sister=='4') echo "selected";?>>4</option>
+										<option value="5"<?php if($married_sister=='5') echo "selected";?>>5</option>                                        </select>
                                     </div>
                                 </div>
                                 
                                 <div class="form-group" style="padding-bottom:30px">
                                     <label class="col-sm-4 control-label" for="marital_satus_of_siblings">Unmarried Sister</label>  
                                     <div class="col-sm-8">
-                                        <input id="marital_satus_of_siblings" name="unmarried_sister" value="<?php echo $unmarried_sister ?>" type="text"  class="form-control input-md"> 
+                                        <!--<input id="marital_satus_of_siblings" name="unmarried_sister" value="<?php echo $unmarried_sister ?>" type="text"  class="form-control input-md"> -->
+										<select  id="marital_satus_of_siblings" name="unmarried_sister"   class="form-control input-md" required>
+                                        	<option value="0"<?php if($unmarried_sister=='0') echo "selected";?>>0</option>
+                                            <option value="1"<?php if($unmarried_sister=='1') echo "selected";?>>1</option>
+                                            <option value="2"<?php if($unmarried_sister=='2') echo "selected";?>>2</option>
+                                            <option value="3"<?php if($unmarried_sister=='3') echo "selected";?>>3</option>
+                                            <option value="4"<?php if($unmarried_sister=='4') echo "selected";?>>4</option>
+                                            <option value="5"<?php if($unmarried_sister=='5') echo "selected";?>>5</option>                                        </select>
                                     </div>
                                 </div>
                                 

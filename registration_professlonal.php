@@ -26,9 +26,10 @@ function countAge(object, birthDay){
             document.all['age'].value = years.getFullYear()-base.getFullYear();
       }
 }
-
 </script>
- <script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/1.8.3/jquery.min.js"></script>
+
+<script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/1.8.3/jquery.min.js"></script>
+
 <script type="text/javascript">
     $(function () {
         $("#button").click(function () {
@@ -42,10 +43,12 @@ function countAge(object, birthDay){
         });
     });
 </script>
-  <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
-        <script src="js/custom_js.js" type="text/javascript"></script>
+
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
+<script src="js/custom_js.js" type="text/javascript"></script>
+
         
-       <script type="text/javascript">
+<script type="text/javascript">
 	   var arr = ['frm01', 'frm02', 'frm03', 'frm04', 'frm05', 'frm06', 'frm07'];
               $(document).ready(function(){
                     $("#button").click(function(){
@@ -270,9 +273,10 @@ function countAge(object, birthDay){
 					  return false;
 				}
 				else if (!preg_match("/^[a-zA-Z ]*$/",$acceptation)) {
-      alert("Only letters and white space allowed"); 
-	  return false;
-    }
+			      alert("Only letters and white space allowed"); 
+				  return false;
+			    }
+
 				if(describe_yourself==null || describe_yourself=="")
 				{    
 					  alert("Enter your Describe Yourself ");
@@ -616,15 +620,14 @@ function countAge(object, birthDay){
                           <input type="hidden" name="address" value="<?php echo $address;  ?>">
                           <input name="mobile_no1" type="hidden"value="<?php echo $mobile_no1;  ?>"   >
                           <input name="mobile_no2" type="hidden" value="<?php echo $mobile_no2;  ?>">
-                          <input type="hidden" name="DATEOFBIRTH" value="<?php echo $day_of_birth;  ?>">
+                          <input type="hidden" name="DATEOFBIRTH" value="<?php echo $birth_date;  ?>">
                           <input type="hidden" name="age" value="<?php echo $age; ?>"> 
                           <input name="birth_time" type="hidden" value="<?php echo $birth_time;  ?>"> 
                           <input type="hidden" name="day_of_birth" value="<?php echo $day_of_birth;  ?>">
                           <input name="birth_city" type="hidden" value="<?php echo $birth_city;  ?>" >
                           <input name="birth_district" type="hidden" value="<?php echo $birth_district;  ?>">
                           <input type="hidden" name="birth_state" value="<?php echo $birth_state;  ?>">
-                          
-                          <input name="cast" type="hidden"value="<?php echo $cast;  ?>"   >
+                          <input name="cast" type="hidden" value="<?php echo $cast;  ?>"   >
                           <input name="fit" type="hidden" value="<?php echo $fit;  ?>">
                           <input type="hidden" name="inches" value="<?php echo $inches;  ?>">
                           <input type="hidden" name="body_weight" value="<?php echo $body_weight; ?>"> 
@@ -692,9 +695,15 @@ function countAge(object, birthDay){
                                 </div>
                                 
                                 <div class="form-group">
-                                    <label class="col-sm-4 control-label" for="job_busi_status">Job / Business Status</label>  
+                                    <label class="col-sm-4 control-label" for="job_busi_status">Occupation status</label>  
                                     <div class="col-sm-8">
-                                        <input id="job_busi_status" name="job_busi_status" type="text" required class="form-control input-md" value="<?php echo $_SESSION['job_busi_status'];?>"> 
+                                    	<select class="form-control input-md" id="job_busi_status" name="job_busi_status">
+											<option <?php if($_SESSION['job_busi_status']=='Select') echo "selected";?> value="Select">Select</option>
+											<option <?php if($_SESSION['job_busi_status']=='Goverment Job') echo "selected";?>  value="Goverment Job">Goverment Job</option>
+											<option <?php if($_SESSION['job_busi_status']=='Private  Job') echo "selected";?>  value="Private Job">Private  Job</option>
+											<option <?php if($_SESSION['job_busi_status']=='Business') echo "selected";?>  value="Business">Business</option>
+											<option <?php if($_SESSION['job_busi_status']=='Self Employed') echo "selected";?>  value="Self">Self Employed</option>											
+										</select>                                        
                                     </div>
                                 </div>
                                 
@@ -706,9 +715,23 @@ function countAge(object, birthDay){
                                 </div>
                                 
                                 <div class="form-group">
-                                    <label class="col-sm-4 control-label" for="annual_income">Monthly / Yearly Income </label>  
+                                    <label class="col-sm-4 control-label" for="annual_income">Annual Income </label>  
                                     <div class="col-sm-8">
-                                        <input id="annual_income" name="annual_income" type="text" required onKeyPress="return isNumber(event)"  class="form-control input-md" value="<?php echo $_SESSION['annual_income'];?>">
+                                    	<select class="form-control input-md" id="faculty" name="annual_income"  required="" value="<?php echo $_SESSION['annual_income'];?>">
+											<option <?php if($_SESSION['annual_income']=='Select') echo "selected";?>  value="0">Select</option>
+											<option <?php if($_SESSION['annual_income']=='Upto 1 Lac') echo "selected";?>  value="Upto 1 Lac">Upto 1 Lac</option>
+											<option <?php if($_SESSION['annual_income']=='1 - 2.5 Lac') echo "selected";?>  value="1 - 2.5 Lac">1 - 2.5 Lac</option>
+											<option <?php if($_SESSION['annual_income']=='2.5 - 5 Lac') echo "selected";?>  value="2.5 - 5 Lac">2.5 - 5 Lac</option>
+											<option <?php if($_SESSION['annual_income']=='5 - 10 Lac') echo "selected";?>  value="5 - 10 Lac">5 - 10 Lac</option>
+											<option <?php if($_SESSION['annual_income']=='10 - 25 Lac') echo "selected";?>  value="10 - 25 Lac">10 - 25 Lac</option>
+											<option <?php if($_SESSION['annual_income']=='25 - 50 Lac') echo "selected";?>  value="25 - 50 Lac">25 - 50 Lac</option>
+											<option <?php if($_SESSION['annual_income']=='50 - 1 Cr') echo "selected";?>  value="50 - 1 Cr">50 - 1 Cr</option>
+											<option <?php if($_SESSION['annual_income']=='1 - 2.5 Cr') echo "selected";?>  value="1 - 2.5 Cr">1 - 2.5 Cr</option>
+											<option <?php if($_SESSION['annual_income']=='2.5 - 5 Cr') echo "selected";?>  value="2.5 - 5 Cr">2.5 - 5 Cr</option>
+											<option <?php if($_SESSION['annual_income']=='5 - 10 Cr') echo "selected";?>  value="5 - 10 Cr">5 - 10 Cr</option>
+											<option <?php if($_SESSION['annual_income']=='above 10 Cr') echo "selected";?>  value="above 10 Cr">above 10 Cr</option>
+											<option <?php if($_SESSION['annual_income']=='No Income') echo "selected";?>  value="No Income">No Income</option>
+										</select>                                  
                                     </div>
                                 </div>
                                 
@@ -729,8 +752,8 @@ function countAge(object, birthDay){
                         </div>
                         <div class="navigation col-sm-6" align="right">
                            <a href="registration_personal_page.php">
-                           <button type="button" name="prev" class="btn btn-danger" style="background-color:#1ba39c;border-color:#1ba39c">Previous</button></a>
-                           <button type="submit" name="submit" class="btn btn-danger" style="background-color:#1ba39c;border-color:#1ba39c">Next</button></div>
+                           <button type="button" name="prev" class="btn btn-danger" style="background-color:#054c48;border-color:#1ba39c">Previous</button></a>
+                           <button type="submit" name="submit" class="btn btn-danger" style="background-color:#054c48;border-color:#1ba39c">Next</button></div>
 						    <div class="navigation col-sm-6"  align="right" style="padding-top:20px;">
 						   <a href="reset.php" style="color:#FFFFFF; font-size:13px; font-weight:bold">Reset</a>
                        </div>
@@ -743,4 +766,3 @@ function countAge(object, birthDay){
   <?php include "main/footer.php" ; ?>
      </body>
 </html>
-

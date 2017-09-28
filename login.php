@@ -99,21 +99,21 @@
                         <div class="col-sm-12" id="id05">
                         <br><br>
                             <div class="form-group">
-                                    <label class="col-sm-4 control-label" for="first_name">Username</label> 
+                                    <label class="col-sm-3 control-label" for="first_name">Email Id</label> 
                                     <div class="col-sm-1">
                                     	<img src="img/ICON 1/Oxygen-Icons.org-Oxygen-Apps-preferences-desktop-user-password.ico" style="width:30px;height:20px;">
                                     </div> 
-                                    <div class="col-sm-7">
+                                    <div class="col-sm-8">
                                         <input type="email" class="form-control input-md" name="email" required>
                                     </div>
                                 </div>
                                 <!-- Text input-->
                                 <div class="form-group">
-                                    <label class="col-sm-4 control-label" for="middle_name">Password</label>  
+                                    <label class="col-sm-3 control-label" for="middle_name">Password</label>  
                                     <div class="col-sm-1">
                                     	<img src="img/ICON 1/UyeGirisi.png" style="width:30px;height:20px;">
                                     </div>
-                                    <div class="col-sm-7">
+                                    <div class="col-sm-8">
                                         <input type="password" class="form-control input-md" name="pass" required>
                                     </div>
                                 </div>
@@ -183,8 +183,34 @@
 
  <div style="margin-top:72px;">
   
-  <?php include "main/footer.php" ; ?>
+
 </div>
+<p style="position: fixed;bottom: 0px;width: 100%;" class="text-center copyright">&copy; Copyright<a href="www.backtechs.com"> Backend Technologies PVT.LTD</a>. All Rights Reserved.</p>
+<!-- jQuery (necessary for Bootstrap's JavaScript plugins) --> 
+<script type="text/javascript" src="http://www.htmlpreviews.com/cloud/badminton/credon8/js/jquery.min.js"></script> 
+<!-- Include all compiled plugins (below), or include individual files as needed --> 
+<script src="http://www.htmlpreviews.com/cloud/badminton/credon8/js/bootstrap.min.js"></script> 
+<script type="text/javascript">
+$('.carousel').carousel({
+  interval: 3500, // in milliseconds
+  pause: 'none' // set to 'true' to pause slider on mouse hover
+})
+</script>
+
+
+<script type="text/javascript">
+$( "a.submenu" ).click(function() {
+$( ".menuBar" ).slideToggle( "normal", function() {
+// Animation complete.
+});
+});
+$( "ul li.dropdown a" ).click(function() {
+$( "ul li.dropdown ul" ).slideToggle( "normal", function() {
+// Animation complete.
+});
+$('ul li.dropdown').toggleClass('current');
+});
+</script>
 </body>
 
 </html>

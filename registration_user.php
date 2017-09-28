@@ -256,7 +256,7 @@ function countAge(object, birthDay){
                           <input type="hidden" name="address" value="<?php echo $address;  ?>">
                           <input name="mobile_no1" type="hidden"value="<?php echo $mobile_no1;  ?>"   >
                           <input name="mobile_no2" type="hidden" value="<?php echo $mobile_no2;  ?>">
-                          <input type="hidden" name="DATEOFBIRTH" value="<?php echo $day_of_birth;  ?>">
+                          <input type="hidden" name="DATEOFBIRTH" value="<?php echo $birth_date;  ?>">
                           <input type="hidden" name="age" value="<?php echo $age; ?>"> 
                           <input name="birth_time" type="hidden" value="<?php echo $birth_time;  ?>"> 
                           <input type="hidden" name="day_of_birth" value="<?php echo $day_of_birth;  ?>">
@@ -327,11 +327,11 @@ function countAge(object, birthDay){
                         <div class="col-sm-12" id="id05">
                          <div class="col-sm-12 _heading">
                                 <h5> <img src="img/ICON 1/Safetycord-Login.png" style="width:50px;height:50px;">
-                                Please Provide Your Username and Password for Login</h5>
+                                Please Provide Your Email Id and Password for Login</h5>
                             </div>
                             <hr>
                             <div class="form-group" >
-                                    <label class="col-sm-4 control-label" for="first_name">Username<img src="img/ICON 1/lock_secure_security_password-512.png" style="height:25px; width:25px"></label>
+                                    <label class="col-sm-4 control-label" for="first_name">Email Id<img src="img/ICON 1/lock_secure_security_password-512.png" style="height:25px; width:25px"></label>
                                    <!-- <div class="col-lg-1">
                                     
                                     </div>-->  
@@ -365,7 +365,7 @@ function countAge(object, birthDay){
                             </div>
                             <div class="navigation col-sm-12" style="width: 596px;margin-left: -15px;">
                            <a href="registration_marriage_type.php">
-                           <button type="button" name="prev" class="btn btn-danger" style="background-color:#1ba39c;border-color:#1ba39c">Previous</button></a>
+                           <button type="button" name="prev" class="btn btn-danger" style="background-color:#054c48;border-color:#1ba39c">Previous</button></a>
                           
                         </div>
                          

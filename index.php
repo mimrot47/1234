@@ -313,6 +313,7 @@ $(document).ready(function()
        <td style="float:left; color:#FFFFFF;font-family: sans-serif;font-size: 20px;">State </td>
        <td>
 			<select class="input_type " name="states" id="state" style="padding:6px;width:200px;margin-left: 0px;font-size: 16px;font-family: sans-serif;" >
+			
       		<option>Select State</option>
 			<?php 
 				
@@ -402,7 +403,7 @@ li a {
      <ul>
     <form action="search_state.php" method="post"> 
       <li>
- 	     <select class="form-control" id="state" required name="states">
+ 	     <select class="form-control" id="state" required name="states" style="font-size:16px; color:#000000">
         	<option>Select State</option>
             	<?php 
 					$show1=mysql_query("select DISTINCT state from state ORDER BY state  ASC");
@@ -415,7 +416,7 @@ li a {
          </li>
 		 <li>&nbsp;</li>
 		 <li>
-		 	<select class="form-control" name="marriageType" > 
+		 	<select class="form-control" name="marriageType" style="font-size:16px; color:#000000" > 
 			<option>Select Marriage Status </option>
 			<option>Never married</option>
 			<option>Divorcee</option>
@@ -458,14 +459,11 @@ li a {
 				while($row=mysql_fetch_array($show))
 				{
 					echo "<li><a href=#>";
-					if($row['profile_pic']==" ")
-					{
-						echo"sdfdsfdsfsd";
-					}
-					else
-					{
-					echo '<img src="data:'.$image_mime_type.';base64,'.base64_encode($row['profile_pic']).'" alt="image" onclick="myFunction()"  onerror=this.src=http://www.siaa.org.cn/style/common/nophoto.jpg  style="height: 180px;"/>';
-					}
+					if($row['profile_pic']==""){
+            echo '<img src="matrimony/img/bride.png" alt="image" onclick="myFunction()"  onerror=this.src=http://www.siaa.org.cn/style/common/nophoto.jpg style="height: 180px;" />';
+          } else {
+          echo '<img src="data:'.$image_mime_type.';base64,'.base64_encode($row['profile_pic']).'" alt="image" onclick="myFunction()"  onerror=this.src=http://www.siaa.org.cn/style/common/nophoto.jpg style="height: 180px;" />';
+            }
 						echo "</a><br><br>
 	             <div class=splendid-links> <font color='#000099'>".ucfirst($row['first_name']).",".$row['age']."<br>".$row['city']."</font>
 				  <a  href=login.php?id=".$row['unique_id']." >View Details</a></div>
@@ -613,33 +611,33 @@ $(function () {
       <h2 class="page__title text-center"><span>Groom</span></h2>
      
       <div class="container" style="margin-top:30px;">
+      
       <style>
-ul {
-    list-style-type: none;
-    margin: 0;
-    padding: 0;
-    overflow: hidden;
-   
-}
+        ul {
+            list-style-type: none;
+            margin: 0;
+            padding: 0;
+            overflow: hidden;
+           
+        }
 
-li {
-    float: left;
-}
+        li {
+            float: left;
+        }
 
-li a {
-    display: block;
-    
-    text-align: center;
-    padding: 16px;
-    text-decoration: none;
-}
-
-
-</style>
+        li a {
+            display: block;
+            
+            text-align: center;
+            padding: 16px;
+            text-decoration: none;
+        }
+      </style>
+      
       <ul>
 	  <form action="search_state.php" method="post">
 		<li>
-       <select class="form-control" id="state" required name="states">
+       <select class="form-control" id="state" required name="states" style="font-size:16px; color:#000000">
         	<option>Select State</option>
             	<?php 
 					$show1=mysql_query("select DISTINCT state from state ORDER BY state  ASC");
@@ -653,7 +651,7 @@ li a {
         </li>
 		<li>&nbsp;</li>
 		 <li>
-		 	<select class="form-control" name="marriageType" > 
+		 	<select class="form-control" name="marriageType" style="font-size:16px; color:#000000" > 
 			<option>Select Marriage Status </option>
 			<option>Never married</option>
 			<option>Divorcee</option>
@@ -694,8 +692,11 @@ function myFunction() {
 				while($row=mysql_fetch_array($show))
 				{
 					echo "<li><a href=#>";
+          if($row['profile_pic']==""){
+            echo '<img src="matrimony/img/groom.png" alt="image" onclick="myFunction()"  onerror=this.src=http://www.siaa.org.cn/style/common/nophoto.jpg style="height: 180px;" />';
+          } else {
 					echo '<img src="data:'.$image_mime_type.';base64,'.base64_encode($row['profile_pic']).'" alt="image" onclick="myFunction()"  onerror=this.src=http://www.siaa.org.cn/style/common/nophoto.jpg style="height: 180px;" />';
-						
+						}
 						echo "</a><br><br>
 	              <div class=splendid-links><font color=#000099>".ucfirst($row['first_name']).",".$row['age']."<br>".$row['city']."
 				  <a href=login.php?id=".$row['unique_id']." >View Details</a></div>
@@ -876,9 +877,9 @@ $(function () {
          <div class="w3-center">
   <div class="w3-section">
     <button class="w3-btn" onClick="plusDivs(-1)" style="border:none;background:none"><img src="img/prev.png" 
-    style="width:40px; height:40px"></button>
+    style="width:80px; height:40px"></button>
     <button class="w3-btn" onClick="plusDivs(1)" style="border:none;background:none"><img src="img/next.png" 
-    style="width:40px; height:40px"></button>
+    style="width:80px; height:40px"></button>
   </div>
 </div>
 
@@ -1051,7 +1052,7 @@ function showDivs(n) {
         	<img src="img/Company Logo.png">
         </div>
         <div class="col-md-8">
-        	<form action="main/contact_us.php" method="post" class="form-inline" role="form">
+        	<form action="../logo.png" method="post" class="form-inline" role="form">
           <div class="form-group">
             <label class="sr-only" for="exampleInputEmail2">your email</label>
             <input type="email" required class="form-control form-control-lg" name="email" id="exampleInputEmail2" placeholder="your email">
@@ -1066,7 +1067,7 @@ function showDivs(n) {
         </div>
      </div>
 </footer>
-<p class="text-center copyright">&copy; Copyright<a href="www.backtechs.com"> Backtechs PVT.LTD</a>. All Rights Reserved.</p>
+<p class="text-center copyright">Copyright &copy; 2017<a href="www.backtechs.com"> Backtend Technologies PVT.LTD</a>. All Rights Reserved.</p>
 <!-- jQuery (necessary for Bootstrap's JavaScript plugins) 
 <script type="text/javascript" src="http://www.htmlpreviews.com/cloud/badminton/credon8/js/jquery.min.js"></script> 
 <!-- Include all compiled plugins (below), or include individual files as needed --> 

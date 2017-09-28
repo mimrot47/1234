@@ -130,21 +130,32 @@ header("Location:http://bhavsar.org/Matrimonial/Matrimonial%20Template%20&%20Ima
                     
                     	<div class="thumbnail" >
                         <h4 align="center"> Search Your Life Partner</h4><hr>
-							<form action="search.php" method="post">
+                        
+			<form action="search.php" method="post">
+			<?php 
+                         $genders=mysql_fetch_array(mysql_query("select gender from matrimonialall where email='$email' and is_del='no'"));
+                          ?>
                             	<div class="col-lg-6">
                                 <div class="col-lg-5">
                                 	Marriage Status :
                                 </div>
                                 <div class="col-lg-7">
                             	<select class="form-control" name="marriageType"> 
-                                    <option></option>
+                                    <option>Select Marriage Status</option>
                                         <option>Never married</option>
-                                        <option>Divorce</option>
+                                        <option>Divorcee</option>
+                                         <?php if($genders[0]!='Bride'){?>
                                         <option>Widow</option>
+                                        <?php }?>
+                                        <?php if($genders[0]!='Groom'){?>
                                         <option>Widower</option>
+                                        <?php }?>
                                     </select>
                                     </div>
                                     <br>
+                                    <br>
+                                    <br>
+
                                    <div class="col-lg-5"> 
                                     Age :
                                    </div>
@@ -152,8 +163,8 @@ header("Location:http://bhavsar.org/Matrimonial/Matrimonial%20Template%20&%20Ima
                              <table>
                              <tr>
                              <td>
-							From<select class="form-control" style="width:90px;" name="from">
-							<option></option>
+							<select class="form-control" style="width:90px;" name="from">
+							<option>From</option>
 								<option>18</option>
 								<option>19</option>
 								<option>20</option>
@@ -190,8 +201,8 @@ header("Location:http://bhavsar.org/Matrimonial/Matrimonial%20Template%20&%20Ima
 								<option>50</option>
 							</select>
                 </td><td>&nbsp;&nbsp;&nbsp;</td><td>
-                To<select class="form-control" style="width:90px;" name="to">
-            	<option></option>
+                <select class="form-control" style="width:90px;" name="to">
+            	<option>To</option>
             	<option>18</option>
             	<option>19</option>
                 <option>20</option>
@@ -238,7 +249,7 @@ header("Location:http://bhavsar.org/Matrimonial/Matrimonial%20Template%20&%20Ima
                                 </div>
                                 <div class="col-lg-8">
                                 <select class="form-control" id="academic_level" name="academic_level" >
-                                	<option></option>
+                                	<option>Select Qualification</option>
 									<option>MBA</option>
 									<option>CA</option>
 									<option>Doctor</option>
@@ -252,13 +263,13 @@ header("Location:http://bhavsar.org/Matrimonial/Matrimonial%20Template%20&%20Ima
 									<option>SSC</option>
                                 </select>
                                       </div>
-                                <br><br>
+                                <br><br><br>
                                 <div class="col-lg-4">
-                                State :
+                                State:
                                 </div>
                                 <div class="col-lg-8">
                             	<select class="form-control " name="states" >
-                                    <option></option>
+                                    <option>Select State</option>
                                     <?php 
 											 $show1=mysql_query("select DISTINCT state from city ORDER BY state  ASC");
 														

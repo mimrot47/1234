@@ -181,8 +181,8 @@ $show=mysql_query("select * from matrimonialall where is_del='no' and email='$em
                                         <input type="text" id="birth_date" placeholder="DD/MM/YYYY" name="DATEOFBIRTH" value="<?php echo $birth_date; ?>" class="form-control input-md" onChange="countAge(this.form, this);"> 
                                     </div>
                                 </div>
-                                <div class="form-group" style="padding-bottom:30px">
-                                    <label class="col-sm-4 control-label" for="birth_time">Time of Birth</label>  
+                                <div class="form-group" style="padding-bottom:50px">
+                                    <label class="col-sm-4 control-label" for="birth_time">Time of Birth(24 hrs Format)</label>  
                                     <div class="col-sm-8">
                                         <input id="birth_time" name="birth_time" type="time" value="<?php echo $birth_time; ?>" class="form-control input-md"> 
                                     </div>
@@ -205,7 +205,7 @@ $show=mysql_query("select * from matrimonialall where is_del='no' and email='$em
                                 <div class="form-group" style="padding-bottom:30px">
                                     <label class="col-sm-4 control-label" for="birth_city">Place of Birth </label>  
                                     <div class="col-sm-8">
-                                        <input id="birth_city" name="birth_city" type="text" value="<?php echo $birth_date; ?>" class="form-control input-md" >
+                                        <input id="birth_city" name="birth_city" type="text" value="<?php echo $birth_city; ?>" class="form-control input-md" >
                                     </div>
                                 </div>
                                 <div class="form-group" style="padding-bottom:30px">
@@ -217,7 +217,21 @@ $show=mysql_query("select * from matrimonialall where is_del='no' and email='$em
                                 <div class="form-group" style="padding-bottom:30px">
                                     <label class="col-sm-4 control-label" for="birth_state">Birth Place State  </label>  
                                     <div class="col-sm-8">
-                                        <input id="birth_state" name="birth_state" type="text" value="<?php echo $birth_state; ?>"  class="form-control input-md" >
+                                       <!-- <input id="birth_state" name="birth_state" type="text" value="<?php echo $birth_state; ?>"  class="form-control input-md" >-->
+										 <select class="form-control" id="birth_state" required name="birth_state">
+                                        	<option>Select</option>
+                                        	<?php 
+											 $show1=mysql_query("select DISTINCT state from city ORDER BY state  ASC");
+														
+												while($rw1=mysql_fetch_array($show1))
+													{ 
+											?>
+											<option value="<?php echo $rw1['state'];?>"<?php if($birth_state==$rw1['state']) echo "selected";?>><?php echo $rw1['state'];?></option>
+											<?php
+													
+													}
+									   ?>
+                                        </select>
                                     </div>
                                     </div>
                                      

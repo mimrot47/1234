@@ -668,7 +668,7 @@ function getsub_category(val1) {
                                     <label class="col-sm-4 control-label" for="address">State</label>
                                     <div class="col-sm-8">    
                                     	<select class="form-control" id="state" required name="states">
-                                        	<option>Select</option>
+                                        	<option>Select State</option>
                                         	<?php 
 												$stmt = $DB_con->prepare("SELECT * FROM state where is_del='approved' ORDER BY state  ASC");
 												$stmt->execute();
@@ -699,14 +699,14 @@ function getsub_category(val1) {
 												<?php
 											}
 										?>
-                                        	<option value="">Select</option>
+                                        	<option value="">Select City</option>
                                         </select>  
                                     </div>
                                 </div>
                                 <div class="form-group">
                                     <label class="col-sm-4 control-label" for="address">Address</label>
                                     <div class="col-sm-8">                     
-                                        <textarea class="form-control" id="address" name="address"rows="5" required ><?php echo $_SESSION['birth_district']; ?></textarea>
+                                        <textarea class="form-control" id="address" name="address"rows="5" required ><?php echo $_SESSION['address']; ?></textarea>
                                     </div>
                                 </div>
                                 <div class="form-group">
@@ -792,7 +792,7 @@ function getsub_category(val1) {
                                 </div>
                                 <div class="form-group" style="margin-bottom:0px">
                                 <div class="navigation col-sm-6" align="right">
-                                    <button type="submit" name="submit" class="btn btn-danger" style="background-color:#1ba39c;border-color:#1ba39c">Next</button></div>
+                                    <button type="submit" name="submit" class="btn btn-danger" style="background-color:#054c48;border-color:#1ba39c">Next</button></div>
 									<div class="navigation col-sm-6" align="right" style="padding-top:20px;">
 									<a href="reset.php" style="color:#FFFFFF; font-size:13px; font-weight:bold; text-align:right">Reset</a>
                        			</div>

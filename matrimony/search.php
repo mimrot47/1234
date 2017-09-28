@@ -1,7 +1,8 @@
-
-<?php include "../connect.php";
+<?php
+header('Cache-Control: no cache');
+include "../connect.php";
 session_start();
- $email=$_SESSION['myusername'];
+$email=$_SESSION['myusername'];
 
 ?>
 <!DOCTYPE html>
@@ -40,18 +41,25 @@ session_start();
                     
                     	<div class="thumbnail" style="height:220px">
                         <h4 align="center"> Search Your Life Parner</h4><hr>
-							<form action="search.php" method="post">
+						<form action="search.php" method="post">
+						<?php 
+                         $genders=mysql_fetch_array(mysql_query("select gender from matrimonialall where email='$email' and is_del='no'"));
+                          ?>
                             	<div class="col-lg-6">
                                 <div class="col-lg-5">
                                 	Marriage Status :
                                 </div>
                                 <div class="col-lg-7">
                             	<select class="form-control" name="marriageType"> 
-                                    <option></option>
+                                    <option>Select Marriage Status</option>
                                         <option>Never married</option>
-                                        <option>Divorce</option>
+                                        <option>Divorcee</option>
+                                        <?php if($genders[0]!='Bride'){?>
                                         <option>Widow</option>
+                                        <?php }?>
+                                        <?php if($genders[0]!='Groom'){?>
                                         <option>Widower</option>
+                                        <?php }?>
                                     </select>
                                     </div>
                                     <br>
@@ -63,7 +71,7 @@ session_start();
                              <tr>
                              <td>
                 From<select class="form-control" style="width:90px;" name="from">
-            	<option></option>
+            	<option>Age</option>
                     <option>18</option>
                     <option>19</option>
                     <option>20</option>
@@ -101,7 +109,7 @@ session_start();
                 </select>
                 </td><td>&nbsp;&nbsp;&nbsp;</td><td>
                 To<select class="form-control" style="width:90px;" name="to">
-            	<option></option>
+            	<option>Age</option>
             	<option>18</option>
             	<option>19</option>
                 <option>20</option>
@@ -148,7 +156,7 @@ session_start();
                                 </div>
                                 <div class="col-lg-8">
                                 <select class="form-control" id="academic_level" name="academic_level" >
-                                	<option></option>
+                                	<option>Select Qualification</option>
 									<option>MBA</option>
 									<option>CA</option>
 									<option>Doctor</option>
@@ -167,7 +175,7 @@ session_start();
                                 </div>
                                 <div class="col-lg-8">
                             	<select class="form-control " name="states" >
-                                    <option></option>
+                                    <option>Select State</option>
                                     <?php 
 											 $show1=mysql_query("select DISTINCT state from city ORDER BY state  ASC");
 														
@@ -196,9 +204,7 @@ session_start();
 						}
 						$marriageType=$_POST['marriageType'];
 						$academic_level=$_POST['academic_level'];
-						//$cast=$_POST['cast'];
 						$states=$_POST['states'];
-						//$age=$_POST['age'];
 						$from=$_POST['from'];
 						$to=$_POST['to'];
 						$age=$from. "". $to;
@@ -207,89 +213,127 @@ session_start();
 										
 							if($marriageType!='' && $academic_level=='' && $states=='' && $age=='')
 							{
-								
-								$show_marg=mysql_query("select * from matrimonialall where marriageType='$marriageType' and gender='Bride' and is_del='no'  ") or die(mysql_error());
-								$image_mime_type="image/png|image/jpeg|image/gif";
-								while($row_marg=mysql_fetch_array($show_marg))
+								$res1 = mysql_num_rows(mysql_query("select * from matrimonialall where marriageType='$marriageType' and gender='Bride' and is_del='no'  "));
+								if($res1==0)
 								{
-									$unique_id=$row_marg['unique_id'];
-								 	$first_name=$row_marg['first_name'];
-									$last_name=$row_marg['last_name'];
-									$city=$row_marg['city'];
-									$mobile_no1=$row_marg['mobile_no1'];
-				   	?>
-						<div class="col-lg-3 col-md-3 col-sm-4 col-xs-6" >
-							<div class="thumbnail" >
-								<?php echo '<img src="data:'.$image_mime_type.';base64,'.base64_encode
-								($row_marg['profile_pic']).'" style="width:150px; height:150px;" />';?>
-								<div class="caption">
-									<h5><?php echo "<a href=search_view.php?id=".$row_marg['unique_id'].">". $first_name." ".$last_name."</a>"; ?></h5>
-                                    <h5><?php echo $mobile_no1; ?></a></h5>
-									<p class="price"><?php echo $city; ?></p>
-                                    <button type="button" class="btn btn-danger" ><?php echo"<a href=search_view.php?id=".$row_marg['unique_id']." >";?><span style="color:#fff">View Detail</span><?php echo "</a>"; ?></button>
+								?>
+								<h3>No Records Found</h3>
+								<?php
+								}
+								else
+								{
+									$show_marg=mysql_query("select * from matrimonialall where marriageType='$marriageType' and gender='Bride' and is_del='no'  ") or die(mysql_error());
+									$image_mime_type="image/png|image/jpeg|image/gif";
+									while($row_marg=mysql_fetch_array($show_marg))
+									{
+										$unique_id=$row_marg['unique_id'];
+										$first_name=$row_marg['first_name'];
+										$last_name=$row_marg['last_name'];
+										$city=$row_marg['city'];
+										$mobile_no1=$row_marg['mobile_no1'];
+						?>
+							<div class="col-lg-3 col-md-3 col-sm-4 col-xs-6" >
+								<div class="thumbnail" >
+									<?php echo '<img src="data:'.$image_mime_type.';base64,'.base64_encode
+									($row_marg['profile_pic']).'" style="width:150px; height:150px;" />';?>
+									<div class="caption">
+										<h5><?php echo "<a href=search_view.php?id=".$row_marg['unique_id'].">". $first_name." ".$last_name."</a>"; ?></h5>
+										<h5><?php echo $mobile_no1; ?></a></h5>
+										<p class="price"><?php echo $city; ?></p>
+										<button type="button" class="btn btn-danger" ><?php echo"<a href=search_view.php?id=".$row_marg['unique_id']." >";?><span style="color:#fff">View Detail</span><?php echo "</a>"; ?></button>
+									</div>
 								</div>
 							</div>
-						</div>
-						<?php
+							<?php
+									}
 								}
 					  	}
 						
 						if($marriageType=='' && $academic_level!='' &&  $states=='' && $age=='')
 						{
-							$show_al=mysql_query("select * from matrimonialall where faculty='$academic_level' and gender='Bride' and is_del='no'  ") or die(mysql_error());
-							$image_mime_type="image/png|image/jpeg|image/gif";
-							while($row_al=mysql_fetch_array($show_al))
+							$res2 = mysql_num_rows(mysql_query("select * from matrimonialall where faculty='$academic_level' and gender='Bride' and is_del='no'  "));
+							if($res2==0)
 							{
-								$first_name=$row_al['first_name'];
-								$last_name=$row_al['last_name'];
-								$city=$row_al['city'];
-								$mobile_no1=$row_al['mobile_no1'];
-						?>
+							?>
+							<h3>No Records Found</h3>
+							<?php
+							}
+							else
+							{
+								$show_al=mysql_query("select * from matrimonialall where faculty='$academic_level' and gender='Bride' and is_del='no'  ") or die(mysql_error());
+								$image_mime_type="image/png|image/jpeg|image/gif";
+								while($row_al=mysql_fetch_array($show_al))
+								{
+									$first_name=$row_al['first_name'];
+									$last_name=$row_al['last_name'];
+									$city=$row_al['city'];
+									$mobile_no1=$row_al['mobile_no1'];
+							?>
 
-						<div class="col-lg-3 col-md-3 col-sm-4 col-xs-6" >
-							<div class="thumbnail" >
-								<?php echo '<img src="data:'.$image_mime_type.';base64,'.base64_encode
-								($row_al['profile_pic']).'" style="width:150px; height:150px;" />';?>
-								<div class="caption">
-									<h5><?php echo $first_name." ".$last_name; ?></h5>
-                                    <h5><?php echo $mobile_no1; ?></h5>
-									<p class="price"><?php echo $city; ?></p>
-                                    <button type="button" class="btn btn-danger" ><?php echo"<a href=search_view.php?id=".$row_al['unique_id']." >";?><span style="color:#fff">View Detail</span><?php echo "</a>"; ?></button>
+							<div class="col-lg-3 col-md-3 col-sm-4 col-xs-6" >
+								<div class="thumbnail" >
+									<?php echo '<img src="data:'.$image_mime_type.';base64,'.base64_encode
+									($row_al['profile_pic']).'" style="width:150px; height:150px;" />';?>
+									<div class="caption">
+										<h5><?php echo $first_name." ".$last_name; ?></h5>
+										<h5><?php echo $mobile_no1; ?></h5>
+										<p class="price"><?php echo $city; ?></p>
+										<button type="button" class="btn btn-danger" ><?php echo"<a href=search_view.php?id=".$row_al['unique_id']." >";?><span style="color:#fff">View Detail</span><?php echo "</a>"; ?></button>
+									</div>
 								</div>
 							</div>
-						</div>
 						<?php
+								}
 							}
 					  	}
 						if($marriageType=='' && $academic_level==''  && $states!='' && $age=='')
 						{
-							$show_state=mysql_query("select * from matrimonialall where states='$states' and is_del='no' and gender='Bride' ") or die(mysql_error());
-							$image_mime_type="image/png|image/jpeg|image/gif";
-							while($row_state=mysql_fetch_array($show_state))
+							$res3 = mysql_num_rows(mysql_query("select * from matrimonialall where states='$states' and is_del='no' and gender='Bride' "));
+							if($res3==0)
 							{
-								$first_name=$row_state['first_name'];
-								$last_name=$row_state['last_name'];
-								$city=$row_state['city'];
-								$mobile_no1=$row_state['mobile_no1'];
-						?>
-
-						<div class="col-lg-3 col-md-3 col-sm-4 col-xs-6" >
-							<div class="thumbnail" >
-								<?php echo '<img src="data:'.$image_mime_type.';base64,'.base64_encode
-								($row_state['profile_pic']).'" style="width:150px; height:150px;" />';?>
-								<div class="caption">
-									<h5><?php echo "<a href=search_view.php?id=".$row_state['unique_id'].">". $first_name." ".$last_name."</a>"; ?></h5>
-                                    <h5><?php echo $mobile_no1; ?></h5>
-									<p class="price"><?php echo $city; ?></p>
-                                    <button type="button" class="btn btn-danger" ><?php echo"<a href=search_view.php?id=".$row_state['unique_id']." >";?><span style="color:#fff">View Detail</span><?php echo "</a>"; ?></button>
+							?>
+							<h3>No Records Found</h3>
+							<?php
+							}
+							else
+							{
+								$show_state=mysql_query("select * from matrimonialall where states='$states' and is_del='no' and gender='Bride' ") or die(mysql_error());
+								$image_mime_type="image/png|image/jpeg|image/gif";
+								while($row_state=mysql_fetch_array($show_state))
+								{
+									$first_name=$row_state['first_name'];
+									$last_name=$row_state['last_name'];
+									$city=$row_state['city'];
+									$mobile_no1=$row_state['mobile_no1'];
+							?>
+	
+							<div class="col-lg-3 col-md-3 col-sm-4 col-xs-6" >
+								<div class="thumbnail" >
+									<?php echo '<img src="data:'.$image_mime_type.';base64,'.base64_encode
+									($row_state['profile_pic']).'" style="width:150px; height:150px;" />';?>
+									<div class="caption">
+										<h5><?php echo "<a href=search_view.php?id=".$row_state['unique_id'].">". $first_name." ".$last_name."</a>"; ?></h5>
+										<h5><?php echo $mobile_no1; ?></h5>
+										<p class="price"><?php echo $city; ?></p>
+										<button type="button" class="btn btn-danger" ><?php echo"<a href=search_view.php?id=".$row_state['unique_id']." >";?><span style="color:#fff">View Detail</span><?php echo "</a>"; ?></button>
+									</div>
 								</div>
 							</div>
-						</div>
-						<?php
+							<?php
+								}
 							}
 						}
 						if($marriageType=='' && $academic_level==''  && $states=='' && $age!='')
 						{
+							$res4 = mysql_num_rows(mysql_query("select * from matrimonialall where age BETWEEN $from AND $to and is_del='no' and gender='Bride' "));
+							if($res4==0)
+							{
+							?>
+							<h3>No Records Found</h3>
+							<?php
+							}
+							else
+							{
 							$show_age=mysql_query("select * from matrimonialall where age BETWEEN $from AND $to and is_del='no' and gender='Bride' ") or die(mysql_error());
 							$image_mime_type="image/png|image/jpeg|image/gif";
 							while($row_age=mysql_fetch_array($show_age))
@@ -314,10 +358,20 @@ session_start();
 						</div>
 						<?php
 							}
+							}
+							
 					  	}
 						if($marriageType!='' && $academic_level!='' &&  $states!='' && $age!='')
 						{
-							
+							$res5 = mysql_num_rows(mysql_query("select * from matrimonialall where age BETWEEN $from AND $to and marriageType='$marriageType' and states='$states' and faculty='$academic_level' and is_del='no' and gender='Bride'"));
+							if($res5==0)
+							{
+							?>
+							<h3>No Records Found</h3>
+							<?php
+							}
+							else
+							{
 							$show_m=mysql_query("select * from matrimonialall where age BETWEEN $from AND $to and marriageType='$marriageType' and states='$states' and faculty='$academic_level' and is_del='no' and gender='Bride'  ") or die(mysql_error());
 						
 							$image_mime_type="image/png|image/jpeg|image/gif";
@@ -343,6 +397,7 @@ session_start();
 						</div>
 						<?php
 							}
+							}
 					  	}
 					}
 					else if($gender=='Bride')
@@ -351,6 +406,15 @@ session_start();
 						if($marriageType!='' && $academic_level=='' && $states=='' && $age=='')
 						{
 	
+							$res6 = mysql_num_rows(mysql_query("select * from matrimonialall where marriageType='$marriageType' and gender='Groom' and is_del='no'  "));
+							if($res6==0)
+							{
+							?>
+							<h3>No Records Found</h3>
+							<?php
+							}
+							else
+							{
 							$show_marg=mysql_query("select * from matrimonialall where marriageType='$marriageType' and gender='Groom' and is_del='no'  ") or die(mysql_error());
 							$image_mime_type="image/png|image/jpeg|image/gif";
 							while($row_marg=mysql_fetch_array($show_marg))
@@ -375,10 +439,20 @@ session_start();
 						</div>
 						<?php
 							}
+							}
 					  	}
 						
 						if($marriageType=='' && $academic_level!='' &&  $states=='' && $age=='')
 						{
+							$res7 = mysql_num_rows(mysql_query("select * from matrimonialall where faculty='$academic_level' and gender='Groom' and is_del='no'  "));
+							if($res7==0)
+							{
+							?>
+							<h3>No Records Found</h3>
+							<?php
+							}
+							else
+							{
 							$show_al=mysql_query("select * from matrimonialall where faculty='$academic_level' and gender='Groom' and is_del='no'  ") or die(mysql_error());
 							$image_mime_type="image/png|image/jpeg|image/gif";
 							while($row_al=mysql_fetch_array($show_al))
@@ -403,10 +477,20 @@ session_start();
 						</div>
 						<?php
 							}
+							}
 					 	 }
 					  
 					  	if($marriageType=='' && $academic_level==''  && $states!='' && $age=='')
 						{
+							$res8 = mysql_num_rows(mysql_query("select * from matrimonialall where states='$states' and is_del='no' and gender='Groom' "));
+							if($res8==0)
+							{
+							?>
+							<h3>No Records Found</h3>
+							<?php
+							}
+							else
+							{
 							$show_state=mysql_query("select * from matrimonialall where states='$states' and is_del='no' and gender='Groom' ") or die(mysql_error());
 							$image_mime_type="image/png|image/jpeg|image/gif";
 							while($row_state=mysql_fetch_array($show_state))
@@ -431,9 +515,19 @@ session_start();
 						</div>
 						<?php
 							}
+							}
 					 	 }
 						if($marriageType=='' && $academic_level==''  && $states=='' && $age!='')
 						{
+							$res9 = mysql_num_rows(mysql_query("select * from matrimonialall where age BETWEEN $from AND $to and is_del='no' and gender='Groom' "));
+							if($res9==0)
+							{
+							?>
+							<h3>No Records Found</h3>
+							<?php
+							}
+							else
+							{
 							$show_age=mysql_query("select * from matrimonialall where age BETWEEN $from AND $to and is_del='no' and gender='Groom' ") or die(mysql_error());
 							$image_mime_type="image/png|image/jpeg|image/gif";
 							while($row_age=mysql_fetch_array($show_age))
@@ -458,10 +552,20 @@ session_start();
 						</div>
 						<?php
 							}
+							}
 					 	 }
 						if($marriageType!='' && $academic_level!='' &&  $states!='' && $age!='')
 						{
 	
+							$res10 = mysql_num_rows(mysql_query("select * from matrimonialall where age BETWEEN $from AND $to and marriageType='$marriageType' and states='$states' and faculty='$academic_level' and is_del='no' and gender='Groom'  "));
+							if($res10==0)
+							{
+							?>
+							<h3>No Records Found</h3>
+							<?php
+							}
+							else
+							{
 							$show_m=mysql_query("select * from matrimonialall where age BETWEEN $from AND $to and marriageType='$marriageType' and states='$states' and faculty='$academic_level' and is_del='no' and gender='Groom'  ") or die(mysql_error());
 							
 							$image_mime_type="image/png|image/jpeg|image/gif";
@@ -486,6 +590,7 @@ session_start();
 							</div>
 						</div>
 						<?php
+							}
 							}
 						  }
 						}

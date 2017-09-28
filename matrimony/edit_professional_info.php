@@ -128,12 +128,17 @@ $show=mysql_query("select * from matrimonialall where is_del='no' and email='$em
                                     <div class="col-sm-8">
                                         <input id="office_contact" name="office_contact" type="text" maxlength="12"  value="<?php echo $office_contact; ?>" class="form-control input-md" >
                                     </div>
-                                </div>
-                            
+                                </div>                                
                                 <div class="form-group" style="padding-bottom:30px">
-                                    <label class="col-sm-4 control-label" for="job_busi_status">Job / Business Status</label>  
+                                    <label class="col-sm-4 control-label" for="job_busi_status">Occupation Status</label>  
                                     <div class="col-sm-8">
-                                        <input id="job_busi_status" name="job_busi_status" type="text"  value="<?php echo $job_busi_status; ?>" class="form-control input-md"> 
+                                        <select class="form-control input-md" id="job_busi_status" name="job_busi_status">
+                                            <option <?php if($job_busi_status=='Select') echo "selected";?> value="Select">Select</option>
+                                            <option <?php if($job_busi_status=='Goverment Job') echo "selected";?>  value="Goverment Job">Goverment Job</option>
+                                            <option <?php if($job_busi_status=='Private Job') echo "selected";?>  value="Private Job">Private Job</option>
+                                            <option <?php if($job_busi_status=='Business') echo "selected";?>  value="Business">Business</option>
+                                            <option <?php if($job_busi_status=='Self Employed') echo "selected";?>  value="Self">Self Employed</option>                                         
+                                        </select>                                                 
                                     </div>
                                 </div>
                                 <div class="form-group" style="padding-bottom:30px">
@@ -143,9 +148,23 @@ $show=mysql_query("select * from matrimonialall where is_del='no' and email='$em
                                     </div>
                                 </div>
                                 <div class="form-group" style="padding-bottom:30px">
-                                    <label class="col-sm-4 control-label" for="annual_income">Monthly / Yearly Income </label>  
+                                    <label class="col-sm-4 control-label" for="annual_income">Annual Income </label>  
                                     <div class="col-sm-8">
-                                        <input id="annual_income" name="annual_income" type="text"  value="<?php echo $annual_income; ?>" class="form-control input-md" >
+                                        <select class="form-control input-md" id="faculty" name="annual_income"  required="" value="<?php echo $_SESSION['annual_income'];?>">
+                                            <option <?php if($annual_income=='Select') echo "selected";?>  value="0">Select</option>
+                                            <option <?php if($annual_income=='Upto 1 Lac') echo "selected";?>  value="Upto 1 Lac">Upto 1 Lac</option>
+                                            <option <?php if($annual_income=='1 - 2.5 Lac') echo "selected";?>  value="1 - 2.5 Lac">1 - 2.5 Lac</option>
+                                            <option <?php if($annual_income=='2.5 - 5 Lac') echo "selected";?>  value="2.5 - 5 Lac">2.5 - 5 Lac</option>
+                                            <option <?php if($annual_income=='5 - 10 Lac') echo "selected";?>  value="5 - 10 Lac">5 - 10 Lac</option>
+                                            <option <?php if($annual_income=='10 - 25 Lac') echo "selected";?>  value="10 - 25 Lac">10 - 25 Lac</option>
+                                            <option <?php if($annual_income=='25 - 50 Lac') echo "selected";?>  value="25 - 50 Lac">25 - 50 Lac</option>
+                                            <option <?php if($annual_income=='50 - 1 Cr') echo "selected";?>  value="50 - 1 Cr">50 - 1 Cr</option>
+                                            <option <?php if($annual_income=='1 - 2.5 Cr') echo "selected";?>  value="1 - 2.5 Cr">1 - 2.5 Cr</option>
+                                            <option <?php if($annual_income=='2.5 - 5 Cr') echo "selected";?>  value="2.5 - 5 Cr">2.5 - 5 Cr</option>
+                                            <option <?php if($annual_income=='5 - 10 Cr') echo "selected";?>  value="5 - 10 Cr">5 - 10 Cr</option>
+                                            <option <?php if($annual_income=='above 10 Cr') echo "selected";?>  value="above 10 Cr">above 10 Cr</option>
+                                            <option <?php if($annual_income=='No Income') echo "selected";?>  value="No Income">No Income</option>
+                                        </select>                
                                     </div>
                                 </div>
                                 <div class="form-group" style="padding-bottom:50px">
@@ -162,11 +181,7 @@ $show=mysql_query("select * from matrimonialall where is_del='no' and email='$em
                                     </div>
                                     </form>
                                  </div>
-							
-						</div>
-                      
-					
-						
+                             </div>
 					</div>
 				</div>
 			</div>

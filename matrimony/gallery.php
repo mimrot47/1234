@@ -61,9 +61,12 @@ session_start();
 ?>
 						<div class="col-xs-6">
 							<div class="thumbnail" >
-								<a href="#"><?php  echo '<img src="data:'.$image_mime_type.';base64,'.base64_encode($row_g['img']).'" onmouseover="bigImg(this)" onmouseout="normalImg(this)" />'; ?></a>
-								<div class="caption">
-                                <p class="price"><?php echo "<a href=gallery_edit.php?id=".$row_g['id'].">Edit </a>";?>
+								<a href="#"><?php  echo '<img style="width:200px;height:200px;" src="data:'.$image_mime_type.';base64,'.base64_encode($row_g['img']).'" />'; ?></a>
+								<div class="caption">    
+
+                                <p class="price"><?php echo "<a href=gallery_edit.php?id=".$row_g['id']."&del=1>";?>
+                                	<button type="button" class="btn btn-primary">Delete</button>                            
+                                </a>
 								</p>
 								</div>
 							</div>

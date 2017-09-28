@@ -100,28 +100,38 @@ function countAge(object, birthDay){
                                 </div>
 
                                 <div class="form-group" style="padding-bottom:30px">
-                                    <label class="col-sm-4 control-label" for="mamkul">Child Status Divorce </label>  
+                                    <label class="col-sm-4 control-label" for="mamkul">No. Of Child</label>  
                                     <div class="col-md-8">
-                                        <input id="mamkul" name="child_status_divorce" type="text" value="<?php echo "$child_status_divorce"; ?>" class="form-control input-md" >
+                                        <select class="form-control" id="faculty" name="child_status_divorce">
+                    <option value="None" <?php if($child_status_divorce=='None') echo "selected";?> >None</option>
+                    <option value="1" <?php if($child_status_divorce=='1') echo "selected";?> >1</option>
+                    <option value="2" <?php if($child_status_divorce=='2') echo "selected";?> >2</option>
+                    <option value="3" <?php if($child_status_divorce=='3') echo "selected";?> >3</option>
+                    <option value="4 and above" <?php if($child_status_divorce=='4 and above') echo "selected";?> >4 and above</option>
+                </select>
 
                                     </div>
                                 </div>
                                 <div class="form-group" style="padding-bottom:30px">
-                                    <label class="col-sm-4 control-label" for="gotra">Child Custody Status Divorce</label>
-                                    <div class="col-md-8">
-                                        <input id="gotra" name="child_custody_status_divorce" type="text" value="<?php echo "$child_custody_status_divorce"; ?>" class="form-control input-md" >
+                                    <label class="col-sm-4 control-label" for="gotra">Child Living Status</label>
+                                    <div class="col-md-8">                                        
+                                        <select class="form-control" id="child_custody_status_divorce" name="child_custody_status_divorce">
+                          <option value="Not Applicable" <?php if($child_custody_status_divorce=='Not Applicable') echo "selected";?> >Not Applicable</option>
+                          <option value="Living With Me" <?php if($child_custody_status_divorce=='Living With Me') echo "selected";?> >Living With Me</option>
+                          <option value="Not Living With Me" <?php if($child_custody_status_divorce=='Not Living With Me') echo "selected";?> >Not Living With Me</option>                          
+                        </select> 
 
                                     </div>
                                 </div>
-
+                                <?php if($_GET['gender']=="Bride"){ ?>
                                 <div class="form-group">
-                                    <label class="col-sm-4 control-label" for="nakshtra">Previous Marriage Address Divorce</label>  
+                                    <label class="col-sm-4 control-label" for="nakshtra">Previous Marriage Address</label>  
                                     <div class="col-md-8">
                                     <input type="text" name="previous_marriage_address_divorce" value="<?php echo $previous_marriage_address_divorce ?>" class="form-control input-md"	>
                                         
                                     </div>
                                 </div>
-                                
+                                <?php } ?>
                              
                                 <div class="form-group">
                                 	 <label class="col-sm-4 control-label" for="work_place_address"></label>  
@@ -155,7 +165,7 @@ function countAge(object, birthDay){
 				}?>
                                           
                                <div class="form-group" style="padding-bottom:30px">
-                                    <label class="col-sm-4 control-label" for="birth_name">Previous Marriage Date Widow</label>  
+                                    <label class="col-sm-4 control-label" for="birth_name">Previous Marriage Date</label>  
                                     <div class="col-md-8">
                                         <input id="birth_name" name="previous_marriage_date_widow" type="text" value="<?php echo "$previous_marriage_date_widow"; ?>" class="form-control input-md" >
 
@@ -165,7 +175,7 @@ function countAge(object, birthDay){
                                 <!-- Text input-->
                                 <div class="form-group" style="padding-bottom:30px">
                                 <label class="col-sm-4 control-label" for="birth_name">
-Date Partner Death Widow                                  </label>
+Date Partner Death                                  </label>
 									  <div class="col-md-8">
                                         <input id="own_kul" name="date_partner_death_widow" type="text" value="<?php echo "$date_partner_death_widow"; ?>" class="form-control input-md">
 
@@ -173,20 +183,27 @@ Date Partner Death Widow                                  </label>
                                 </div>
 
                                 <div class="form-group" style="padding-bottom:30px">
-                                    <label class="col-sm-4 control-label" for="mamkul">Child Status Widow </label>  
+                                    <label class="col-sm-4 control-label" for="mamkul">No. of Child</label>  
                                     <div class="col-md-8">
-                                        <input id="mamkul" name="child_status_widow" type="text" value="<?php echo "$child_status_widow"; ?>" class="form-control input-md" >
+                                        <select class="form-control" id="faculty" name="child_status_widow">
+                    <option value="None" <?php if($child_status_widow=='None') echo "selected";?> >None</option>
+                    <option value="1" <?php if($child_status_widow=='1') echo "selected";?> >1</option>
+                    <option value="2" <?php if($child_status_widow=='2') echo "selected";?> >2</option>
+                    <option value="3" <?php if($child_status_widow=='3') echo "selected";?> >3</option>
+                    <option value="4 and above" <?php if($child_status_widow=='4 and above') echo "selected";?> >4 and above</option>
+                </select>
 
                                     </div>
                                 </div>
+                                <?php if($_GET['gender']=="Bride"){ ?>
                                 <div class="form-group" style="padding-bottom:30px">
-                                    <label class="col-sm-4 control-label" for="gotra">Previous Marriage Address Widow</label>
+                                    <label class="col-sm-4 control-label" for="gotra">Previous Marriage Address</label>
                                     <div class="col-md-8">
                                         <input id="gotra" name="previous_marriage_address_widow" type="text" value="<?php echo "$previous_marriage_address_widow"; ?>" class="form-control input-md" >
 
                                     </div>
                                 </div>
-
+                                <?php } ?>
                                
                                 
                              

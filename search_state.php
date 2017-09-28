@@ -135,12 +135,12 @@ $marriageType=$_POST['marriageType'];
 		 if($gender=="Bride")
 		 {
 		 ?>         
-         <img src="img/Female.png" class="img-rounded img-responsive" id="img-success" style="width:150px; height: 160px;">
+         <img src="matrimony/img/bride.png" class="img-rounded img-responsive" id="img-success" style="width:150px; height: 160px;">
          <?php
 		 }
 		 else
 		 {?>
-			 <img src="img/Male.png" class="img-rounded img-responsive" id="img-success" style="width:150px; height: 160px;">
+			 <img src="matrimony/img/groom.png" class="img-rounded img-responsive" id="img-success" style="width:150px; height: 160px;">
           <?php
 		 }
 	 }
@@ -219,12 +219,12 @@ else
 		 if($gender=="Bride")
 		 {
 		 ?>         
-         <img src="img/Female.png" class="img-rounded img-responsive" id="img-success" style="width:150px; height: 160px;">
+         <img src="matrimony/img/bride.png" class="img-rounded img-responsive" id="img-success" style="width:150px; height: 160px;">
          <?php
 		 }
 		 else
 		 {?>
-			 <img src="img/Male.png" class="img-rounded img-responsive" id="img-success" style="width:150px; height: 160px;">
+			 <img src="matrimony/img/groom.png" class="img-rounded img-responsive" id="img-success" style="width:150px; height: 160px;">
           <?php
 		 }
 	 }

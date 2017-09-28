@@ -1,5 +1,9 @@
 
-<?php include "../connect.php";
+<?php
+
+error_reporting(E_ALL);
+ini_set('display_errors', '1');
+ include "../connect.php";
 session_start();
  $email=$_SESSION['myusername'];
 $id=$_GET['id'];
@@ -46,7 +50,7 @@ $(document).ready(function(e) {
 		$('#Family_info').hide();
 		$('#Astrological_info').hide();
 		$('#Gallery_pic').hide();
-		$('#Divorce').hide();
+		$('#pmar').hide();
     });
     $('#Professional').click(function(e) {
         $('#Personal_info').hide();
@@ -54,7 +58,7 @@ $(document).ready(function(e) {
 		$('#Family_info').hide();
 		$('#Astrological_info').hide();
 		$('#Gallery_pic').hide();
-		$('#Divorce').hide();
+		$('#pmar').hide();
     });
     $('#Family').click(function(e) {
         $('#Personal_info').hide();
@@ -62,7 +66,7 @@ $(document).ready(function(e) {
 		$('#Family_info').show();
 		$('#Astrological_info').hide();
 		$('#Gallery_pic').hide();
-		$('#Divorce').hide();
+		$('#pmar').hide();
     });
     $('#Astrological').click(function(e) {
         $('#Personal_info').hide();
@@ -70,7 +74,7 @@ $(document).ready(function(e) {
 		$('#Family_info').hide();
 		$('#Astrological_info').show();
 		$('#Gallery_pic').hide();
-		$('#Divorce').hide();
+		$('#pmar').hide();
     });
     $('#Gallery').click(function(e) {
         $('#Personal_info').hide();
@@ -78,15 +82,15 @@ $(document).ready(function(e) {
 		$('#Family_info').hide();
 		$('#Astrological_info').hide();
 		$('#Gallery_pic').show();
-		$('#Divorce').hide();
+		$('#pmar').hide();
     });
-	 $('#Divorce').click(function(e) {
+	 $('#previousmarriage').click(function(e) {
         $('#Personal_info').hide();
 		$('#Professional_info').hide();
 		$('#Family_info').hide();
 		$('#Astrological_info').hide();
 		$('#Gallery_pic').hide();
-		$('#Divorce').show();
+		$('#pmar').show();
     });
 });
 
@@ -104,32 +108,38 @@ $(document).ready(function(e) {
                          <button id="Personal" style="background:none;border:none" >
                          <h5> 
                          	<img src="../img/ICON 1/name-people-person-user-icon--icon-search-engine-1.png"style="width:15px;15px">
-                             Personal Information 
+                             Personal Info 
                              
                          </h5>
                          </button>|
                          <button id="Professional" style="background:none;border:none" >
                          <h5>
                          	<img src="../img/ICON 1/Professional Information.png" style="width:20px;20px">
-                            Professional Information 
+                            Professional Info
                          </h5>
                          </button>|
                          <button id="Family" style="background:none;border:none" >
                          <h5>
                          	<img src="../img/ICON 1/Family Information.png" style="width:25px;25px">
-                            Family Information
+                            Family Info
                          </h5>
                          </button>|
                          <button id="Astrological" style="background:none;border:none" >
                          <h5>
                          	<img src="../img/ICON 1/Astrological Information.png" style="width:20px;20px">
-                            Astrological Information
+                            Astrological Info
                          </h5>
                          </button>|
                          <button id="Gallery" style="background:none;border:none" >
                          <h5>
                          	<img src="../img/gallery1.png" style="width:20px;20px">
                          	Gallery
+                         </h5>
+                         </button>|
+                         <button id="previousmarriage" style="background:none;border:none" >
+                         <h5>
+                         	<img src="../img/divorce.png" style="width:20px;20px">
+                         	<span id="pmstatus">Previous Marriage</span>
                          </h5>
                          </button>
                          
@@ -145,8 +155,16 @@ $show=mysql_query("select * from matrimonialall where is_del='no' and unique_id=
 
 				while($row=mysql_fetch_array($show))
 				{
-						
-				 $first_name=$row['first_name'];
+						if($row['marriageType']=="Never married"){
+							?><script>document.getElementById("previousmarriage").style.display="none";</script><?php
+						} else if($row['marriageType']=="widower") {
+							?><script>document.getElementById("pmstatus").innerHTML="Widower Info";</script><?php
+						} else if($row['marriageType']=="widow") {
+							?><script>document.getElementById("pmstatus").innerHTML="Widow Info";</script><?php
+						} else if($row['marriageType']=="divorcee") {
+							?><script>document.getElementById("pmstatus").innerHTML="Divorcee Info";</script><?php
+						} 
+$first_name=$row['first_name'];
 $middle_name=$row['middle_name'];
 $last_name=$row['last_name'];
 //$gender=$_POST['gender'];
@@ -209,13 +227,13 @@ $nadi=$row['nadi'];
 $gan=$row['gan'];
 $guru=$row['guru'];
 $manglik_status=$row['manglik_status'];
-  $marriageType=$row['marriageType'];
+$marriageType=$row['marriageType'];
 
 
 				}?>
                 
                 <div class="col-lg-12" style="border-radius:5px; border:1px solid #CCC; padding:5px" >
-                <h3 align="center">Personal Information of <?php echo $first_name."&nbsp;".$middle_name."&nbsp;".$last_name ;?>  </h3><br>
+                <h3 align="center">Personal Information of <?php echo ucwords($first_name)."&nbsp;".ucwords($middle_name)."&nbsp;".ucwords($last_name) ;?>  </h3><br>
                     	<div class="col-lg-6" >
 <table class="table table-hover">
 <tr><td><b>First Name</b></td><td><?php echo $first_name ?></td></tr>
@@ -230,7 +248,7 @@ $manglik_status=$row['manglik_status'];
 <tr><td><b>Birth Date</b></td><td><?php echo $birth_date ?></td></tr>
 <tr><td><b>Birth City</b></td><td><?php echo $birth_city ?></td></tr>                                  
 <tr><td><b>Birth District</b></td><td><?php echo $birth_district ?></td></tr>                                    
-<tr><td><b>Birth Time</b></td><td><?php echo $birth_time ?></td></tr>
+<tr><td><b>Birth Time<br>24Hr Format</b></td><td><?php echo $birth_time ?></td></tr>
 <tr><td></td><td></td></tr>
 </table>
 </div>
@@ -253,7 +271,7 @@ $manglik_status=$row['manglik_status'];
 </table>             
 
 </div><hr>
-<div class="col-lg-12">
+<div class="col-lg-12" style="display: none;">
 <?php 
 						 	
 						
@@ -267,17 +285,13 @@ $manglik_status=$row['manglik_status'];
 				{
 					 ?>
                      <table class="table table-hover">	
-                     <tr><td><b>previous_marriage_date_divorcee of <?php echo $first_name."&nbsp;".$middle_name."&nbsp;".$last_name ;?> s
-                     </b></td><td>
-					 <?php echo $row1['previous_marriage_date_divorcee'] ?></td></tr>
+                     <tr><td><b>Date of Divorce</b></td><td><?php echo $row1['date_of_divorce']?></td></tr>	
 
-<tr><td><b>Date of Divorce</b></td><td><?php echo $row1['date_of_divorce']?></td></tr>	
+<tr><td><b>No. Of Child</b></td><td><?php echo $row1['child_status_divorce'] ?></td></tr>
 
-<tr><td><b>Child Status Divorce</b></td><td><?php echo $row1['child_status_divorce'] ?></td></tr>
+<tr><td><b>Child Custody Status</b></td><td><?php echo $row1['child_custody_status_divorce'] ?></td></tr>
 
-<tr><td><b>Child Custody Status Divorce</b></td><td><?php echo $row1['child_custody_status_divorce'] ?></td></tr>
-
-<tr><td><b>Previous Marriage Address Divorce</b></td><td><?php echo $row1['previous_marriage_address_divorce'] ?></td></tr>
+<tr><td><b>Previous Marriage Address</b></td><td><?php echo $row1['previous_marriage_address_divorce'] ?></td></tr>
 </table>
 
                      <?php
@@ -285,19 +299,19 @@ $manglik_status=$row['manglik_status'];
 					 }
 					 if($marriageType=='widow')
 					 {
-						 echo "<h3 align=center>widow</h3>";
+						 echo "<h3 align=center>Widow</h3>";
 						 
 						  $show2=mysql_query("select * from matrimonial_widow where unique_id='$id'  ") or die(mysql_error());
 				while($row2=mysql_fetch_array($show2))
 				{
 					 ?><table class="table table-hover">
-             <tr><td><b>Previous Marriage Date Widow</b></td><td><?php echo $row2['previous_marriage_date_widow'] ?></td></tr>
+             <tr><td><b>Previous Marriage Date</b></td><td><?php echo $row2['previous_marriage_date_widow'] ?></td></tr>
 
-<tr><td><b>Date Partner Death Widow</b></td><td><?php echo $row2['date_partner_death_widow ']?></td></tr>
+<tr><td><b>Date Partner Death</b></td><td><?php echo $row2['date_partner_death_widow ']?></td></tr>
 
-<tr><td><b>Child Status Widow</b></td><td><?php echo $row2['child_status_widow'] ?></td></tr>
+<tr><td><b>Child Status</b></td><td><?php echo $row2['child_status_widow'] ?></td></tr>
 
-<tr><td><b>Previous Marriage Address Widow</b></td><td><?php echo $row2['previous_marriage_address_widow'] ?></td></tr>
+<tr><td><b>Previous Marriage Address</b></td><td><?php echo $row2['previous_marriage_address_widow'] ?></td></tr>
 </table>
 
 
@@ -310,15 +324,63 @@ $manglik_status=$row['manglik_status'];
 
 </div></div>
 
+<div id="pmar" style="display:none">
+ <div class="col-lg-12" style="border-radius:5px; border:1px solid #CCC; padding:5px" >
+ <h3 align="center">Previous Marriage Information of <?php echo ucwords($first_name)."&nbsp;".ucwords($middle_name)."&nbsp;".ucwords($last_name) ;?> </h3><br>
+ <?php 
+						 	
+						
+				
+				 if($marriageType=='divorcee')
+				 {					 
+					  $id;
+					 $show1=mysql_query("select matrimonial_divorcee.*,matrimonialall.gender from matrimonial_divorcee inner join  matrimonialall on matrimonial_divorcee.unique_id = matrimonialall.unique_id where matrimonial_divorcee.unique_id = '$id'") or die(mysql_error());
+				while($row1=mysql_fetch_array($show1))
+				{
+					 ?>
+						<table class="table table-hover">	
+							<tr><td><b>Date of Divorce</b></td><td><?php echo $row1['date_of_divorce']?></td></tr>	
+							<tr><td><b>No. Of Child</b></td><td><?php echo $row1['child_status_divorce'] ?></td></tr>
+							<tr><td><b>Child Living Status</b></td><td><?php echo $row1['child_custody_status_divorce'] ?></td></tr>
+							<?php if($row1['gender']=="bride"){ ?>
+							<tr><td><b>Previous Marriage Address</b></td><td><?php echo $row1['previous_marriage_address_divorce'] ?></td></tr>
+							<?php } ?>
+						</table>
+                     <?php
+				}
+					 }
+					 if($marriageType=='widow' || $marriageType=='widower')
+					 {						 
+						 
+						  $show2=mysql_query("select matrimonial_widow.*,matrimonialall.gender from matrimonial_widow inner join  matrimonialall on matrimonial_widow.unique_id = matrimonialall.unique_id where matrimonial_widow.unique_id = '$id'") or die(mysql_error());
+				while($row2=mysql_fetch_array($show2))
+				{
+					 ?><table class="table table-hover">
+				            <tr><td><b>Previous Marriage Date</b></td><td><?php echo $row2['previous_marriage_date_widow'] ?></td></tr>
+							<tr><td><b>Date Partner Death</b></td><td><?php echo $row2['date_partner_death_widow']?></td></tr>
+							<tr><td><b>No. Of Child</b></td><td><?php echo $row2['child_status_widow'] ?></td></tr>
+							<?php if($row2['gender']=="bride"){ ?>
+							<tr><td><b>Previous Marriage Address</b></td><td><?php echo $row2['previous_marriage_address_widow'] ?></td></tr>
+							<?php } ?>
+					  </table>
+					<?php
+				}
+					 }
+				
+						 ?>
+</table>
+</div>
+</div>
+
+
 <div id="Professional_info" style="display:none">
  <div class="col-lg-12" style="border-radius:5px; border:1px solid #CCC; padding:5px" >
- <h3 align="center">Professional Information of <?php echo $first_name."&nbsp;".$middle_name."&nbsp;".$last_name ;?> </h3><br>
+ <h3 align="center">Professional Information of <?php echo ucwords($first_name)."&nbsp;".ucwords($middle_name)."&nbsp;".ucwords($last_name) ;?> </h3><br>
 <table class="table table-hover">
-<tr><td><b>Faculty</b></td><td><?php echo $faculty ?></td></tr>
-<tr><td><b>Academic Level</b></td><td><?php echo $academic_level ?></td></tr>
+<tr><td><b>Qualification</b></td><td><?php echo $faculty ?></td></tr>
 <tr><td><b>College Name</b></td><td><?php echo $college_name ?></td></tr>
 <tr><td><b>College Address</b></td><td><?php echo $college_address ?></td></tr>
-<tr><td><b>Job Busi Status</b></td><td><?php echo $job_busi_status ?></td></tr>
+<tr><td><b>Occupation Status</b></td><td><?php echo $job_busi_status ?></td></tr>
 <tr><td><b>Working Post</b></td><td><?php echo $working_post ?></td></tr>
 <tr><td><b>Work Place Address</b></td><td><?php echo $work_place_address ?></td></tr>
 <tr><td><b>Office Contact</b></td><td><?php echo $office_contact?></td></tr>
@@ -327,9 +389,28 @@ $manglik_status=$row['manglik_status'];
 </table>
 </div>
 </div>
+<div id="Astrological_info" style="display:none">
+<div class="col-lg-12" style="border-radius:5px; border:1px solid #CCC; padding:5px" >
+                    	<h3 align="center">Astrological Information of <?php echo ucwords($first_name)."&nbsp;".ucwords($middle_name)."&nbsp;".ucwords($last_name) ;?> </h3><br>
+<table class="table table-hover">
+<tr><td><b>Birth Name</b></td><td><?php echo $birth_name ?></td></tr>
+<tr><td><b>OwnKul</b></td><td><?php echo $own_kul ?></td></tr>
+<tr><td><b>MamaKul</b></td><td><?php echo $mamkul ?></td></tr>
+<tr><td><b>Gotra</b></td><td><?php echo $gotra ?></td></tr>
+<tr><td><b>Charan</b></td><td><?php echo $charan ?></td></tr>
+<tr><td><b>Nakshtra</b></td><td><?php echo $nakshtra ?></td></tr>
+<tr><td><b>Nadi</b></td><td><?php echo $nadi ?></td></tr>
+<tr><td><b>Guru</b></td><td><?php echo $guru ?></td></tr>
+<tr><td><b>Rashi</b></td><td><?php echo $rashi ?></td></tr>
+<tr><td><b>Manglik Status</b></td><td><?php echo $manglik_status ?></td></tr>
+<tr><td><b>Gan</b></td><td><?php echo $gan ?></td></tr>
+<tr><td></td><td></td></tr>
+</table>
+</div>
+</div>
 <div id="Family_info" style="display:none">
 <div class="col-lg-12" style="border-radius:5px; border:1px solid #CCC; padding:5px" >
-                    	<h3 align="center">Family Information of <?php echo $first_name."&nbsp;".$middle_name."&nbsp;".$last_name ;?> </h3><br>
+                    	<h3 align="center">Family Information of <?php echo ucwords($first_name)."&nbsp;".ucwords($middle_name)."&nbsp;".ucwords($last_name) ;?> </h3><br>
 <table class="table table-hover">
 <tr><td><b>Father Name</b></td><td><?php echo $father_name ?></td></tr>
 <tr><td><b>Occupation Father</b></td><td><?php echo $occupation_father ?></td></tr>
@@ -343,27 +424,6 @@ $manglik_status=$row['manglik_status'];
 <tr><td><b>Unmarried Sister</b></td><td><?php echo $unmarried_sister ?></td></tr>
 <tr><td><b>Parent Conatct Number</b></td><td><?php echo $parent_conatct_no ?></td></tr>
 <tr><td><b>Permanent Residential Address</b></td><td><?php echo $permanent_residential_address ?></td></tr>
-<tr><td></td><td></td></tr>
-</table>
-</div>
-</div>
-
-
-<div id="Astrological_info" style="display:none">
-<div class="col-lg-12" style="border-radius:5px; border:1px solid #CCC; padding:5px" >
-                    	<h3 align="center">Astrological Information of <?php echo $first_name."&nbsp;".$middle_name."&nbsp;".$last_name ;?> </h3><br>
-<table class="table table-hover">
-<tr><td><b>Birth Name</b></td><td><?php echo $birth_name ?></td></tr>
-<tr><td><b>OwnKul</b></td><td><?php echo $own_kul ?></td></tr>
-<tr><td><b>MamaKul</b></td><td><?php echo $mamkul ?></td></tr>
-<tr><td><b>Gotra</b></td><td><?php echo $gotra ?></td></tr>
-<tr><td><b>Charan</b></td><td><?php echo $charan ?></td></tr>
-<tr><td><b>Nakshtra</b></td><td><?php echo $nakshtra ?></td></tr>
-<tr><td><b>Nadi</b></td><td><?php echo $nadi ?></td></tr>
-<tr><td><b>Guru</b></td><td><?php echo $guru ?></td></tr>
-<tr><td><b>Rashi</b></td><td><?php echo $rashi ?></td></tr>
-<tr><td><b>Manglik Status</b></td><td><?php echo $manglik_status ?></td></tr>
-<tr><td><b>Gan</b></td><td><?php echo $gan ?></td></tr>
 <tr><td></td><td></td></tr>
 </table>
 </div>
@@ -393,35 +453,14 @@ function normalImg(x) {
 
 				while($row=mysql_fetch_array($show))
 				{?>
-  <tr style="width:400px;float:left;">              
-<td >
+  <tr style="width:400px;float:left;height: 400px;">              
+<td style="width: 400px;" align="center">
 <?php
 	 echo '<img src="data:'.$image_mime_type.';base64,'.base64_encode($row['img']).'" 
-		 width="250px" onmouseover="bigImg(this)" onmouseout="normalImg(this)"  />'; 
+		 width="250px"  />'; 
 				?>
 </td></tr>
 <?php }?>
 </table>
 </div>
 </div>
-
-
-
-                    </div>
-					<div class="row selected-classifieds">
-                      
-					</div>
-				</div>
-			</div>
-			<div class="footer">
-				<?php include "footer.php"; ?>
-			</div>
-		</div>
-		<!-- JavaScript -->
-		<script src="js/jquery-1.11.1.min.js"></script>
-		<script src="js/bootstrap.min.js"></script>
-		<script src="js/jquery.slides.min.js"></script>
-		<script src="js/CZSale.js"></script>
-	</body>
-
-</html>

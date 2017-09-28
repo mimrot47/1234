@@ -42,7 +42,7 @@ session_start();
                     
 						<div class="col-lg-12" style="border-radius:5px; border:1px solid #CCC; padding:5px" >
 							<a href="add_testimonial.php"><h4><button class="btn btn-danger">Add Testimonial</button></h4></a><hr>
-								<div class="dataTable_wrapper">
+								<div class="dataTable_wrapper">									
                                 <table class="table table-striped table-bordered table-hover" id="dataTables-example">
 						<?php
                            
@@ -56,14 +56,18 @@ session_start();
                                 echo'<th>';
                                 echo'Edit ';
                                 echo'</th>';
-								
+																
+
 								 echo'<th>';
                                 echo'Delete ';
+                                echo'</th>';
+                                echo'<th>';
+                                echo'Approved';
                                 echo'</th>';
 								
                         
 						
-						$show1=mysql_query("select * from testimonial where is_del='no' and status='approved' and email='$email'");
+						$show1=mysql_query("select * from testimonial where is_del='no' and email='$email'");
                             while($row=mysql_fetch_array($show1))
                             {
                             echo "<tr><td>"	;
@@ -75,7 +79,9 @@ session_start();
 							echo "</td><td>";
 							
                             echo "<a href=delete_testimonial.php?id=".$row['id']."><button class=btn btn-danger>Delete</button></a>";
-                            echo "</td></tr>";	
+                            echo "</td>";	
+
+                            echo "<td>".$row['status']."</td></tr>";
                             
                             
 							}

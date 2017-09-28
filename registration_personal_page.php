@@ -604,7 +604,7 @@ function countAge(object, birthDay){
                           <input type="hidden" name="address" value="<?php echo $address;  ?>">
                           <input name="mobile_no1" type="hidden"value="<?php echo $mobile_no1;  ?>"   >
                           <input name="mobile_no2" type="hidden" value="<?php echo $mobile_no2;  ?>">
-                          <input type="hidden" name="DATEOFBIRTH" value="<?php echo $day_of_birth;  ?>">
+                          <input type="hidden" name="DATEOFBIRTH" value="<?php echo $birth_date;  ?>">
                           <input type="hidden" name="age" value="<?php echo $age; ?>"> 
                           <input name="birth_time" type="hidden" value="<?php echo $birth_time;  ?>"> 
                           <input type="hidden" name="day_of_birth" value="<?php echo $day_of_birth;  ?>">
@@ -753,8 +753,8 @@ function countAge(object, birthDay){
                         </div>
                         <div class="navigation col-sm-6" align="right">
                            <a href="registration_personal.php">
-                           <button type="button" name="prev" class="btn btn-danger" style="background-color:#1ba39c;border-color:#1ba39c">Previous</button></a>
-                           <button type="submit" name="submit" class="btn btn-danger" style="background-color:#1ba39c;border-color:#1ba39c">Next</button></div>
+                           <button type="button" name="prev" class="btn btn-danger" style="background-color:#054c48;border-color:#1ba39c">Previous</button></a>
+                           <button type="submit" name="submit" class="btn btn-danger" style="background-color:#054c48;border-color:#1ba39c">Next</button></div>
 						    <div class="navigation col-sm-6"  align="right" style="padding-top:20px;">
 						   <a href="reset.php" style="color:#FFFFFF; font-size:13px; font-weight:bold">Reset</a>
                         </div>

@@ -10,18 +10,18 @@
                         	$show123=mysql_query("select * from matrimonialall where email='$email'") or die(mysql_error());
 									$image_mime_type123="image/jpeg";
 									while($row123=mysql_fetch_array($show123))
-									{
+									{ 
 										//$img_pic=$row123['profile_pic'];
 										if($row123['profile_pic']=="")
-										{
-											$gender=$row123['gender'] ;
-											if($gender=="Female")
+										{											
+											$gender=$row123['gender'] ;										
+											if($gender=="Bride")
 											{
-												echo "<img src=assets/img/female.png width=50 height=50>";
+												echo "<img class='img-responsive img-rounded' src=img/bride.png>";
 											}
-											else if($gender=="Male")
+											else if($gender=="Groom")
 											{
-												echo "<img src=assets/img/male.png width=50 height=50>";
+												echo "<img class='img-responsive img-rounded' src=img/groom.png >";
 											}
 										}
 										else 
@@ -37,7 +37,7 @@
                         <form action="change_profile_pic.php" method="post"  enctype="multipart/form-data">
                         <input type="file" class="form-control" name="photo" required="required" />
                         <br><center>
-                        <button type="submit" name="sumbit" class="btn btn-danger">Submit</button></center>
+                        <button type="submit" name="sumbit" class="btn btn-danger" style="background-color: #4caf50;border-color: #4caf50">Submit</button></center>
                         </form>
 					</div>
                     
@@ -61,17 +61,18 @@
 									
 							 $marriageType=$row['marriageType'];
 							 $uniq_id=$row['unique_id'];
+							 $gender=$row['gender'];
 							 if($marriageType=='divorcee')
 							 {
-							 echo "<li><a href=edit_widow_divorce_info.php?type=$marriageType&&id=$uniq_id >DIVORCEE INFORMATION</a></li>";
+							 echo "<li><a href=edit_widow_divorce_info.php?type=$marriageType&id=$uniq_id&gender=$gender >DIVORCEE INFORMATION</a></li>";
 							 }
 							 if($marriageType=='widow')
 							 {
-								 echo "<li><a href=edit_widow_divorce_info.php?type=$marriageType&&id=$uniq_id>WIDOW INFORMATION</a></li>";
+								 echo "<li><a href=edit_widow_divorce_info.php?type=$marriageType&&id=$uniq_id&gender=$gender>WIDOW INFORMATION</a></li>";
 							 }
 							 if($marriageType=='widower')
 							 {
-								 echo "<li><a href=edit_widow_divorce_info.php?type=$marriageType&&id=$uniq_id>WIDOWER INFORMATION</a></li>";
+								 echo "<li><a href=edit_widow_divorce_info.php?type=$marriageType&&id=$uniq_id&gender=$gender>WIDOWER INFORMATION</a></li>";
 							 }
 							}
 						 ?>

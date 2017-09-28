@@ -1,5 +1,4 @@
-
-<p class="text-center copyright">&copy; Copyright<a href="www.backtechs.com"> Backend Technologies PVT.LTD</a>. All Rights Reserved.</p>
+<p class="text-center copyright">Copyright &copy; 2017<a href="www.backtechs.com"> Backtend Technologies PVT.LTD</a>. All Rights Reserved.</p>
 <!-- jQuery (necessary for Bootstrap's JavaScript plugins) --> 
 <script type="text/javascript" src="http://www.htmlpreviews.com/cloud/badminton/credon8/js/jquery.min.js"></script> 
 <!-- Include all compiled plugins (below), or include individual files as needed --> 

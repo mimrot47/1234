@@ -269,9 +269,9 @@ function countAge(object, birthDay){
 					  return false;
 				}
 				else if (!preg_match("/^[a-zA-Z ]*$/",$acceptation)) {
-      alert("Only letters and white space allowed"); 
-	  return false;
-    }
+				      alert("Only letters and white space allowed"); 
+					  return false;
+			    }
 				if(describe_yourself==null || describe_yourself=="")
 				{    
 					  alert("Enter your Describe Yourself ");
@@ -649,7 +649,7 @@ function countAge(object, birthDay){
                           <input type="hidden" name="address" value="<?php echo $address;  ?>">
                           <input name="mobile_no1" type="hidden"value="<?php echo $mobile_no1;  ?>"   >
                           <input name="mobile_no2" type="hidden" value="<?php echo $mobile_no2;  ?>">
-                          <input type="hidden" name="DATEOFBIRTH" value="<?php echo $day_of_birth;  ?>">
+                          <input type="hidden" name="DATEOFBIRTH" value="<?php echo $birth_date;  ?>">
                           <input type="hidden" name="age" value="<?php echo $age; ?>"> 
                           <input name="birth_time" type="hidden" value="<?php echo $birth_time;  ?>"> 
                           <input type="hidden" name="day_of_birth" value="<?php echo $day_of_birth;  ?>">
@@ -738,7 +738,7 @@ function countAge(object, birthDay){
                                 </ul>
 <hr> <b> <font color="#FF0000">This is only for Divorcee or Widow/Widower</font> </b>
                                 <div class="tab-content clearfix">
-                                    <div class="tab-pane <?php if($_SESSION['marriageType']=='divorcee'){?>active<?php }else{?> active<?php }?>" id="1a">
+                                    <div class="tab-pane <?php if($_SESSION['marriageType']=='divorcee'){?>active<?php }else{?><?php }?>" id="1a">
                                             <div class="form-group">
                                                 <label class="col-sm-4 control-label" for="previous_marriage_date">Previous Marriage Date<br>(in DD/MM/YYYY)</label>  
                                                 <div class="col-md-8">
@@ -754,23 +754,36 @@ function countAge(object, birthDay){
                                                 </div>
                                             </div>
                                             <div class="form-group">
-                                                <label class="col-sm-4 control-label" for="child_status">Child Status</label>  
-                                                <div class="col-sm-8">                     
-                                                    <textarea class="form-control" id="child_status_divorce" name="child_status_divorce" rows="2"><?php echo $_SESSION['child_status_divorce'];?></textarea>
+                                                <label class="col-sm-4 control-label" for="child_status">No. Of Child</label>  
+                                                <div class="col-sm-8">
+
+                       <select class="form-control" id="faculty" name="child_status_divorce">
+                          <option value="None" <?php if($_SESSION['child_status_divorce']=='None') echo "selected";?> >None</option>
+                          <option value="1" <?php if($_SESSION['child_status_divorce']=='1') echo "selected";?> >1</option>
+                          <option value="2" <?php if($_SESSION['child_status_divorce']=='2') echo "selected";?> >2</option>
+                          <option value="3" <?php if($_SESSION['child_status_divorce']=='3') echo "selected";?> >3</option>
+                          <option value="4 and above" <?php if($_SESSION['child_status_divorce']=='4 and above') echo "selected";?> >4 and above</option>
+                       </select>
                                                 </div>
                                             </div>
                                             <div class="form-group">
-                                                <label class="col-sm-4 control-label" for="child_custody_status">Child Custody Status</label>  
-                                                <div class="col-sm-8">                     
-                                                    <textarea class="form-control" id="child_custody_status_divorce" onKeyPress="return onlyAlphabets(event,this);" name="child_custody_status_divorce" rows="2"><?php echo $_SESSION['child_custody_status_divorce'];?></textarea>
+                                                <label class="col-sm-4 control-label" for="child_custody_status">Child Living Status</label>  
+                                                <div class="col-sm-8">
+                        <select class="form-control" id="child_custody_status_divorce" name="child_custody_status_divorce">
+                          <option value="Not Applicable" <?php if($_SESSION['child_custody_status_divorce']=='Not Applicable') echo "selected";?> >Not Applicable</option>
+                          <option value="Living With Me" <?php if($_SESSION['child_custody_status_divorce']=='Living With Me') echo "selected";?> >Living With Me</option>
+                          <option value="Not Living With Me" <?php if($_SESSION['child_custody_status_divorce']=='Not Living With Me') echo "selected";?> >Not Living With Me</option>                          
+                        </select>                                                                         
                                                 </div>
                                             </div>
+                                            <?php if($gender=="Bride") { ?>
                                             <div class="form-group">
                                                 <label class="col-sm-4 control-label" for="previous_marriage_address">Previous Marriage Address</label>  
                                                 <div class="col-sm-8">                     
-                                                    <textarea class="form-control" id="previous_marriage_address_divorce" onKeyPress="return onlyAlphabets(event,this);" name="previous_marriage_address_divorce" rows="2"><?php echo $_SESSION['previous_marriage_address_divorce'];?></textarea>
+                                                    <textarea class="form-control" id="previous_marriage_address_divorce"  name="previous_marriage_address_divorce" rows="2"><?php echo $_SESSION['previous_marriage_address_divorce'];?></textarea>
                                                 </div>
                                             </div>
+                                            <?php } ?>
                                     </div>
                                     <div class="tab-pane <?php if($_SESSION['marriageType']=='widow'){?>active<?php }?>" id="2a">
                                             <div class="form-group">
@@ -789,17 +802,26 @@ function countAge(object, birthDay){
                                             </div>
 
                                             <div class="form-group">
-                                                <label class="col-sm-4 control-label" for="child_status">Child Status</label>  
-                                                <div class="col-sm-8">                     
-                                                    <textarea class="form-control" id="child_status_widow" name="child_status_widow" rows="2"><?php echo $_SESSION['child_status_widow'];?></textarea>
-                                                </div>
+                                                <label class="col-sm-4 control-label" for="child_status">No. Of Child</label>
+
+                                                <div class="col-sm-8">
+                <select class="form-control" id="faculty" name="child_status_widow">
+                    <option value="None" <?php if($_SESSION['child_status_widow']=='None') echo "selected";?> >None</option>
+                    <option value="1" <?php if($_SESSION['child_status_widow']=='1') echo "selected";?> >1</option>
+                    <option value="2" <?php if($_SESSION['child_status_widow']=='2') echo "selected";?> >2</option>
+                    <option value="3" <?php if($_SESSION['child_status_widow']=='1') echo "selected";?> >3</option>
+                    <option value="4 and above" <?php if($_SESSION['child_status_widow']=='4 and above') echo "selected";?> >4 and above</option>
+                </select>
+            									</div>
                                             </div>
+                                             <?php if($gender=="Bride") { ?>
                                             <div class="form-group">
-                                                <label class="col-sm-4 control-label" for="previous_marriage_address">Previous Marriage Address</label>  
+                      <label class="col-sm-4 control-label" for="previous_marriage_address">Previous Marriage Address</label>  
                                                 <div class="col-sm-8">                     
                                                     <textarea class="form-control" id="previous_marriage_address_widow"  name="previous_marriage_address_widow" rows="2"><?php echo $_SESSION['previous_marriage_address_widow'];?></textarea>
                                                 </div>
                                             </div>
+                                            <?php } ?>
                                             
                                     </div>
 
@@ -810,8 +832,8 @@ function countAge(object, birthDay){
                         
                         <div class="navigation col-sm-6" align="right">
                            <a href="registration_astrological.php">
-                           <button type="button" name="prev" class="btn btn-danger" style="background-color:#1ba39c;border-color:#1ba39c">Previous</button></a>
-                           <button type="submit" name="submit" class="btn btn-danger" style="background-color:#1ba39c;border-color:#1ba39c">Next</button></div>
+                           <button type="button" name="prev" class="btn btn-danger" style="background-color:#054c48;border-color:#1ba39c">Previous</button></a>
+                           <button type="submit" name="submit" class="btn btn-danger" style="background-color:#054c48;border-color:#1ba39c">Next</button></div>
 						    <div class="navigation col-sm-6"  align="right" style="padding-top:20px;">
 						   <a href="reset.php" style="color:#FFFFFF; font-size:13px; font-weight:bold">Reset</a>
                         </div>

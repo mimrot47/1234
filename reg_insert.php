@@ -106,10 +106,28 @@ $query=mysql_query("insert into matrimonialall (candidate_id,unique_id,first_nam
 	 										 values('','$unique_id','$first_name','$middle_name','$last_name','$gender','$states','$city','$address','$mobile_no1','$email','$birth_date','$birth_time','$day_of_birth','$birth_city','$birth_district','$birth_state','$mobile_no2','$pass','$cast','$age','$fit','$inches','$body_weight','$skin_tone','$blood_group','$spectacles','$hobbies','$any_disability','$any_disability_desc','$acceptation','$describe_yourself','$faculty','$academic_level','$college_name','$college_address','$office_contact','$job_busi_status','$working_post','$annual_income','$work_place_address','$father_name','$occupation_father','$mother_name','$occupation_mother','$no_of_brother','$married_brother','$unmarried_brother','$no_of_sister','$married_sister','$unmarried_sister','$permanent_residential_address','$parent_conatct_no','$birth_name','$own_kul','$mamkul','$gotra','$nakshtra','$charan','$rashi','$nadi','$gan','$guru','$manglik_status','$marriageType','$keyword','no')") or die(mysql_error());
 
 
+//email sending
+$message11='Welcome to Bhavsar Matrimony. Your Username and Password as below :
+	Email : '.$email.'
+	Password : '.$pass.'
+				';
+	$to= $email;
+//$from="info@bhavsar.org";
+$subject1 = " Registration in Bhavsar Matrimony ";
+$mail_body = '
+Message: '.$message11.'
+From: ' . $from . '
+Subject: ' . $subject1 . '
+';
+$headers  = "From: info@bhavsar.org";
+//$headers .= "Content-type: text/htmlrn";
+mail($to, $subject1, $mail_body, $headers);
+ 
+//end email code
 
 
 echo '<script type="text/javascript">'; 
-echo 'alert("Your Registeration Successfully Done  ");'; 
+echo 'alert("Your Registeration Successfully Done.\nYour Username and Password has been send on your registerd email Id. ");'; 
 echo 'window.location.href = "login.php";';
 echo '</script>';
 session_start();
