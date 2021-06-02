@@ -7,8 +7,8 @@ header("http://bhavsarmarriage.com/Matrimonial%20Template%20&%20Images/temp4/tem
 }
 	
 	
-	 $show_gender=mysql_query("select * from matrimonialall where email='$email' and is_del='no'  ") or die(mysql_error());
-										while($row_gender=mysql_fetch_array($show_gender))
+	 $show_gender=mysqli_query($conn,"select * from matrimonialall where email='$email' and is_del='no'  ") or die(mysqli_error($conn));
+										while($row_gender=mysqli_fetch_array($show_gender))
 										{
 											 echo ucwords($row_gender['first_name'])."&nbsp;";
 											 echo ucwords($row_gender['last_name']);

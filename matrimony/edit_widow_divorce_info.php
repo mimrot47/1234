@@ -1,4 +1,3 @@
-
 <?php include "../connect.php";
 session_start();
  $email=$_SESSION['myusername'];
@@ -47,30 +46,39 @@ function countAge(object, birthDay){
 
 	</head>
 	<body>
+		<div style="background-color:#225169; height:50px">&nbsp;</div>
+			<div class="container">
+				<div class="navbar-header">
+					<h1 class="navbar-brand" style="font-family:CenturyGothict; font-size:30px"><a href="" style=" text-decoration: none;"><span style="color:#FF4500">MALI</span> <span style="color:#225169">MATRIMONY</span></a></h1>
+				</div>
+			</div>
+		</div>
 		<div class="container wrapper">   
-			<?php include "header.php";?>
-			<div class="row content">
+			<?php //include "header.php";?>
+			<div class="content">
 				<?php include "menubar.php"; ?>
 				<div class="col-lg-9 content-right">
 					
                     
-					<div class="row selected-classifieds">
+					<div class="selected-classifieds">
                     
-						<div class="col-lg-12" style="border-radius:5px; border:1px solid #CCC; padding:5px" >
-							<h4>Update <?php echo $_GET['type']; ?> Information </h4><hr>	
-								<div class="dataTable_wrapper">
+						<div class="col-lg-12" style="border-radius:2px; border:1px solid #CCC; padding:5px 25px 10px 50px;height: 1050px;" >
+							<h2 style="color:#e74c3c; font-family:BerlinSans; font-size:32px">Update <?php echo $_GET['type']; ?> Information </h2><hr>	
+								<div class="dataTable_wrapper" style="font-family:CenturyGothict;">
                                 <?php
 								 $uniq_id=$_GET['id'];
+								 $gender=$_GET['gender'];
                                 if($_GET['type']=="divorcee")
 								{
                                 ?>
                                 	<form action="update_widow_devorce_info.php" method="post" enctype="multipart/form-data">
                                     <input type="hidden" name="type" value="<?php echo $_GET['type'] ?>">
                                     <input type="hidden" name="unique_id" value="<?php echo $uniq_id ?>">
+                                    <input type="hidden" name="gender" value="<?php echo $gender ?>">
                                     <?php
 					   
-								$show=mysql_query("select * from matrimonial_divorcee where  unique_id='$uniq_id'  ") or die(mysql_error());
-								while($row=mysql_fetch_array($show))
+								$show=mysqli_query($conn,"select * from matrimonial_divorcee where  unique_id='$uniq_id'  ") or die(mysqli_error($conn));
+								while($row=mysqli_fetch_array($show))
 								{
 										
 									$previous_marriage_date_divorcee=$row['previous_marriage_date_divorcee'];
@@ -82,19 +90,18 @@ function countAge(object, birthDay){
 								?>
                 
                                           
-                               <div class="form-group" style="padding-bottom:30px">
+                               <div class="form-group" style="padding-bottom:50px">
                                     <label class="col-sm-4 control-label" for="birth_name">Previous Marriage Date Divorcee</label>  
                                     <div class="col-md-8">
-                                        <input id="birth_name" name="previous_marriage_date_divorcee" type="text" value="<?php echo "$previous_marriage_date_divorcee"; ?>" class="form-control input-md" >
-
-                                    </div>
+                                        <input id="birth_name" name="previous_marriage_date_divorcee" type="date" max="3000-12-31" value="<?php echo "$previous_marriage_date_divorcee"; ?>" class="form-control input-md" required >
+                                      </div>
                                 </div>
 
                                 <!-- Text input-->
-                                <div class="form-group" style="padding-bottom:30px">
+                                <div class="form-group" style="padding-bottom:50px">
                                     <label class="col-sm-4 control-label" for="own_kul">Date of Divorce</label>  
                                     <div class="col-md-8">
-                                        <input id="own_kul" name="date_of_divorce" type="text" value="<?php echo "$date_of_divorce"; ?>" class="form-control input-md">
+                                        <input id="own_kul" name="date_of_divorce" type="date" max="3000-12-31" value="<?php echo "$date_of_divorce"; ?>" class="form-control input-md" required >
 
                                     </div>
                                 </div>
@@ -151,10 +158,11 @@ function countAge(object, birthDay){
 										<form action="update_widow_devorce_info.php" method="post" >
                                         <input type="hidden" name="type" value="<?php echo $_GET['type'] ?>">
                                     <input type="hidden" name="unique_id" value="<?php echo $uniq_id ?>">
+                                    <input type="hidden" name="gender" value="<?php echo $gender ?>">
                                     <?php
 					    
-									$show1=mysql_query("select * from matrimonial_widow where  unique_id='$uniq_id'  ") or die(mysql_error());
-													while($row1=mysql_fetch_array($show1))
+									$show1=mysqli_query($conn,"select * from matrimonial_widow where  unique_id='$uniq_id'  ") or die(mysqli_error($conn));
+													while($row1=mysqli_fetch_array($show1))
 													{
 															
 									$previous_marriage_date_widow=$row1['previous_marriage_date_widow'];
@@ -164,20 +172,20 @@ function countAge(object, birthDay){
 
 				}?>
                                           
-                               <div class="form-group" style="padding-bottom:30px">
+                               <div class="form-group" style="padding-bottom:50px">
                                     <label class="col-sm-4 control-label" for="birth_name">Previous Marriage Date</label>  
                                     <div class="col-md-8">
-                                        <input id="birth_name" name="previous_marriage_date_widow" type="text" value="<?php echo "$previous_marriage_date_widow"; ?>" class="form-control input-md" >
+                                        <input id="birth_name" name="previous_marriage_date_widow" type="date" max="3000-12-31" value="<?php echo "$previous_marriage_date_widow"; ?>" class="form-control input-md" >
 
                                     </div>
                                 </div>
 
                                 <!-- Text input-->
-                                <div class="form-group" style="padding-bottom:30px">
+                                <div class="form-group" style="padding-bottom:50px">
                                 <label class="col-sm-4 control-label" for="birth_name">
 Date Partner Death                                  </label>
 									  <div class="col-md-8">
-                                        <input id="own_kul" name="date_partner_death_widow" type="text" value="<?php echo "$date_partner_death_widow"; ?>" class="form-control input-md">
+                                        <input id="own_kul" name="date_partner_death_widow" type="date" max="3000-12-31" value="<?php echo "$date_partner_death_widow"; ?>" class="form-control input-md">
 
                                     </div>
                                 </div>
@@ -226,10 +234,11 @@ Date Partner Death                                  </label>
 					</div>
 				</div>
 			</div>
-			<div class="footer">
-				<?php include "footer.php"; ?>
-			</div>
+			<!--<div class="footer">
+				<?php //include "footer.php"; ?>
+			</div>-->
 		</div>
+		<p class="text-center" style="height:80px; background-color:#2e3c43;padding-top:30px; color:#ffffff;margin-bottom:0px;">Copyright &copy; 2020<a href="http://www.cloudsoft.com" style="color:#ffffff;"> Cloudsoft PVT.LTD</a>. All Rights Reserved.</p>
 		<!-- JavaScript -->
 		<script src="js/jquery-1.11.1.min.js"></script>
 		<script src="js/bootstrap.min.js"></script>

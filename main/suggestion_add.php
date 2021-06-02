@@ -2,18 +2,18 @@
 include '../connect.php';
 
 
- $email2=$_POST['email'];
+ $email2=trim($_POST['email']);
 $msg=$_POST['msg'];
 
 		$query = "SELECT email FROM matrimonialall WHERE email='".$email2."'";
-mysql_select_db('bhavsar');
 
-    $result=mysql_query($query);
 
-   if (mysql_num_rows($result) != 0)
+    $result=mysqli_query($conn,$query);
+
+   if (mysqli_num_rows($result) != 0)
    {
 	   
-	    $query2 = mysql_query("insert into suggestions (id,email,msg)
+	    $query2 = mysqli_query($conn,"insert into suggestions (id,email,msg)
 	values('','$email2','$msg')");
 	
 	echo '<script type="text/javascript">'; 

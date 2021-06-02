@@ -665,9 +665,9 @@ function countAge(object, birthDay){
                                     	<select class="form-control" id="state" required name="states">
                                         	<option></option>
                                         	<?php 
-											 /*$show1=mysql_query("select DISTINCT state from city ORDER BY state  ASC");
+											 /*$show1=mysqli_query($conn,"select DISTINCT state from city ORDER BY state  ASC");
 														
-												while($rw1=mysql_fetch_array($show1))
+												while($rw1=mysqli_fetch_array($show1))
 													{ 
 													echo"<option  value='".$rw1['state']."'>"; echo $rw1['state']; echo"</option>";
 													}*/
@@ -689,9 +689,9 @@ function countAge(object, birthDay){
                                         <select class="form-control" required id="city" name="city">
                                         	<option></option>
                                         	<?php 
-						 /*$show1=mysql_query("select * from city ORDER BY city  ASC");
+						 /*$show1=mysqli_query($conn,"select * from city ORDER BY city  ASC");
 									
-							while($rw1=mysql_fetch_array($show1))
+							while($rw1=mysqli_fetch_array($show1))
 								{ 
 								echo"<option  value='".$rw1['city']."'>"; echo $rw1['city']; echo"</option>";
 								}*/
@@ -767,9 +767,9 @@ function countAge(object, birthDay){
                                         <select class="form-control" id="birth_state" required name="birth_state">
                                         	<option></option>
                                         	<?php 
-											 $show1=mysql_query("select DISTINCT state from city ORDER BY state  ASC");
+											 $show1=mysqli_query($conn,"select DISTINCT state from city ORDER BY state  ASC");
 														
-												while($rw1=mysql_fetch_array($show1))
+												while($rw1=mysqli_fetch_array($show1))
 													{ 
 													echo"<option  value='".$rw1['state']."'>"; echo $rw1['state']; echo"</option>";
 													}

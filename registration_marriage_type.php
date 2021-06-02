@@ -452,33 +452,55 @@ function countAge(object, birthDay){
 	
           </script>
           
+         <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css"> 
         <script src="js/custom_js.js" type="text/javascript"></script>
         <style>
+            @font-face {
+			font-family: CenturyGothict;
+			src: url(fonts/CenturyGothic.ttf);
+		}
+		@font-face {
+			font-family: CaviarDreams_Bold;
+			src: url(fonts/CaviarDreams_Bold.ttf);
+		}
+		@font-face {
+			font-family: CaviarDreams;
+			src: url(fonts/CaviarDreams.ttf);
+		}
+		@font-face {
+			font-family: BerlinSans;
+			src: url(fonts/BRLNSR.ttf);
+		}
+		@font-face {
+			font-family: BebasNeue;
+			src: url(fonts/BebasNeue.otf);
+		}
             ._heading{
-                text-align: center;
+               text-align:center;
             }
             .main_heading h2{
                 margin:0;
                 padding:10px;
                 text-align: center;
-            }
+				font-family:Arial;
+				font-size:26px;
+			}
             ._heading h4{
-                color:#1ba39c;
+                color:#225169;
                 padding:10px 0;
-                margin-bottom:30px;
+                margin-bottom:15px;
                 margin-top:10px;
-                text-align: left;
-                border-bottom: 1px solid #1ba39c;
-            }
+				font-family:Arial;
+             }
             .col-sm-4.control-label {
                 text-align: left;
+				font-family:CenturyGothict;
             }
             .navigation{
                 margin-top:15px;
                 padding:15px;
-                //text-align: center;
-				height:60px;
-                background-color:#1ba39c;
+                height:60px;
+                background-color:#225169;
 
             }
 
@@ -487,7 +509,8 @@ function countAge(object, birthDay){
                 margin-bottom:20px;
             }
             .main_heading{
-                background-color:#1ba39c;
+                background-color:#225169;
+				border-bottom: 2px solid orangered;
             }
             .main_form{
                 border:2px solid #1ba39c;
@@ -504,6 +527,18 @@ function countAge(object, birthDay){
             #id05 .tab-content{
                 padding-top:20px;
             }
+			
+	.form-panel:not(.active) {
+		display:none;
+	}
+	.steps{
+		//margin-top:150px;
+		border:1px solid #000;
+		border-radius:25px;
+		background-color: black;
+		opacity: 0.4; 
+		padding:50px;
+	}
 
         </style>
         <script language="Javascript" type="text/javascript">
@@ -549,34 +584,381 @@ function countAge(object, birthDay){
             }
         }
  
+ 	function CompareDate() {
+
+		var startDate=document.getElementById("previous_marriage_date_divorcee").value;
+		var endDate=document.getElementById("date_of_divorce").value;
+		var date1 = new Date(startDate);
+		var date2 = new Date(endDate);
+		
+		 if(date1 >= date2)
+		 {
+		        alert("Divorcee date must be greater than previous marriage date");
+		        document.getElementById("date_of_divorce").value = "";
+		        return false;
+		 }
+		
+	}
+ 	 
+ 	 function CompareDate1() {
+
+		var startDate1=document.getElementById("previous_marriage_date").value;
+		var endDate1=document.getElementById("date_partner_death_widow").value;
+		var date11 = new Date(startDate1);
+		var date12 = new Date(endDate1);
+		
+		 if(date11 >= date12)
+		 {
+		        alert("Partner death date must be greater than previous marriage date");
+		        document.getElementById("date_partner_death_widow").value = "";
+		        return false;
+		 }
+		
+	}
     </script>
    
 
 </head>
 <body style="color:#0d0e0e" onLoad="activate('frm01', arr);"> 
-<header class="main__header" style="background-image:url(img/header.png)">
-  <div class="container">
-    <nav class="navbar navbar-default" role="navigation"> 
-      <div class="navbar-header">
-        <h1 class="navbar-brand"><a href="index.php">MATRIMONY</a></h1>
-        <a href="#" class="submenu">Menus</a> </div>
-      <div class="menuBar">
-        <ul class="menu">
-          <li class="active"><a href="index.php">Home</a></li>
-           <li><a href="login.php">Login</a></li>
-        </ul>
-      </div>
-      <!-- /.navbar-collapse --> 
-    </nav>
-  </div>
+<header class="main__header" >
+	<div style="background-color:#225169; height:50px">&nbsp;</div>
+		<div class="container">
+			<nav class="navbar navbar-default" role="navigation"> 
+			<div class="navbar-header">
+				<h1 class="navbar-brand" style="font-family:CenturyGothict; font-size:30px"><a href="index.php"><span style="color:#FF4500">MALI</span> <span style="color:#225169">MATRIMONY</span></a></h1>
+				<a href="#" class="submenu" style="background-image:url(img/default-logo.png); width:40px; height:40px">Menus</a> 
+			</div>
+			<div class="menuBar">
+				<ul class="menu">
+					<li ><a href="index.php">Home</a></li>
+					<li ><a href="login.php">Login</a></li>
+          			</ul>
+			</div>
+			<!-- /.navbar-collapse --> 
+		</nav>
+	</div>
 </header>
+<div class="reg_container col-sm-12" style="background-image:url(img/RegisterpagePreview.jpg); background-repeat:round; margin-top:120px;">
+	<div class="container" style="margin-top:450px; margin-bottom:100px;">
+		<div class="container col-md-7 steps" style="">
+			<div class="form-panel active">
+				<h2 class='list-h2'>How To Register</h2>
+				<h4 class='list-h4'><strong>Step 1</strong></h4>
+				<p class='list-p'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Fill all forms carefully.All fields are mandatory of each form. </p>
+			</div>
+			<div class="form-panel">
+				<h2 class='list-h2'>How To Register</h2>
+				<h4 class='list-h4'><strong>Step 2</strong></h4>
+				<p class='list-p'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Check all information filled by you. </p>
+			</div>
+			<div class="form-panel">
+				<h2 class='list-h2'>How To Register</h2>
+				<h4 class='list-h4'><strong>Step 3</strong></h4>
+				<p class='list-p'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Make payment and signup. </p>
+			</div>
+			
+			<img align="right" class="next" src="img/ICON 1/next.png" height="50" width="50" style="cursor:pointer;">
+			<img align="right" class="previous" src="img/ICON 1/Prev.png" height="50" width="50" style="cursor:pointer;">
+		</div>
+		<div class="container col-md-offset-8 reg-form1">
+			<div class="col-sm-12 main_heading">
+				<h2 style="color:#fff">REGISTRATION FORM</h2>
+			</div>
+			 <form class="form-horizontal" id="form1" name="form1" action="registration_user.php" method="post" > 
+                     	<?php
+				if(isset($_POST['first_name'])){$first_name = $_SESSION['first_name']=$_POST['first_name'];}
+				if(isset($_POST['middle_name'])){$middle_name = $_SESSION['middle_name'] = $_POST['middle_name'];}
+				if(isset($_POST['last_name'])){$last_name = $_SESSION['last_name'] = $_POST['last_name'];}
+				if(isset($_POST['gender'])){$gender = $_SESSION['gender'] = $_POST['gender'];}
+				if(isset($_POST['states'])){$states = $_SESSION['states'] = $_POST['states'];}
+				if(isset($_POST['city'])){$city = $_SESSION['city'] = $_POST['city'];}
+				if(isset($_POST['address'])){$address = $_SESSION['address'] = $_POST['address'];}
+				if(isset($_POST['mobile_no1'])){$mobile_no1 = $_SESSION['mobile_no1'] =$_POST['mobile_no1'];}
+				if(isset($_POST['mobile_no2'])){$mobile_no2 = $_SESSION['mobile_no2'] = $_POST['mobile_no2'];}
+				if(isset($_POST['DATEOFBIRTH'])){$birth_date = $_SESSION['DATEOFBIRTH'] = $_POST['DATEOFBIRTH'];}
+				if(isset($_POST['age'])){$age = $_SESSION['age'] = $_POST['age'];}
+				if(isset($_POST['birth_time'])){$birth_time = $_SESSION['birth_time'] = $_POST['birth_time'];}
+				if(isset($_POST['day_of_birth'])){$day_of_birth = $_SESSION['day_of_birth'] = $_POST['day_of_birth'];}
+				if(isset($_POST['birth_city'])){$birth_city = $_SESSION['birth_city'] = $_POST['birth_city'];}
+				if(isset($_POST['birth_district'])){$birth_district = $_SESSION['birth_district'] =$_POST['birth_district'];}
+				if(isset($_POST['birth_state'])){$birth_state = $_SESSION['birth_state'] = $_POST['birth_state'];}
+				if(isset($_POST['cast'])){$cast=$_SESSION['cast']=$_POST['cast'];}
+				if(isset($_POST['subcast'])){$subcast=$_SESSION['subcast']=$_POST['subcast'];}
+				if(isset($_POST['fit'])){$fit=$_SESSION['fit']=$_POST['fit'];}
+				if(isset($_POST['inches'])){$inches=$_SESSION['inches']=$_POST['inches'];}
+				if(isset($_POST['body_weight'])){$body_weight=$_SESSION['body_weight']=$_POST['body_weight'];}
+				if(isset($_POST['skin_tone'])){$skin_tone=$_SESSION['skin_tone']=$_POST['skin_tone'];}
+				if(isset($_POST['blood_group'])){$blood_group=$_SESSION['blood_group']=$_POST['blood_group'];}
+				if(isset($_POST['spectacles'])){$spectacles=$_SESSION['spectacles']=$_POST['spectacles'];}
+				if(isset($_POST['hobbies'])){$hobbies=$_SESSION['hobbies']=$_POST['hobbies'];}
+				if(isset($_POST['any_disability'])){$any_disability=$_SESSION['any_disability']=$_POST['any_disability'];}
+				if(isset($_POST['any_disability_desc'])){$any_disability_desc=$_SESSION['any_disability_desc']=$_POST['any_disability_desc'];}
+				if(isset($_POST['acceptation'])){$acceptation=$_SESSION['acceptation']=$_POST['acceptation'];}
+				if(isset($_POST['describe_yourself'])){$describe_yourself=$_SESSION['describe_yourself']=$_POST['describe_yourself'];}
+				if(isset($_POST['faculty'])){$faculty=$_SESSION['faculty']=$_POST['faculty'];}
+				//if(isset($_POST['academic_level'])){$academic_level=$_POST['academic_level'];}
+				if(isset($_POST['college_name'])){$college_name=$_SESSION['college_name']=$_POST['college_name'];}
+				if(isset($_POST['college_address'])){$college_address=$_SESSION['college_address']=$_POST['college_address'];}
+				if(isset($_POST['office_contact'])){$office_contact=$_SESSION['office_contact']=$_POST['office_contact'];}
+				if(isset($_POST['job_busi_status'])){$job_busi_status=$_SESSION['job_busi_status']=$_POST['job_busi_status'];}
+				if(isset($_POST['working_post'])){$working_post=$_SESSION['working_post']=$_POST['working_post'];}
+				if(isset($_POST['annual_income'])){$annual_income=$_SESSION['annual_income']=$_POST['annual_income'];}
+				if(isset($_POST['work_place_address'])){$work_place_address=$_SESSION['work_place_address']=$_POST['work_place_address'];}
+				
+				if(isset($_POST['father_name'])){$father_name=$_SESSION['father_name']=$_POST['father_name'];}
+				if(isset($_POST['occupation_father'])){$occupation_father=$_SESSION['occupation_father']=$_POST['occupation_father'];}
+				if(isset($_POST['mother_name'])){$mother_name=$_SESSION['mother_name']=$_POST['mother_name'];}
+				if(isset($_POST['occupation_mother'])){$occupation_mother=$_SESSION['occupation_mother']=$_POST['occupation_mother'];}
+				if(isset($_POST['no_of_brother'])){$no_of_brother=$_SESSION['no_of_brother']=$_POST['no_of_brother'];}
+				if(isset($_POST['married_brother'])){$married_brother=$_SESSION['married_brother']=$_POST['married_brother'];}
+				if(isset($_POST['unmarried_brother'])){$unmarried_brother=$_SESSION['unmarried_brother']=$_POST['unmarried_brother'];}
+				if(isset($_POST['no_of_sister'])){$no_of_sister=$_SESSION['no_of_sister']=$_POST['no_of_sister'];}
+				if(isset($_POST['married_sister'])){$married_sister=$_SESSION['married_sister']=$_POST['married_sister'];}
+				if(isset($_POST['unmarried_sister'])){$unmarried_sister=$_SESSION['unmarried_sister']=$_POST['unmarried_sister'];}
+				if(isset($_POST['permanent_residential_address'])){$permanent_residential_address=$_SESSION['permanent_residential_address']=$_POST['permanent_residential_address'];}
+				if(isset($_POST['parent_conatct_no'])){$parent_conatct_no=$_SESSION['parent_conatct_no']=$_POST['parent_conatct_no'];}
+				if(isset($_POST['birth_name'])){$birth_name=$_SESSION['birth_name']=$_POST['birth_name'];}
+				if(isset($_POST['own_kul'])){$own_kul=$_SESSION['own_kul']=$_POST['own_kul'];}
+				if(isset($_POST['mamkul'])){$mamkul=$_SESSION['mamkul']=$_POST['mamkul'];}
+				if(isset($_POST['gotra'])){$gotra=$_SESSION['gotra']=$_POST['gotra'];}
+				if(isset($_POST['nakshtra'])){$nakshtra=$_SESSION['nakshtra']=$_POST['nakshtra'];}
+				if(isset($_POST['charan'])){$charan=$_SESSION['charan']=$_POST['charan'];}
+				if(isset($_POST['rashi'])){$rashi=$_SESSION['rashi']=$_POST['rashi'];}
+				if(isset($_POST['nadi'])){$nadi=$_SESSION['nadi']=$_POST['nadi'];}
+				if(isset($_POST['gan'])){$gan=$_SESSION['gan']=$_POST['gan'];}
+				if(isset($_POST['guru'])){$guru=$_SESSION['guru']=$_POST['guru'];}
+				if(isset($_POST['manglik_status'])){$manglik_status=$_SESSION['manglik_status']=$_POST['manglik_status'];}
+			?>
+                          <input name="first_name" type="hidden" value="<?php echo $first_name;  ?>"  >
+                          <input name="middle_name" type="hidden" value="<?php echo $middle_name;  ?>" >
+                          <input name="last_name" type="hidden" value="<?php echo $last_name;  ?>">
+                          <input type="hidden" name="gender" value="<?php echo $gender;  ?>">
+                          <input type="hidden" name="states" value="<?php echo $states;  ?>">
+                          <input type="hidden" name="city" value="<?php echo $city;  ?>">
+                          <input type="hidden" name="address" value="<?php echo $address;  ?>">
+                          <input name="mobile_no1" type="hidden"value="<?php echo $mobile_no1;  ?>"   >
+                          <input name="mobile_no2" type="hidden" value="<?php echo $mobile_no2;  ?>">
+                          <input type="hidden" name="DATEOFBIRTH" value="<?php echo $birth_date;  ?>">
+                          <input type="hidden" name="age" value="<?php echo $age; ?>"> 
+                          <input name="birth_time" type="hidden" value="<?php echo $birth_time;  ?>"> 
+                          <input type="hidden" name="day_of_birth" value="<?php echo $day_of_birth;  ?>">
+                          <input name="birth_city" type="hidden" value="<?php echo $birth_city;  ?>" >
+                          <input name="birth_district" type="hidden" value="<?php echo $birth_district;  ?>">
+                          <input type="hidden" name="birth_state" value="<?php echo $birth_state;  ?>">
+                          
+                          <input name="cast" type="hidden"value="<?php echo $cast;  ?>"   >
+						   <input name="subcast" type="hidden" value="<?php echo $subcast; ?>" >
+                          <input name="fit" type="hidden" value="<?php echo $fit;  ?>">
+                          <input type="hidden" name="inches" value="<?php echo $inches;  ?>">
+                          <input type="hidden" name="body_weight" value="<?php echo $body_weight; ?>"> 
+                          <input name="skin_tone" type="hidden" value="<?php echo $skin_tone;  ?>"> 
+                          <input type="hidden" name="blood_group" value="<?php echo $blood_group;  ?>">
+                          <input name="spectacles" type="hidden" value="<?php echo $spectacles;  ?>" >
+                          <input name="hobbies" type="hidden" value="<?php echo $hobbies;  ?>">
+                          <input type="hidden" name="any_disability" value="<?php echo $any_disability;  ?>">
+                          <input name="any_disability_desc" type="hidden" value="<?php echo $any_disability_desc;  ?>" >
+                          <input name="acceptation" type="hidden" value="<?php echo $acceptation;  ?>">
+                          <input type="hidden" name="describe_yourself" value="<?php echo $describe_yourself;  ?>">
+                          
+                          <input type="hidden" name="faculty" value="<?php echo $faculty;  ?>">
+                          <input type="hidden" name="academic_level" value="<?php echo $academic_level;  ?>">
+                          <input name="college_name" type="hidden" value="<?php echo $college_name;  ?>" >
+                          <input name="college_address" type="hidden" value="<?php echo $college_address;  ?>" >
+                          <input name="job_busi_status" type="hidden" value="<?php echo $job_busi_status;  ?>" >
+                          <input name="working_post" type="hidden" value="<?php echo $working_post;  ?>" >
+                          <input name="annual_income" type="hidden" value="<?php echo $annual_income;  ?>" >
+                          <input name="office_contact" type="hidden" value="<?php echo $office_contact;  ?>" >
+                          <input name="work_place_address" type="hidden" value="<?php echo $work_place_address;  ?>" >
+                         
+                          <input name="father_name" type="hidden" value="<?php echo $father_name;  ?>">
+                          <input name="occupation_father" type="hidden" value="<?php echo $occupation_father;  ?>">
+                          <input name="mother_name" type="hidden" value="<?php echo $mother_name;  ?>">
+                          <input type="hidden" name="occupation_mother" value="<?php echo $occupation_mother;  ?>">
+                          <input type="hidden" name="no_of_brother" value="<?php echo $no_of_brother;  ?>">
+                          <input type="hidden" name="married_brother" value="<?php echo $married_brother;  ?>">
+                          <input type="hidden" name="unmarried_brother" value="<?php echo $unmarried_brother;  ?>">
+                          <input type="hidden" name="no_of_sister" value="<?php echo $no_of_sister;  ?>">
+                          <input type="hidden" name="married_sister" value="<?php echo $married_sister;  ?>">
+                          <input type="hidden" name="unmarried_sister" value="<?php echo $unmarried_sister;  ?>">
+                          <input type="hidden" name="permanent_residential_address" value="<?php echo $permanent_residential_address;  ?>">
+                          <input type="hidden" name="parent_conatct_no" value="<?php echo $parent_conatct_no;  ?>">  
+                          
+                          <input name="birth_name" type="hidden" value="<?php echo $birth_name;  ?>">
+                          <input name="own_kul" type="hidden" value="<?php echo $own_kul;  ?>">
+			  <input name="mamkul" type="hidden" value="<?php echo $mamkul;  ?>" >
+			  <input name="gotra" type="hidden" value="<?php echo $gotra;  ?>">
+                          <input type="hidden" name="nakshtra" value="<?php echo $nakshtra;  ?>">
+			  <input type="hidden" name="charan" value="<?php echo $charan ?>">
+                          <input type="hidden" name="rashi" value="<?php echo $rashi ?>">
+                          <input type="hidden" name="nadi" value="<?php echo $nadi ?>">
+                          <input type="hidden" name="gan" value="<?php echo $gan ?>">
+                          <input type="hidden" name="guru" value="<?php echo $guru ?>" >
+                          <input type="hidden" name="manglik_status" value="<?php echo $manglik_status ?>" > 
+                          
+				<div class="col-sm-12" style="background-color: #f6f6f6;">
+					<div class="col-sm-12 _heading">&nbsp;</div>
+					
+					<img src="img/ICON 1/D W.png" style="width:50px;height:50px;">
+		                                <ul id="myTab" class="nav nav-pills" style="margin-top: -50px;margin-left: 79px;">
+		                                <input type="hidden" name="marriageType" value="Never married">
+		                                    <li <?php if($_SESSION['marriageType']=='divorcee'){?> class="active"<?php }?>>
+		                                        <a href="#1a" data-toggle="tab">
+		                                            <div style="margin: 0;" class="checkbox">
+		                                                <label style="float: left;">
+		                                                    <input style="display: inline-block;" type="checkbox" id="marriageType" name="marriageType" value="divorcee" <?php if($_SESSION['marriageType']=='divorcee'){?> checked="checked"<?php }?> />
+		                                                    <div style="display: inline-block;">Divorcee Information</div>
+		                                                </label>
+		                                            </div>
+		                                        </a>
+		                                       
+		                                        
+		                                    </li>
+		                                    <li <?php if($_SESSION['marriageType']=='widow'){?> class="active"<?php }?>>
+		                                        <a href="#2a" data-toggle="tab">
+		                                            <div style="margin: 0;" class="checkbox">
+		                                                <label style="float: left;">
+		                                                    <input style="display: inline-block;" type="checkbox" id="marriageType" name="marriageType"  value="widow" <?php if($_SESSION['marriageType']=='widow'){?> checked="checked"<?php }?>/>
+		                                                    <div style="display: inline-block;">Widow/Widower Information</div>
+		                                                </label>
+		                                            </div>
+		                                        </a>
+		                                        
+		                                    </li>
+		
+		                                </ul>
+						<hr> <b> <font color="#FF0000">This is only for Divorcee or Widow/Widower</font> </b>
+						
+						<div class="tab-content clearfix">
+                                    		<div class="tab-pane <?php if($_SESSION['marriageType']=='divorcee'){?>active<?php }else{?><?php }?>" id="1a">
+	                                            <div class="form-group">
+	                                                <label class="col-sm-4 control-label" for="previous_marriage_date">Previous Marriage Date</label>  
+	                                                <div class="col-md-8">
+	                                                    <input id="previous_marriage_date_divorcee" name="previous_marriage_date_divorcee" type="date" max="3000-12-31" class="form-control input-md" placeholder="DD/MM/YYYY" value="<?php echo $_SESSION['previous_marriage_date_divorcee'];?>" >
+	
+	                                                </div>
+	                                            </div>
+	                                            <div class="form-group">
+	                                                <label class="col-sm-4 control-label" for="date_of_divorce">Date of Divorce </label>  
+	                                                <div class="col-md-8">
+	                                                    <input id="date_of_divorce" name="date_of_divorce" type="date" max="3000-12-31" class="form-control input-md" placeholder="DD/MM/YYYY" value="<?php echo $_SESSION['date_of_divorce'];?>"  onBlur="return  CompareDate()">
+	
+	                                                </div>
+	                                            </div>
+	                                            <div class="form-group">
+	                                                <label class="col-sm-4 control-label" for="child_status">No. Of Child</label>  
+	                                                <div class="col-sm-8">
+							       <select class="form-control" id="faculty" name="child_status_divorce">
+					                          <option value="None" <?php if($_SESSION['child_status_divorce']=='None') echo "selected";?> >None</option>
+					                          <option value="1" <?php if($_SESSION['child_status_divorce']=='1') echo "selected";?> >1</option>
+					                          <option value="2" <?php if($_SESSION['child_status_divorce']=='2') echo "selected";?> >2</option>
+					                          <option value="3" <?php if($_SESSION['child_status_divorce']=='3') echo "selected";?> >3</option>
+					                          <option value="4 and above" <?php if($_SESSION['child_status_divorce']=='4 and above') echo "selected";?> >4 and above</option>
+					                       </select>
+	                                                </div>
+	                                            </div>
+	                                            <div class="form-group">
+	                                                <label class="col-sm-4 control-label" for="child_custody_status">Child Living Status</label>  
+	                                                <div class="col-sm-8">
+					                        <select class="form-control" id="child_custody_status_divorce" name="child_custody_status_divorce">
+					                          <option value="Not Applicable" <?php if($_SESSION['child_custody_status_divorce']=='Not Applicable') echo "selected";?> >Not Applicable</option>
+					                          <option value="Living With Me" <?php if($_SESSION['child_custody_status_divorce']=='Living With Me') echo "selected";?> >Living With Me</option>
+					                          <option value="Not Living With Me" <?php if($_SESSION['child_custody_status_divorce']=='Not Living With Me') echo "selected";?> >Not Living With Me</option>                          
+					                        </select>                                                                         
+	                                                </div>
+	                                            </div>
+	                                            <?php if($gender=="Bride") { ?>
+	                                            <div class="form-group">
+	                                                <label class="col-sm-4 control-label" for="previous_marriage_address">Previous Marriage Address</label>  
+	                                                <div class="col-sm-8">                     
+	                                                    <textarea class="form-control" id="previous_marriage_address_divorce"  name="previous_marriage_address_divorce" rows="2"><?php echo $_SESSION['previous_marriage_address_divorce'];?></textarea>
+	                                                </div>
+	                                            </div>
+	                                            <?php } ?>
+	                                    </div>
+	                                    <div class="tab-pane <?php if($_SESSION['marriageType']=='widow'){?>active<?php }?>" id="2a">
+	                                            <div class="form-group">
+	                                                <label class="col-sm-4 control-label" for="previous_marriage_date">Previous Marriage Date </label>  
+	                                                <div class="col-md-8">
+	                                                    <input id="previous_marriage_date" name="previous_marriage_date_widow" type="date" max="3000-12-31" class="form-control input-md" placeholder="DD/MM/YYYY" value="<?php echo $_SESSION['previous_marriage_date_widow'];?>" >
+	
+	                                                </div>
+	                                            </div>
+	                                            <div class="form-group">
+	                                                <label class="col-sm-4 control-label" for="date_partner_death">Date of Partner &#39;s Death</label>  
+	                                                <div class="col-md-8">
+	                                                    <input id="date_partner_death_widow" name="date_partner_death_widow" type="date" max="3000-12-31" class="form-control input-md" placeholder="DD/MM/YYYY" value="<?php echo $_SESSION['date_partner_death_widow'];?>" onBlur="return  CompareDate1()">
+	
+	                                                </div>
+	                                            </div>
 
-        <section class="main__middle__container homepage" style="margin-top:100px;">
+	                                            <div class="form-group">
+	                                                <label class="col-sm-4 control-label" for="child_status">No. Of Child</label>
+	
+	                                                <div class="col-sm-8">
+						                <select class="form-control" id="faculty" name="child_status_widow">
+						                    <option value="None" <?php if($_SESSION['child_status_widow']=='None') echo "selected";?> >None</option>
+						                    <option value="1" <?php if($_SESSION['child_status_widow']=='1') echo "selected";?> >1</option>
+						                    <option value="2" <?php if($_SESSION['child_status_widow']=='2') echo "selected";?> >2</option>
+						                    <option value="3" <?php if($_SESSION['child_status_widow']=='3') echo "selected";?> >3</option>
+						                    <option value="4 and above" <?php if($_SESSION['child_status_widow']=='4 and above') echo "selected";?> >4 and above</option>
+						                </select>
+	            					</div>
+	                                            </div>
+	                                             <?php if($gender=="Bride") { ?>
+	                                            <div class="form-group">
+	                     					 <label class="col-sm-4 control-label" for="previous_marriage_address">Previous Marriage Address</label>  
+	                                                <div class="col-sm-8">                     
+	                                                    <textarea class="form-control" id="previous_marriage_address_widow"  name="previous_marriage_address_widow" rows="2"><?php echo $_SESSION['previous_marriage_address_widow'];?></textarea>
+	                                                </div>
+	                                            </div>
+	                                            <?php } ?>
+	                                            
+	                                    </div>
+	
+	                                </div>	
+						
+					
+	
+	                                
+					<div class="form-group" style="margin-bottom:0px">
+						<div class="navigation col-sm-6" align="left" style="padding-top:15px;">
+							<a class="btn" href="reset.php" style="color:#FFFFFF; font-size:15px; font-weight:bold; text-align:right; border:1px solid;">Reset</a>
+						</div>
+						<div class="navigation col-sm-6" align="right">
+							<button class="btn" type="submit" name="submit" style="float:right; color:#ffffff; background-color:#4b6a79; padding:0px; width:90px"> <img align="right" src="img/ICON 1/RegistrationFormNext.png" style="height:35px;width:90px"> </button>
+							<a href="registration_astrological.php" name="prev" style="float:right; margin-right:15px;">
+								<img align="right" src="img/ICON 1//RegistrationFormPrevious.png" style="height:37px">
+							</a>
+						</div>
+					</div>
+			</form>  
+		</div> 
+	</div> 
+</div>
+<script src="js/jquery.min.js"></script>
+<script>
+	$('.previous').click(function () {
+		var cur = $('.form-panel').index($('.form-panel.active'));
+		if (cur!=0) {
+			$('.form-panel').removeClass('active');
+			$('.form-panel').eq(cur-1).addClass('active');
+		}
+	});
+	$('.next').click(function () {
+		var cur = $('.form-panel').index($('.form-panel.active'));
+		if (cur!=$('.form-panel').length-1) {
+			$('.form-panel').removeClass('active');
+			$('.form-panel').eq(cur+1).addClass('active');
+		}
+	});
+</script>
+        
+        <!--<section class="main__middle__container homepage" style="margin-top:100px;height:120vh" >
             <div class="container main_form" style="width:600px">
                 <div class="col-sm-12 main_heading">
                     <h2 style="color:#fff">REGISTRATION FORM</h2>
                 </div>
-                <form class="form-horizontal" name="form1" action="registration_user.php" method="post"> 
+                <form class="form-horizontal" id="form1" name="form1" action="registration_user.php" method="post"> 
                      <?php
 						if(isset($_POST['first_name'])){$first_name = $_SESSION['first_name']=$_POST['first_name'];}
 						if(isset($_POST['middle_name'])){$middle_name = $_SESSION['middle_name'] = $_POST['middle_name'];}
@@ -720,7 +1102,7 @@ function countAge(object, birthDay){
                                                 </label>
                                             </div>
                                         </a>
-                                        <!-- <a  href="#1a" data-toggle="tab">Divorcee Information</a>-->
+                                        
                                         
                                     </li>
                                     <li <?php if($_SESSION['marriageType']=='widow'){?> class="active"<?php }?>>
@@ -732,7 +1114,7 @@ function countAge(object, birthDay){
                                                 </label>
                                             </div>
                                         </a>
-                                        <!-- <a href="#2a" data-toggle="tab">Widow Information </a>-->
+                                        
                                     </li>
 
                                 </ul>
@@ -742,38 +1124,37 @@ function countAge(object, birthDay){
                                             <div class="form-group">
                                                 <label class="col-sm-4 control-label" for="previous_marriage_date">Previous Marriage Date<br>(in DD/MM/YYYY)</label>  
                                                 <div class="col-md-8">
-                                                    <input id="previous_marriage_date_divorcee" name="previous_marriage_date_divorcee" type="text" class="form-control input-md" placeholder="DD/MM/YYYY" value="<?php echo $_SESSION['previous_marriage_date_divorcee'];?>">
+                                                    <input id="previous_marriage_date_divorcee" name="previous_marriage_date_divorcee" type="date" max="3000-12-31" class="form-control input-md" placeholder="DD/MM/YYYY" value="<?php echo $_SESSION['previous_marriage_date_divorcee'];?>" >
 
                                                 </div>
                                             </div>
                                             <div class="form-group">
                                                 <label class="col-sm-4 control-label" for="date_of_divorce">Date of Divorce <br>(in DD/MM/YYYY)</label>  
                                                 <div class="col-md-8">
-                                                    <input id="date_of_divorce" name="date_of_divorce" type="text" class="form-control input-md" placeholder="DD/MM/YYYY" value="<?php echo $_SESSION['date_of_divorce'];?>" >
+                                                    <input id="date_of_divorce" name="date_of_divorce" type="date" max="3000-12-31" class="form-control input-md" placeholder="DD/MM/YYYY" value="<?php echo $_SESSION['date_of_divorce'];?>" >
 
                                                 </div>
                                             </div>
                                             <div class="form-group">
                                                 <label class="col-sm-4 control-label" for="child_status">No. Of Child</label>  
                                                 <div class="col-sm-8">
-
-                       <select class="form-control" id="faculty" name="child_status_divorce">
-                          <option value="None" <?php if($_SESSION['child_status_divorce']=='None') echo "selected";?> >None</option>
-                          <option value="1" <?php if($_SESSION['child_status_divorce']=='1') echo "selected";?> >1</option>
-                          <option value="2" <?php if($_SESSION['child_status_divorce']=='2') echo "selected";?> >2</option>
-                          <option value="3" <?php if($_SESSION['child_status_divorce']=='3') echo "selected";?> >3</option>
-                          <option value="4 and above" <?php if($_SESSION['child_status_divorce']=='4 and above') echo "selected";?> >4 and above</option>
-                       </select>
+						       <select class="form-control" id="faculty" name="child_status_divorce">
+				                          <option value="None" <?php if($_SESSION['child_status_divorce']=='None') echo "selected";?> >None</option>
+				                          <option value="1" <?php if($_SESSION['child_status_divorce']=='1') echo "selected";?> >1</option>
+				                          <option value="2" <?php if($_SESSION['child_status_divorce']=='2') echo "selected";?> >2</option>
+				                          <option value="3" <?php if($_SESSION['child_status_divorce']=='3') echo "selected";?> >3</option>
+				                          <option value="4 and above" <?php if($_SESSION['child_status_divorce']=='4 and above') echo "selected";?> >4 and above</option>
+				                       </select>
                                                 </div>
                                             </div>
                                             <div class="form-group">
                                                 <label class="col-sm-4 control-label" for="child_custody_status">Child Living Status</label>  
                                                 <div class="col-sm-8">
-                        <select class="form-control" id="child_custody_status_divorce" name="child_custody_status_divorce">
-                          <option value="Not Applicable" <?php if($_SESSION['child_custody_status_divorce']=='Not Applicable') echo "selected";?> >Not Applicable</option>
-                          <option value="Living With Me" <?php if($_SESSION['child_custody_status_divorce']=='Living With Me') echo "selected";?> >Living With Me</option>
-                          <option value="Not Living With Me" <?php if($_SESSION['child_custody_status_divorce']=='Not Living With Me') echo "selected";?> >Not Living With Me</option>                          
-                        </select>                                                                         
+				                        <select class="form-control" id="child_custody_status_divorce" name="child_custody_status_divorce">
+				                          <option value="Not Applicable" <?php if($_SESSION['child_custody_status_divorce']=='Not Applicable') echo "selected";?> >Not Applicable</option>
+				                          <option value="Living With Me" <?php if($_SESSION['child_custody_status_divorce']=='Living With Me') echo "selected";?> >Living With Me</option>
+				                          <option value="Not Living With Me" <?php if($_SESSION['child_custody_status_divorce']=='Not Living With Me') echo "selected";?> >Not Living With Me</option>                          
+				                        </select>                                                                         
                                                 </div>
                                             </div>
                                             <?php if($gender=="Bride") { ?>
@@ -789,14 +1170,14 @@ function countAge(object, birthDay){
                                             <div class="form-group">
                                                 <label class="col-sm-4 control-label" for="previous_marriage_date">Previous Marriage Date <br>(in DD/MM/YYYY)</label>  
                                                 <div class="col-md-8">
-                                                    <input id="previous_marriage_date" name="previous_marriage_date_widow" type="text" class="form-control input-md" placeholder="DD/MM/YYYY" value="<?php echo $_SESSION['previous_marriage_date_widow'];?>">
+                                                    <input id="previous_marriage_date" name="previous_marriage_date_widow" type="date" max="3000-12-31" class="form-control input-md" placeholder="DD/MM/YYYY" value="<?php echo $_SESSION['previous_marriage_date_widow'];?>">
 
                                                 </div>
                                             </div>
                                             <div class="form-group">
-                                                <label class="col-sm-4 control-label" for="date_partner_death">Date of Partner's Death <br>(in DD/MM/YYYY)</label>  
+                                                <label class="col-sm-4 control-label" for="date_partner_death">Date of Partner&#39;s Death <br>(in DD/MM/YYYY)</label>  
                                                 <div class="col-md-8">
-                                                    <input id="date_partner_death_widow" name="date_partner_death_widow" type="text" class="form-control input-md" placeholder="DD/MM/YYYY" value="<?php echo $_SESSION['date_partner_death_widow'];?>">
+                                                    <input id="date_partner_death_widow" name="date_partner_death_widow" type="date" max="3000-12-31" class="form-control input-md" placeholder="DD/MM/YYYY" value="<?php echo $_SESSION['date_partner_death_widow'];?>">
 
                                                 </div>
                                             </div>
@@ -805,18 +1186,18 @@ function countAge(object, birthDay){
                                                 <label class="col-sm-4 control-label" for="child_status">No. Of Child</label>
 
                                                 <div class="col-sm-8">
-                <select class="form-control" id="faculty" name="child_status_widow">
-                    <option value="None" <?php if($_SESSION['child_status_widow']=='None') echo "selected";?> >None</option>
-                    <option value="1" <?php if($_SESSION['child_status_widow']=='1') echo "selected";?> >1</option>
-                    <option value="2" <?php if($_SESSION['child_status_widow']=='2') echo "selected";?> >2</option>
-                    <option value="3" <?php if($_SESSION['child_status_widow']=='1') echo "selected";?> >3</option>
-                    <option value="4 and above" <?php if($_SESSION['child_status_widow']=='4 and above') echo "selected";?> >4 and above</option>
-                </select>
-            									</div>
+					                <select class="form-control" id="faculty" name="child_status_widow">
+					                    <option value="None" <?php if($_SESSION['child_status_widow']=='None') echo "selected";?> >None</option>
+					                    <option value="1" <?php if($_SESSION['child_status_widow']=='1') echo "selected";?> >1</option>
+					                    <option value="2" <?php if($_SESSION['child_status_widow']=='2') echo "selected";?> >2</option>
+					                    <option value="3" <?php if($_SESSION['child_status_widow']=='3') echo "selected";?> >3</option>
+					                    <option value="4 and above" <?php if($_SESSION['child_status_widow']=='4 and above') echo "selected";?> >4 and above</option>
+					                </select>
+            					</div>
                                             </div>
                                              <?php if($gender=="Bride") { ?>
                                             <div class="form-group">
-                      <label class="col-sm-4 control-label" for="previous_marriage_address">Previous Marriage Address</label>  
+                     					 <label class="col-sm-4 control-label" for="previous_marriage_address">Previous Marriage Address</label>  
                                                 <div class="col-sm-8">                     
                                                     <textarea class="form-control" id="previous_marriage_address_widow"  name="previous_marriage_address_widow" rows="2"><?php echo $_SESSION['previous_marriage_address_widow'];?></textarea>
                                                 </div>
@@ -831,8 +1212,8 @@ function countAge(object, birthDay){
                         </div>
                         
                         <div class="navigation col-sm-6" align="right">
-                           <a href="registration_astrological.php">
-                           <button type="button" name="prev" class="btn btn-danger" style="background-color:#054c48;border-color:#1ba39c">Previous</button></a>
+                           <a href="registration_astrological.php" class="btn btn-danger" style="background-color:#054c48;border-color:#1ba39c" name="prev">
+                           Previous</a>
                            <button type="submit" name="submit" class="btn btn-danger" style="background-color:#054c48;border-color:#1ba39c">Next</button></div>
 						    <div class="navigation col-sm-6"  align="right" style="padding-top:20px;">
 						   <a href="reset.php" style="color:#FFFFFF; font-size:13px; font-weight:bold">Reset</a>
@@ -843,7 +1224,7 @@ function countAge(object, birthDay){
                 </form>
 
             </div>           
-        </section>
+        </section>-->
   <?php include "main/footer.php" ; ?>
      </body>
 </html>

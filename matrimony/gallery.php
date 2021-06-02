@@ -1,4 +1,3 @@
-
 <?php include "../connect.php";
 session_start();
  $email=$_SESSION['myusername'];
@@ -32,14 +31,21 @@ session_start();
 		</style>
 	</head>
 	<body>
+		<div style="background-color:#225169; height:50px">&nbsp;</div>
+			<div class="container">
+				<div class="navbar-header">
+					<h1 class="navbar-brand" style="font-family:CenturyGothict; font-size:30px"><a href="" style=" text-decoration: none;"><span style="color:#FF4500">MALI</span> <span style="color:#225169">MATRIMONY</span></a></h1>
+				</div>
+			</div>
+		</div>
 		<div class="container wrapper">   
-			<?php include "header.php";?>
-			<div class="row content">
+			<?php //include "header.php";?>
+			<div class="content">
 				<?php include "menubar.php"; ?>
 				<div class="col-lg-9 content-right">
-					<div style="border-radius:5px; border:1px solid #CCC; padding:5px" >
-                    <h4> <a href="add_gallery.php"><button class="btn btn-danger">Add Photo</button></a></h4><hr>
-                    <div class="row selected-classifieds">
+					<div class="col-lg-12" style="border-radius:2px; border:1px solid #CCC; padding:5px 25px 10px 50px;height: 1050px;" >
+                    <h4> <a href="add_gallery.php"><button class="btn btn-danger" style="font-family:CenturyGothict;">Add Photo</button></a></h4><hr>
+                    <div class="selected-classifieds">
 					<script>
 						function bigImg(x) {
 							x.style.height ="400px";
@@ -52,20 +58,22 @@ session_start();
 						}
 						</script>
                                         <?php	
- $show_g=mysql_query("select * from matrimonial_gallery where is_del='no' and email='$email' ") or die(mysql_error());
+ $show_g=mysqli_query($conn,"select * from matrimonial_gallery where is_del='no' and email='$email' ") or die(mysqli_error($conn));
 										
 										$image_mime_type="image/png|image/jpeg|image/gif";
 										
-										while($row_g=mysql_fetch_array($show_g))
+										while($row_g=mysqli_fetch_array($show_g))
 										{
 ?>
 						<div class="col-xs-6">
 							<div class="thumbnail" >
-								<a href="#"><?php  echo '<img style="width:200px;height:200px;" src="data:'.$image_mime_type.';base64,'.base64_encode($row_g['img']).'" />'; ?></a>
+								<a href="#">
+								<img src="gallery_img/<?php echo $row_g['img'];?>" style="width:200px;height:200px;">
+								</a>
 								<div class="caption">    
 
                                 <p class="price"><?php echo "<a href=gallery_edit.php?id=".$row_g['id']."&del=1>";?>
-                                	<button type="button" class="btn btn-primary">Delete</button>                            
+                                	<button type="button" class="btn btn-primary" style="font-family:CenturyGothict;">Delete</button>                            
                                 </a>
 								</p>
 								</div>
@@ -78,10 +86,11 @@ session_start();
 					
 				</div>
 			</div>
-			<div class="footer">
-				<?php include "footer.php"; ?>
-			</div>
+			<!--<div class="footer">
+				<?php //include "footer.php"; ?>
+			</div>-->
 		</div>
+		<p class="text-center" style="height:80px; background-color:#2e3c43;padding-top:40px; color:#ffffff;margin-bottom:0px;">Copyright &copy; 2017<a href="http://www.backtechs.com" style="color:#ffffff;"> Backend Technologies PVT.LTD</a>. All Rights Reserved.</p>
 		<!-- JavaScript -->
 		<script src="js/jquery-1.11.1.min.js"></script>
 		<script src="js/bootstrap.min.js"></script>

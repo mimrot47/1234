@@ -10,11 +10,12 @@ error_reporting(0);
 <title>MATRIMONY</title>
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <!-- Bootstrap -->
-<link href="css/bootstrap.min.css" rel="stylesheet">
+
 <link href='http://fonts.googleapis.com/css?family=Dosis:200,300,400,500,600,700,800' rel='stylesheet' type='text/css'>
 <link href='http://fonts.googleapis.com/css?family=Open+Sans:400,300,700,800' rel='stylesheet' type='text/css'>
 <link href="css/style.css" rel="stylesheet">
 <link href="responcive.css" rel="stylesheet" type="text/css">
+<link href="css/bootstrap.min.css" rel="stylesheet">
 <script>
 function countAge(object, birthDay){
       now = new Date();
@@ -453,33 +454,55 @@ function countAge(object, birthDay){
 	
           </script>
           
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css"> 
         <script src="js/custom_js.js" type="text/javascript"></script>
         <style>
+            @font-face {
+			font-family: CenturyGothict;
+			src: url(fonts/CenturyGothic.ttf);
+		}
+		@font-face {
+			font-family: CaviarDreams_Bold;
+			src: url(fonts/CaviarDreams_Bold.ttf);
+		}
+		@font-face {
+			font-family: CaviarDreams;
+			src: url(fonts/CaviarDreams.ttf);
+		}
+		@font-face {
+			font-family: BerlinSans;
+			src: url(fonts/BRLNSR.ttf);
+		}
+		@font-face {
+			font-family: BebasNeue;
+			src: url(fonts/BebasNeue.otf);
+		}
             ._heading{
-                text-align: center;
+               text-align:center;
             }
             .main_heading h2{
                 margin:0;
                 padding:10px;
                 text-align: center;
-            }
+				font-family:Arial;
+				font-size:26px;
+			}
             ._heading h4{
-                color:#1ba39c;
+                color:#225169;
                 padding:10px 0;
-                margin-bottom:30px;
+                margin-bottom:15px;
                 margin-top:10px;
-                text-align: left;
-                border-bottom: 1px solid #1ba39c;
-            }
+				font-family:Arial;
+             }
             .col-sm-4.control-label {
                 text-align: left;
+				font-family:CenturyGothict;
             }
-              .navigation{
+            .navigation{
                 margin-top:15px;
                 padding:15px;
-                //text-align: center;
-				height:60px;
-                background-color:#1ba39c;
+                height:60px;
+                background-color:#225169;
 
             }
 
@@ -488,7 +511,8 @@ function countAge(object, birthDay){
                 margin-bottom:20px;
             }
             .main_heading{
-                background-color:#1ba39c;
+                background-color:#225169;
+				border-bottom: 2px solid orangered;
             }
             .main_form{
                 border:2px solid #1ba39c;
@@ -505,6 +529,26 @@ function countAge(object, birthDay){
             #id05 .tab-content{
                 padding-top:20px;
             }
+			
+	.form-panel:not(.active) {
+		display:none;
+	}
+	.steps{
+		margin-top:410px;
+		border:1px solid #000;
+		border-radius:25px;
+		background-color: black;
+		opacity: 0.4; 
+		padding:50px;
+	}
+	.hied_border{
+		border-style:hidden; 
+		border-top-style:hidden;
+		border-bottom-style:groove;
+		background-color:#F8F8F9;
+		border-radius:0px;
+		box-shadow:none;
+	}
 
         </style>
         <script language="Javascript" type="text/javascript">
@@ -527,6 +571,81 @@ function countAge(object, birthDay){
                 alert(err.Description);
             }
         }
+        
+        function onlyGotra(e, t) {
+            try {
+                if (window.event) {
+                    var charCode = window.event.keyCode;
+                }
+                else if (e) {
+                    var charCode = e.which;
+                }
+                else { return true; }
+                if ((charCode > 64 && charCode < 91) || (charCode > 96 && charCode < 123) || charCode == 32)
+                    return true;
+                else
+                    return false;
+            }
+            catch (err) {
+                alert(err.Description);
+            }
+        }
+        
+     document.addEventListener('DOMContentLoaded', function() {
+	  
+	  var input = document.getElementById('gotra');
+	  input.addEventListener('keydown', function(e){      
+	       var input = e.target;
+	       var val = input.value;
+	       var end = input.selectionEnd;
+	       if(e.keyCode == 32 && (val[end - 1] == " " || val[end] == " ")) {
+	         e.preventDefault();
+	         return false;
+	      }      
+	    });
+	});
+	
+	document.addEventListener('DOMContentLoaded', function() {
+	  
+	  var input = document.getElementById('birth_name');
+	  input.addEventListener('keydown', function(e){      
+	       var input = e.target;
+	       var val = input.value;
+	       var end = input.selectionEnd;
+	       if(e.keyCode == 32 && (val[end - 1] == " " || val[end] == " ")) {
+	         e.preventDefault();
+	         return false;
+	      }      
+	    });
+	});
+	
+	document.addEventListener('DOMContentLoaded', function() {
+	  
+	  var input = document.getElementById('own_kul');
+	  input.addEventListener('keydown', function(e){      
+	       var input = e.target;
+	       var val = input.value;
+	       var end = input.selectionEnd;
+	       if(e.keyCode == 32 && (val[end - 1] == " " || val[end] == " ")) {
+	         e.preventDefault();
+	         return false;
+	      }      
+	    });
+	});
+	
+	document.addEventListener('DOMContentLoaded', function() {
+	  
+	  var input = document.getElementById('mamkul');
+	  input.addEventListener('keydown', function(e){      
+	       var input = e.target;
+	       var val = input.value;
+	       var end = input.selectionEnd;
+	       if(e.keyCode == 32 && (val[end - 1] == " " || val[end] == " ")) {
+	         e.preventDefault();
+	         return false;
+	      }      
+	    });
+	});
  
     </script>
     <script language="Javascript" type="text/javascript">
@@ -555,81 +674,104 @@ function countAge(object, birthDay){
 
 </head>
 <body style="color:#0d0e0e" onLoad="activate('frm01', arr);"> 
-<header class="main__header" style="background-image:url(img/header.png)">
-  <div class="container">
-    <nav class="navbar navbar-default" role="navigation"> 
-      <div class="navbar-header">
-        <h1 class="navbar-brand"><a href="index.php">MATRIMONY</a></h1>
-        <a href="#" class="submenu">Menus</a> </div>
-      <div class="menuBar">
-        <ul class="menu">
-          <li class="active"><a href="index.php">Home</a></li>
-           <li><a href="login.php">Login</a></li>
-        </ul>
-      </div>
-      <!-- /.navbar-collapse --> 
-    </nav>
-  </div>
+<header class="main__header" >
+	<div style="background-color:#225169; height:50px">&nbsp;</div>
+		<div class="container">
+			<nav class="navbar navbar-default" role="navigation"> 
+			<div class="navbar-header">
+				<h1 class="navbar-brand" style="font-family:CenturyGothict; font-size:30px"><a href="index.php"><span style="color:#FF4500">MALI</span> <span style="color:#225169">MATRIMONY</span></a></h1>
+				<a href="#" class="submenu" style="background-image:url(img/default-logo.png); width:40px; height:40px">Menus</a> 
+			</div>
+			<div class="menuBar">
+				<ul class="menu">
+					<li ><a href="index.php">Home</a></li>
+					<li ><a href="login.php">Login</a></li>
+          			</ul>
+			</div>
+			<!-- /.navbar-collapse --> 
+		</nav>
+	</div>
 </header>
-
-        <section class="main__middle__container homepage" style="margin-top:100px;">
-            <div class="container main_form" style="width:600px">
-                <div class="col-sm-12 main_heading">
-                    <h2 style="color:#fff">REGISTRATION FORM</h2>
-                </div>
-                <form class="form-horizontal" name="form1" action="registration_marriage_type.php" method="post"> 
-                     <?php
-					 	if(isset($_POST['first_name'])){$first_name = $_SESSION['first_name']=$_POST['first_name'];}
-						if(isset($_POST['middle_name'])){$middle_name = $_SESSION['middle_name'] = $_POST['middle_name'];}
-						if(isset($_POST['last_name'])){$last_name = $_SESSION['last_name'] = $_POST['last_name'];}
-						if(isset($_POST['gender'])){$gender = $_SESSION['gender'] = $_POST['gender'];}
-						if(isset($_POST['states'])){$states = $_SESSION['states'] = $_POST['states'];}
-						if(isset($_POST['city'])){$city = $_SESSION['city'] = $_POST['city'];}
-						if(isset($_POST['address'])){$address = $_SESSION['address'] = $_POST['address'];}
-						if(isset($_POST['mobile_no1'])){$mobile_no1 = $_SESSION['mobile_no1'] =$_POST['mobile_no1'];}
-						if(isset($_POST['mobile_no2'])){$mobile_no2 = $_SESSION['mobile_no2'] = $_POST['mobile_no2'];}
-						if(isset($_POST['DATEOFBIRTH'])){$birth_date = $_SESSION['DATEOFBIRTH'] = $_POST['DATEOFBIRTH'];}
-						if(isset($_POST['age'])){$age = $_SESSION['age'] = $_POST['age'];}
-						if(isset($_POST['birth_time'])){$birth_time = $_SESSION['birth_time'] = $_POST['birth_time'];}
-						if(isset($_POST['day_of_birth'])){$day_of_birth = $_SESSION['day_of_birth'] = $_POST['day_of_birth'];}
-						if(isset($_POST['birth_city'])){$birth_city = $_SESSION['birth_city'] = $_POST['birth_city'];}
-						if(isset($_POST['birth_district'])){$birth_district = $_SESSION['birth_district'] =$_POST['birth_district'];}
-						if(isset($_POST['birth_state'])){$birth_state = $_SESSION['birth_state'] = $_POST['birth_state'];}
-						if(isset($_POST['cast'])){$cast=$_SESSION['cast']=$_POST['cast'];}
-						if(isset($_POST['fit'])){$fit=$_SESSION['fit']=$_POST['fit'];}
-						if(isset($_POST['inches'])){$inches=$_SESSION['inches']=$_POST['inches'];}
-						if(isset($_POST['body_weight'])){$body_weight=$_SESSION['body_weight']=$_POST['body_weight'];}
-						if(isset($_POST['skin_tone'])){$skin_tone=$_SESSION['skin_tone']=$_POST['skin_tone'];}
-						if(isset($_POST['blood_group'])){$blood_group=$_SESSION['blood_group']=$_POST['blood_group'];}
-						if(isset($_POST['spectacles'])){$spectacles=$_SESSION['spectacles']=$_POST['spectacles'];}
-						if(isset($_POST['hobbies'])){$hobbies=$_SESSION['hobbies']=$_POST['hobbies'];}
-						if(isset($_POST['any_disability'])){$any_disability=$_SESSION['any_disability']=$_POST['any_disability'];}
-						if(isset($_POST['any_disability_desc'])){$any_disability_desc=$_SESSION['any_disability_desc']=$_POST['any_disability_desc'];}
-						if(isset($_POST['acceptation'])){$acceptation=$_SESSION['acceptation']=$_POST['acceptation'];}
-						if(isset($_POST['describe_yourself'])){$describe_yourself=$_SESSION['describe_yourself']=$_POST['describe_yourself'];}
-						if(isset($_POST['faculty'])){$faculty=$_SESSION['faculty']=$_POST['faculty'];}
-						//if(isset($_POST['academic_level'])){$academic_level=$_POST['academic_level'];}
-						if(isset($_POST['college_name'])){$college_name=$_SESSION['college_name']=$_POST['college_name'];}
-						if(isset($_POST['college_address'])){$college_address=$_SESSION['college_address']=$_POST['college_address'];}
-						if(isset($_POST['office_contact'])){$office_contact=$_SESSION['office_contact']=$_POST['office_contact'];}
-						if(isset($_POST['job_busi_status'])){$job_busi_status=$_SESSION['job_busi_status']=$_POST['job_busi_status'];}
-						if(isset($_POST['working_post'])){$working_post=$_SESSION['working_post']=$_POST['working_post'];}
-						if(isset($_POST['annual_income'])){$annual_income=$_SESSION['annual_income']=$_POST['annual_income'];}
-						if(isset($_POST['work_place_address'])){$work_place_address=$_SESSION['work_place_address']=$_POST['work_place_address'];}
-						
-						if(isset($_POST['father_name'])){$father_name=$_SESSION['father_name']=$_POST['father_name'];}
-						if(isset($_POST['occupation_father'])){$occupation_father=$_SESSION['occupation_father']=$_POST['occupation_father'];}
-						if(isset($_POST['mother_name'])){$mother_name=$_SESSION['mother_name']=$_POST['mother_name'];}
-						if(isset($_POST['occupation_mother'])){$occupation_mother=$_SESSION['occupation_mother']=$_POST['occupation_mother'];}
-						if(isset($_POST['no_of_brother'])){$no_of_brother=$_SESSION['no_of_brother']=$_POST['no_of_brother'];}
-						if(isset($_POST['married_brother'])){$married_brother=$_SESSION['married_brother']=$_POST['married_brother'];}
-						if(isset($_POST['unmarried_brother'])){$unmarried_brother=$_SESSION['unmarried_brother']=$_POST['unmarried_brother'];}
-						if(isset($_POST['no_of_sister'])){$no_of_sister=$_SESSION['no_of_sister']=$_POST['no_of_sister'];}
-						if(isset($_POST['married_sister'])){$married_sister=$_SESSION['married_sister']=$_POST['married_sister'];}
-						if(isset($_POST['unmarried_sister'])){$unmarried_sister=$_SESSION['unmarried_sister']=$_POST['unmarried_sister'];}
-						if(isset($_POST['permanent_residential_address'])){$permanent_residential_address=$_SESSION['permanent_residential_address']=$_POST['permanent_residential_address'];}
-						if(isset($_POST['parent_conatct_no'])){$parent_conatct_no=$_SESSION['parent_conatct_no']=$_POST['parent_conatct_no'];}
-							?>
+<div class="reg_container col-sm-12" style="background-image:url(img/RegisterpagePreview.jpg); background-repeat:round; margin-top:120px;">
+	<div class="container" style="margin-top:150px; margin-bottom:100px;">
+		<div class="container col-md-7 steps" style="">
+			<div class="form-panel active">
+				<h2 class='list-h2'>How To Register</h2>
+				<h4 class='list-h4'><strong>Step 1</strong></h4>
+				<p class='list-p'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Fill all forms carefully.All fields are mandatory of each form. </p>
+			</div>
+			<div class="form-panel">
+				<h2 class='list-h2'>How To Register</h2>
+				<h4 class='list-h4'><strong>Step 2</strong></h4>
+				<p class='list-p'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Check all information filled by you. </p>
+			</div>
+			<div class="form-panel">
+				<h2 class='list-h2'>How To Register</h2>
+				<h4 class='list-h4'><strong>Step 3</strong></h4>
+				<p class='list-p'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Make payment and signup. </p>
+			</div>
+			
+			<img align="right" class="next" src="img/ICON 1/next.png" height="50" width="50" style="cursor:pointer;">
+			<img align="right" class="previous" src="img/ICON 1/Prev.png" height="50" width="50" style="cursor:pointer;">
+		</div>
+		<div class="container col-md-offset-8 reg-form">
+			<div class="col-sm-12 main_heading">
+				<h2 style="color:#fff">REGISTRATION FORM</h2>
+			</div>
+			 <form class="form-horizontal" name="form1" action="registration_marriage_type.php" method="post">  
+			 <?php
+				if(isset($_POST['first_name'])){$first_name = $_SESSION['first_name']=$_POST['first_name'];}
+				if(isset($_POST['middle_name'])){$middle_name = $_SESSION['middle_name'] = $_POST['middle_name'];}
+				if(isset($_POST['last_name'])){$last_name = $_SESSION['last_name'] = $_POST['last_name'];}
+				if(isset($_POST['gender'])){$gender = $_SESSION['gender'] = $_POST['gender'];}
+				if(isset($_POST['states'])){$states = $_SESSION['states'] = $_POST['states'];}
+				if(isset($_POST['city'])){$city = $_SESSION['city'] = $_POST['city'];}
+				if(isset($_POST['address'])){$address = $_SESSION['address'] = $_POST['address'];}
+				if(isset($_POST['mobile_no1'])){$mobile_no1 = $_SESSION['mobile_no1'] =$_POST['mobile_no1'];}
+				if(isset($_POST['mobile_no2'])){$mobile_no2 = $_SESSION['mobile_no2'] = $_POST['mobile_no2'];}
+				if(isset($_POST['DATEOFBIRTH'])){$birth_date = $_SESSION['DATEOFBIRTH'] = $_POST['DATEOFBIRTH'];}
+				if(isset($_POST['age'])){$age = $_SESSION['age'] = $_POST['age'];}
+				if(isset($_POST['birth_time'])){$birth_time = $_SESSION['birth_time'] = $_POST['birth_time'];}
+				if(isset($_POST['day_of_birth'])){$day_of_birth = $_SESSION['day_of_birth'] = $_POST['day_of_birth'];}
+				if(isset($_POST['birth_city'])){$birth_city = $_SESSION['birth_city'] = $_POST['birth_city'];}
+				if(isset($_POST['birth_district'])){$birth_district = $_SESSION['birth_district'] =$_POST['birth_district'];}
+				if(isset($_POST['birth_state'])){$birth_state = $_SESSION['birth_state'] = $_POST['birth_state'];}
+				if(isset($_POST['cast'])){$cast=$_SESSION['cast']=$_POST['cast'];}
+				if(isset($_POST['subcast'])){$subcast=$_SESSION['subcast']=$_POST['subcast'];}
+				if(isset($_POST['fit'])){$fit=$_SESSION['fit']=$_POST['fit'];}
+				if(isset($_POST['inches'])){$inches=$_SESSION['inches']=$_POST['inches'];}
+				if(isset($_POST['body_weight'])){$body_weight=$_SESSION['body_weight']=$_POST['body_weight'];}
+				if(isset($_POST['skin_tone'])){$skin_tone=$_SESSION['skin_tone']=$_POST['skin_tone'];}
+				if(isset($_POST['blood_group'])){$blood_group=$_SESSION['blood_group']=$_POST['blood_group'];}
+				if(isset($_POST['spectacles'])){$spectacles=$_SESSION['spectacles']=$_POST['spectacles'];}
+				if(isset($_POST['hobbies'])){$hobbies=$_SESSION['hobbies']=$_POST['hobbies'];}
+				if(isset($_POST['any_disability'])){$any_disability=$_SESSION['any_disability']=$_POST['any_disability'];}
+				if(isset($_POST['any_disability_desc'])){$any_disability_desc=$_SESSION['any_disability_desc']=$_POST['any_disability_desc'];}
+				if(isset($_POST['acceptation'])){$acceptation=$_SESSION['acceptation']=$_POST['acceptation'];}
+				if(isset($_POST['describe_yourself'])){$describe_yourself=$_SESSION['describe_yourself']=$_POST['describe_yourself'];}
+				if(isset($_POST['faculty'])){$faculty=$_SESSION['faculty']=$_POST['faculty'];}
+				//if(isset($_POST['academic_level'])){$academic_level=$_POST['academic_level'];}
+				if(isset($_POST['college_name'])){$college_name=$_SESSION['college_name']=$_POST['college_name'];}
+				if(isset($_POST['college_address'])){$college_address=$_SESSION['college_address']=$_POST['college_address'];}
+				if(isset($_POST['office_contact'])){$office_contact=$_SESSION['office_contact']=$_POST['office_contact'];}
+				if(isset($_POST['job_busi_status'])){$job_busi_status=$_SESSION['job_busi_status']=$_POST['job_busi_status'];}
+				if(isset($_POST['working_post'])){$working_post=$_SESSION['working_post']=$_POST['working_post'];}
+				if(isset($_POST['annual_income'])){$annual_income=$_SESSION['annual_income']=$_POST['annual_income'];}
+				if(isset($_POST['work_place_address'])){$work_place_address=$_SESSION['work_place_address']=$_POST['work_place_address'];}
+				
+				if(isset($_POST['father_name'])){$father_name=$_SESSION['father_name']=$_POST['father_name'];}
+				if(isset($_POST['occupation_father'])){$occupation_father=$_SESSION['occupation_father']=$_POST['occupation_father'];}
+				if(isset($_POST['mother_name'])){$mother_name=$_SESSION['mother_name']=$_POST['mother_name'];}
+				if(isset($_POST['occupation_mother'])){$occupation_mother=$_SESSION['occupation_mother']=$_POST['occupation_mother'];}
+				if(isset($_POST['no_of_brother'])){$no_of_brother=$_SESSION['no_of_brother']=$_POST['no_of_brother'];}
+				if(isset($_POST['married_brother'])){$married_brother=$_SESSION['married_brother']=$_POST['married_brother'];}
+				if(isset($_POST['unmarried_brother'])){$unmarried_brother=$_SESSION['unmarried_brother']=$_POST['unmarried_brother'];}
+				if(isset($_POST['no_of_sister'])){$no_of_sister=$_SESSION['no_of_sister']=$_POST['no_of_sister'];}
+				if(isset($_POST['married_sister'])){$married_sister=$_SESSION['married_sister']=$_POST['married_sister'];}
+				if(isset($_POST['unmarried_sister'])){$unmarried_sister=$_SESSION['unmarried_sister']=$_POST['unmarried_sister'];}
+				if(isset($_POST['permanent_residential_address'])){$permanent_residential_address=$_SESSION['permanent_residential_address']=$_POST['permanent_residential_address'];}
+				if(isset($_POST['parent_conatct_no'])){$parent_conatct_no=$_SESSION['parent_conatct_no']=$_POST['parent_conatct_no'];}
+			  ?>
                           <input name="first_name" type="hidden" value="<?php echo $first_name;  ?>"  >
                           <input name="middle_name" type="hidden" value="<?php echo $middle_name;  ?>" >
                           <input name="last_name" type="hidden" value="<?php echo $last_name;  ?>">
@@ -648,6 +790,7 @@ function countAge(object, birthDay){
                           <input type="hidden" name="birth_state" value="<?php echo $birth_state;  ?>">
                           
                           <input name="cast" type="hidden"value="<?php echo $cast;  ?>"   >
+						  <input name="subcast" type="hidden" value="<?php echo $subcast; ?>" >
                           <input name="fit" type="hidden" value="<?php echo $fit;  ?>">
                           <input type="hidden" name="inches" value="<?php echo $inches;  ?>">
                           <input type="hidden" name="body_weight" value="<?php echo $body_weight; ?>"> 
@@ -680,184 +823,204 @@ function countAge(object, birthDay){
                           <input type="hidden" name="married_sister" value="<?php echo $married_sister;  ?>">
                           <input type="hidden" name="unmarried_sister" value="<?php echo $unmarried_sister;  ?>">
                           <input type="hidden" name="permanent_residential_address" value="<?php echo $permanent_residential_address;  ?>">
-                          <input type="hidden" name="parent_conatct_no" value="<?php echo $parent_conatct_no;  ?>">        
+                          <input type="hidden" name="parent_conatct_no" value="<?php echo $parent_conatct_no;  ?>"> 
+                          
+				<div class="col-sm-12" style="background-color:#F8F8F9;">
+					<div class="col-sm-12 _heading" >
+						<h4><img src="img/ICON 1/Astrological Information.png" style="width:30px;height:30px; margin-right:10px;">Astrological Information</h4>
+					</div>
+					<h5 style="font-size:14px;text-transform:none; color:red;text-align:right;margin-bottom:15px;font-family:Arial;">* All fields are mandatory</h5>
+					
+					<div class="form-group">
+	                                    <label class="col-sm-4 control-label" for="birth_name">Birth Name</label>  
+	                                    <div class="col-md-8">
+	                                        <input id="birth_name" name="birth_name" type="text" onKeyPress="return onlyGotra(event,this);" class="form-control input-md hied_border" required value="<?php echo $_SESSION['birth_name'];?>" >
+	
+	                                    </div>
+	                                </div>
+	
+	                                <!-- Text input-->
+	                                <div class="form-group">
+	                                    <label class="col-sm-4 control-label" for="own_kul">Own Kul</label>  
+	                                    <div class="col-md-8">
+	                                        <input id="own_kul" name="own_kul" type="text" onKeyPress="return onlyGotra(event,this);" class="form-control input-md hied_border" required value="<?php echo $_SESSION['own_kul'];?>">
+	
+	                                    </div>
+	                                </div>
+	
+	                                <div class="form-group">
+	                                    <label class="col-sm-4 control-label" for="mamkul">Mama Kul </label>  
+	                                    <div class="col-md-8">
+	                                        <input id="mamkul" name="mamkul" type="text" onKeyPress="return onlyGotra(event,this);" class="form-control input-md hied_border" required value="<?php echo $_SESSION['mamkul'];?>">
+	
+	                                    </div>
+	                                </div>
+	                                <div class="form-group">
+	                                    <label class="col-sm-4 control-label" for="gotra">Gotra</label>
+	                                    <div class="col-md-8">
+	                                        <input id="gotra" name="gotra" type="text" onKeyPress="return onlyGotra(event,this);" class="form-control input-md hied_border" value="<?php echo $_SESSION['gotra'];?>">
+	
+	                                    </div>
+	                                </div>
+	                                
+	                                <div class="form-group">
+	                                    <label class="col-sm-4 control-label" for="nakshtra">Nakshtra</label>  
+	                                    <div class="col-md-8">
+	                                        <select id="nakshtra" name="nakshtra"  class="form-control input-md hied_border" required> 
+	                                        <option value="">Select</option>
+	                                            <option value="Ashwini"<?php if($_SESSION['nakshtra']=='Ashwini') echo "selected";?>>Ashwini</option>
+	                                            <option value="Bharani"<?php if($_SESSION['nakshtra']=='Bharani') echo "selected";?>>Bharani</option>
+	                                            <option value="Krittika"<?php if($_SESSION['nakshtra']=='Krittika') echo "selected";?>>Krittika</option>
+	                                            <option value="Rohini"<?php if($_SESSION['nakshtra']=='Rohini') echo "selected";?>>Rohini</option>
+	                                            <option value="Mrigcira"<?php if($_SESSION['nakshtra']=='Mrigcira') echo "selected";?>>Mrigcira</option>
+	                                            <option value="Ardra"<?php if($_SESSION['nakshtra']=='Ardra') echo "selected";?>>Ardra</option>
+	                                            <option value="Punarvasu"<?php if($_SESSION['nakshtra']=='Punarvasu') echo "selected";?>>Punarvasu</option>
+	                                            <option value="Pushya"<?php if($_SESSION['nakshtra']=='Pushya') echo "selected";?>>Pushya</option>
+	                                            <option value="Ashlesha"<?php if($_SESSION['nakshtra']=='Ashlesha') echo "selected";?>>Ashlesha</option>
+	                                            <option value="Magha"<?php if($_SESSION['nakshtra']=='Magha') echo "selected";?>>Magha</option>
+	                                            <option value="Poorva Phalguni"<?php if($_SESSION['nakshtra']=='Poorva Phalguni') echo "selected";?>>Poorva Phalguni</option>
+	                                            <option value="Uttara Phalgun"<?php if($_SESSION['nakshtra']=='Uttara Phalgun') echo "selected";?>>Uttara Phalguni</option>
+	                                            <option value="Hasta"<?php if($_SESSION['nakshtra']=='Hasta') echo "selected";?>>Hasta</option>
+	                                            <option value="Chitra"<?php if($_SESSION['nakshtra']=='Chitra') echo "selected";?>>Chitra</option>
+	                                            <option value="Swati"<?php if($_SESSION['nakshtra']=='Swati') echo "selected";?>>Swati</option>
+	                                            <option value="Vishaka"<?php if($_SESSION['nakshtra']=='Vishaka') echo "selected";?>>Vishaka</option>
+	                                            <option value="Anuradha"<?php if($_SESSION['nakshtra']=='Anuradha') echo "selected";?>>Anuradha</option>
+	                                            <option value="Jyeshta"<?php if($_SESSION['nakshtra']=='Jyeshta') echo "selected";?>>Jyeshta</option>
+	                                            <option value="Moola"<?php if($_SESSION['nakshtra']=='Moola') echo "selected";?>>Moola</option>
+	                                            <option value="Poorvashadha"<?php if($_SESSION['nakshtra']=='Poorvashadha') echo "selected";?>>Poorvashadha</option>
+	                                            <option value="Uttarashadha"<?php if($_SESSION['nakshtra']=='Uttarashadha') echo "selected";?>>Uttarashadha</option>
+	                                            <option value="Sharavan"<?php if($_SESSION['nakshtra']=='Sharavan') echo "selected";?>>Sharavan</option>
+	                                            <option value="Dhanishta"<?php if($_SESSION['nakshtra']=='Dhanishta') echo "selected";?>>Dhanishta</option>
+	                                            <option value="Satbhij"<?php if($_SESSION['nakshtra']=='Satbhij') echo "selected";?>>Satbhij</option>
+	                                            <option value="Poorva Bhadrpad"<?php if($_SESSION['nakshtra']=='Poorva Bhadrpad') echo "selected";?>>Poorva Bhadrpada</option>
+	                                            <option value="Uttara Bhadrapada"<?php if($_SESSION['nakshtra']=='Uttara Bhadrapada') echo "selected";?>>Uttara Bhadrapada</option>
+	                                            <option value="Revati"<?php if($_SESSION['nakshtra']=='Revati') echo "selected";?>>Revati</option>
+	                                        </select>
+	                                    </div>
+	                                </div>
+	                                <div class="form-group">
+	                                    <label class="col-sm-4 control-label" for="charan">Charan</label>  
+	                                    <div class="col-md-8">
+	                                        <select id="charan" name="charan" class="form-control input-md hied_border" required> 
+	                                        	<option value="">Select</option>
+	                                            <option value="1"<?php if($_SESSION['charan']=='1') echo "selected";?>>1</option>
+	                                            <option value="2"<?php if($_SESSION['charan']=='2') echo "selected";?>>2</option>
+	                                            <option value="3"<?php if($_SESSION['charan']=='3') echo "selected";?>>3</option>
+	                                            <option value="4"<?php if($_SESSION['charan']=='4') echo "selected";?>>4</option>
+	                                        </select>
+	                                    </div>
+	                                </div>
+	                                <div class="form-group">
+	                                    <label class="col-sm-4 control-label" for="rashi">Rashi</label>  
+	                                    <div class="col-md-8">
+	                                        <select id="rashi" name="rashi" class="form-control input-md hied_border"required >
+	                                        	<option value="">Select</option>
+	                                            <option value="Mesh (Aries)"<?php if($_SESSION['rashi']=='Mesh (Aries)') echo "selected";?>>Mesh (Aries)</option>
+	                                            <option value="Vrishabh (Taurus)"<?php if($_SESSION['rashi']=='Vrishabh (Taurus)') echo "selected";?>>Vrishabh (Taurus)</option>
+	                                            <option value="Mithun (Gemini)"<?php if($_SESSION['rashi']=='Mithun (Gemini)') echo "selected";?>>Mithun (Gemini)</option>
+	                                            <option value="Karka (Cancer)"<?php if($_SESSION['rashi']=='Karka (Cancer)') echo "selected";?>>Karka (Cancer)</option>
+	                                            <option value="Simha (Leo)"<?php if($_SESSION['rashi']=='Simha (Leo)') echo "selected";?>>Simha (Leo)</option>
+	                                            <option value="Kanya (Virgo)"<?php if($_SESSION['rashi']=='Kanya (Virgo)') echo "selected";?>>Kanya (Virgo)</option>
+	                                            <option value="Tula (Libra)"<?php if($_SESSION['rashi']=='Tula (Libra)') echo "selected";?>>Tula (Libra)</option>
+	                                            <option value="Vrishchika (Scorpius)"<?php if($_SESSION['rashi']=='Vrishchika (Scorpius)') echo "selected";?>>Vrishchika (Scorpius)</option>
+	                                            <option value="Dhanu (Sagittarius)"<?php if($_SESSION['rashi']=='Dhanu (Sagittarius)') echo "selected";?>>Dhanu (Sagittarius)</option>
+	                                            <option value="Makara (Capricornus)"<?php if($_SESSION['rashi']=='Makara (Capricornus)') echo "selected";?>>Makara (Capricornus)</option>
+	                                            <option value="Kumbha (Aquarius"<?php if($_SESSION['rashi']=='Kumbha (Aquarius') echo "selected";?>>Kumbha (Aquarius)</option>
+	                                            <option value="Meen (Pisces)"<?php if($_SESSION['rashi']=='Meen (Pisces)') echo "selected";?>>Meen (Pisces)</option>
+											</select>
+	                                    </div>
+	                                </div>
+	                                <div class="form-group">
+	                                    <label class="col-sm-4 control-label" for="nadi">Nadi</label>  
+	                                    <div class="col-md-8">
+	                                        <select id="nadi" name="nadi" class="form-control input-md hied_border" required>
+	                                        	<option value="">Select</option>
+	                                            <option value="Aadya"<?php if($_SESSION['nadi']=='Aadya') echo "selected";?>>Aadya </option>
+	                                            <option value="Madhya"<?php if($_SESSION['nadi']=='Madhya') echo "selected";?>>Madhya</option>
+	                                            <option value="Antya"<?php if($_SESSION['nadi']=='Antya') echo "selected";?>>Antya</option>
+											</select>
+	                                    </div>
+	                                </div>
+	                                <div class="form-group">
+	                                    <label class="col-sm-4 control-label" for="gan">Gan</label>  
+	                                    <div class="col-md-8">
+	                                    	<select id="gan" name="gan" class="form-control input-md hied_border" required>
+	                                        	<option value="">Select</option>
+	                                            <option value="Dev Gan"<?php if($_SESSION['gan']=='Dev Gan') echo "selected";?>>Dev Gan</option>
+	                                            <option value="Manush Gan"<?php if($_SESSION['gan']=='Manush Gan') echo "selected";?>>Manush Gan</option>
+	                                            <option value="Rakshas Gan"<?php if($_SESSION['gan']=='Rakshas Gan') echo "selected";?>>Rakshas Gan</option>
+	                                        </select>
+	                                    </div>
+	                                </div>
+                                
+	                                <div class="form-group">
+	                                    <label class="col-sm-4 control-label" for="guru">Guru</label>  
+	                                    <div class="col-md-8">
+	                                        <select id="guru" name="guru" class="form-control input-md hied_border" required>
+	                                        	<option value="">Select</option>
+	                                            <option value="1"<?php if($_SESSION['guru']=='1') echo "selected";?>>1</option>
+	                                            <option value="2"<?php if($_SESSION['guru']=='2') echo "selected";?>>2</option>
+	                                            <option value="3"<?php if($_SESSION['guru']=='3') echo "selected";?>>3</option>
+	                                            <option value="4"<?php if($_SESSION['guru']=='4') echo "selected";?>>4</option>
+	                                            <option value="5"<?php if($_SESSION['guru']=='5') echo "selected";?>>5</option>
+	                                            <option value="6"<?php if($_SESSION['guru']=='6') echo "selected";?>>6</option>
+	                                            <option value="7"<?php if($_SESSION['guru']=='7') echo "selected";?>>7</option>
+	                                            <option value="8"<?php if($_SESSION['guru']=='8') echo "selected";?>>8</option>
+	                                            <option value="9"<?php if($_SESSION['guru']=='9') echo "selected";?>>9</option>
+	                                            <option value="10"<?php if($_SESSION['guru']=='10') echo "selected";?>>10</option>
+	                                            <option value="11"<?php if($_SESSION['guru']=='11') echo "selected";?>>11</option>
+	                                            <option value="12"<?php if($_SESSION['guru']=='12') echo "selected";?>>12</option>
+	                                            <option value="Dont Know"<?php if($_SESSION['guru']=='Dont Know') echo "selected";?>>Don&#39;t Know</option>
+	                                        </select>
+	                                    </div>
+	                                </div>
+	                                <div class="form-group">
+	                                    <label class="col-sm-4 control-label" for="manglik_status">Manglik Status</label>  
+	                                    <div class="col-md-8">
+	                                    	<select id="manglik_status" name="manglik_status" class="form-control input-md hied_border" required>
+	                                        	<option value="">Select</option>
+	                                        	<option value="Yes"<?php if($_SESSION['manglik_status']=='Yes') echo "selected";?>>Yes</option>
+	                                            <option value="No"<?php if($_SESSION['manglik_status']=='No') echo "selected";?>>No</option>
+	                                        </select>
+	
+	                                    </div>
+	                                </div>
+                                
                                
-                    <div id="frm05">
-                        <div class="col-sm-12">
-                            <div class="col-sm-12 _heading">
-                                <h4><img src="img/ICON 1/Astrological Information.png" style="width:50px;height:50px; margin-right:10px;">
-                               Astrological Information</h4>
-                            </div>
-                                <!-- Text input-->
-                                <div class="form-group">
-                                    <label class="col-sm-4 control-label" for="birth_name">Birth name</label>  
-                                    <div class="col-md-8">
-                                        <input id="birth_name" name="birth_name" type="text" onKeyPress="return onlyAlphabets(event,this);" class="form-control input-md" required value="<?php echo $_SESSION['birth_name'];?>" >
+					<div class="form-group" style="margin-bottom:0px">
+						<div class="navigation col-sm-6" align="left" style="padding-top:15px;">
+							<a class="btn" href="reset.php" style="color:#FFFFFF; font-size:15px; font-weight:bold; text-align:right; border:1px solid;">Reset</a>
+						</div>
+						<div class="navigation col-sm-6" align="right">
+							<button class="btn" type="submit" name="submit" style="float:right; color:#ffffff; background-color:#4b6a79; padding:0px; width:90px"> <img align="right" src="img/ICON 1/RegistrationFormNext.png" style="height:35px;width:90px"> </button>
+							<a href="registration_family.php" name="prev" style="float:right; margin-right:15px;">
+								<img align="right" src="img/ICON 1//RegistrationFormPrevious.png" style="height:37px">
+							</a>
+						</div>
+					</div>
+			</form>  
+		</div> 
+	</div> 
+</div>
+<script src="js/jquery.min.js"></script>
+<script>
+	$('.previous').click(function () {
+		var cur = $('.form-panel').index($('.form-panel.active'));
+		if (cur!=0) {
+			$('.form-panel').removeClass('active');
+			$('.form-panel').eq(cur-1).addClass('active');
+		}
+	});
+	$('.next').click(function () {
+		var cur = $('.form-panel').index($('.form-panel.active'));
+		if (cur!=$('.form-panel').length-1) {
+			$('.form-panel').removeClass('active');
+			$('.form-panel').eq(cur+1).addClass('active');
+		}
+	});
+</script>
 
-                                    </div>
-                                </div>
-
-                                <!-- Text input-->
-                                <div class="form-group">
-                                    <label class="col-sm-4 control-label" for="own_kul">Own kul</label>  
-                                    <div class="col-md-8">
-                                        <input id="own_kul" name="own_kul" type="text" onKeyPress="return onlyAlphabets(event,this);" class="form-control input-md" required value="<?php echo $_SESSION['own_kul'];?>">
-
-                                    </div>
-                                </div>
-
-                                <div class="form-group">
-                                    <label class="col-sm-4 control-label" for="mamkul">Mamakul </label>  
-                                    <div class="col-md-8">
-                                        <input id="mamkul" name="mamkul" type="text" onKeyPress="return onlyAlphabets(event,this);" class="form-control input-md" required value="<?php echo $_SESSION['mamkul'];?>">
-
-                                    </div>
-                                </div>
-                                <div class="form-group">
-                                    <label class="col-sm-4 control-label" for="gotra">Gotra</label>
-                                    <div class="col-md-8">
-                                        <input id="gotra" name="gotra" type="text" onKeyPress="return onlyAlphabets(event,this);" class="form-control input-md" required value="<?php echo $_SESSION['gotra'];?>">
-
-                                    </div>
-                                </div>
-
-                                <div class="form-group">
-                                    <label class="col-sm-4 control-label" for="nakshtra">Nakshtra</label>  
-                                    <div class="col-md-8">
-                                        <select id="nakshtra" name="nakshtra"  class="form-control input-md" required> 
-                                        <option></option>
-                                            <option value="Ashwini"<?php if($_SESSION['nakshtra']=='Ashwini') echo "selected";?>>Ashwini</option>
-                                            <option value="Bharani"<?php if($_SESSION['nakshtra']=='Bharani') echo "selected";?>>Bharani</option>
-                                            <option value="Krittika"<?php if($_SESSION['nakshtra']=='Krittika') echo "selected";?>>Krittika</option>
-                                            <option value="Rohini"<?php if($_SESSION['nakshtra']=='Rohini') echo "selected";?>>Rohini</option>
-                                            <option value="Mrigcira"<?php if($_SESSION['nakshtra']=='Mrigcira') echo "selected";?>>Mrigcira</option>
-                                            <option value="Ardra"<?php if($_SESSION['nakshtra']=='Ardra') echo "selected";?>>Ardra</option>
-                                            <option value="Punarvasu"<?php if($_SESSION['nakshtra']=='Punarvasu') echo "selected";?>>Punarvasu</option>
-                                            <option value="Pushya"<?php if($_SESSION['nakshtra']=='Pushya') echo "selected";?>>Pushya</option>
-                                            <option value="Ashlesha"<?php if($_SESSION['nakshtra']=='Ashlesha') echo "selected";?>>Ashlesha</option>
-                                            <option value="Magha"<?php if($_SESSION['nakshtra']=='Magha') echo "selected";?>>Magha</option>
-                                            <option value="Poorva Phalguni"<?php if($_SESSION['nakshtra']=='Poorva Phalguni') echo "selected";?>>Poorva Phalguni</option>
-                                            <option value="Uttara Phalgun"<?php if($_SESSION['nakshtra']=='Uttara Phalgun') echo "selected";?>>Uttara Phalguni</option>
-                                            <option value="Hasta"<?php if($_SESSION['nakshtra']=='Hasta') echo "selected";?>>Hasta</option>
-                                            <option value="Chitra"<?php if($_SESSION['nakshtra']=='Chitra') echo "selected";?>>Chitra</option>
-                                            <option value="Swati"<?php if($_SESSION['nakshtra']=='Swati') echo "selected";?>>Swati</option>
-                                            <option value="Vishaka"<?php if($_SESSION['nakshtra']=='Vishaka') echo "selected";?>>Vishaka</option>
-                                            <option value="Anuradha"<?php if($_SESSION['nakshtra']=='Anuradha') echo "selected";?>>Anuradha</option>
-                                            <option value="Jyeshta"<?php if($_SESSION['nakshtra']=='Jyeshta') echo "selected";?>>Jyeshta</option>
-                                            <option value="Moola"<?php if($_SESSION['nakshtra']=='Moola') echo "selected";?>>Moola</option>
-                                            <option value="Poorvashadha"<?php if($_SESSION['nakshtra']=='Poorvashadha') echo "selected";?>>Poorvashadha</option>
-                                            <option value="Uttarashadha"<?php if($_SESSION['nakshtra']=='Uttarashadha') echo "selected";?>>Uttarashadha</option>
-                                            <option value="Sharavan"<?php if($_SESSION['nakshtra']=='Sharavan') echo "selected";?>>Sharavan</option>
-                                            <option value="Dhanishta"<?php if($_SESSION['nakshtra']=='Dhanishta') echo "selected";?>>Dhanishta</option>
-                                            <option value="Satbhij"<?php if($_SESSION['nakshtra']=='Satbhij') echo "selected";?>>Satbhij</option>
-                                            <option value="Poorva Bhadrpad"<?php if($_SESSION['nakshtra']=='Poorva Bhadrpad') echo "selected";?>>Poorva Bhadrpada</option>
-                                            <option value="Uttara Bhadrapada"<?php if($_SESSION['nakshtra']=='Uttara Bhadrapada') echo "selected";?>>Uttara Bhadrapada</option>
-                                            <option value="Revati"<?php if($_SESSION['nakshtra']=='Revati') echo "selected";?>>Revati</option>
-                                        </select>
-                                    </div>
-                                </div>
-                                <div class="form-group">
-                                    <label class="col-sm-4 control-label" for="charan">Charan</label>  
-                                    <div class="col-md-8">
-                                        <select id="charan" name="charan" class="form-control input-md" required> 
-                                        	<option></option>
-                                            <option value="1"<?php if($_SESSION['charan']=='1') echo "selected";?>>1</option>
-                                            <option value="2"<?php if($_SESSION['charan']=='2') echo "selected";?>>2</option>
-                                            <option value="3"<?php if($_SESSION['charan']=='3') echo "selected";?>>3</option>
-                                            <option value="4"<?php if($_SESSION['charan']=='4') echo "selected";?>>4</option>
-                                        </select>
-                                    </div>
-                                </div>
-                                <div class="form-group">
-                                    <label class="col-sm-4 control-label" for="rashi">Rashi</label>  
-                                    <div class="col-md-8">
-                                        <select id="rashi" name="rashi" class="form-control input-md"required >
-                                        	<option></option>
-                                            <option value="Mesh (Aries)"<?php if($_SESSION['rashi']=='Mesh (Aries)') echo "selected";?>>Mesh (Aries)</option>
-                                            <option value="Vrushabh (Taurus)"<?php if($_SESSION['rashi']=='Vrushabh (Taurus)') echo "selected";?>>Vrushabh (Taurus)</option>
-                                            <option value="Mithun (Gemini)"<?php if($_SESSION['rashi']=='Mithun (Gemini)') echo "selected";?>>Mithun (Gemini)</option>
-                                            <option value="Kark (Cancer)"<?php if($_SESSION['rashi']=='Kark (Cancer)') echo "selected";?>>Kark (Cancer)</option>
-                                            <option value="Sinh (Leo)"<?php if($_SESSION['rashi']=='Sinh (Leo)') echo "selected";?>>Sinh (Leo)</option>
-                                            <option value="Kanya (Virgo)"<?php if($_SESSION['rashi']=='Kanya (Virgo)') echo "selected";?>>Kanya (Virgo)</option>
-                                            <option value="Tula (Libra)"<?php if($_SESSION['rashi']=='Tula (Libra)') echo "selected";?>>Tula (Libra)</option>
-                                            <option value="Vrushchik (Scorpius)"<?php if($_SESSION['rashi']=='Vrushchik (Scorpius)') echo "selected";?>>Vrushchik (Scorpius)</option>
-                                            <option value="Dhanu (Sagittarius)"<?php if($_SESSION['rashi']=='Dhanu (Sagittarius)') echo "selected";?>>Dhanu (Sagittarius)</option>
-                                            <option value="Makar (Capricornus)"<?php if($_SESSION['rashi']=='Makar (Capricornus)') echo "selected";?>>Makar (Capricornus)</option>
-                                            <option value="Kumbha (Aquarius"<?php if($_SESSION['rashi']=='Kumbha (Aquarius') echo "selected";?>>Kumbha (Aquarius)</option>
-                                            <option value="Meen (Pisces)"<?php if($_SESSION['rashi']=='Meen (Pisces)') echo "selected";?>>Meen (Pisces)</option>
-										</select>
-                                    </div>
-                                </div>
-                                <div class="form-group">
-                                    <label class="col-sm-4 control-label" for="nadi">Nadi</label>  
-                                    <div class="col-md-8">
-                                        <select id="nadi" name="nadi" class="form-control input-md" required>
-                                        	<option></option>
-                                            <option value="Aadya"<?php if($_SESSION['nadi']=='Aadya') echo "selected";?>>Aadya </option>
-                                            <option value="Madhya"<?php if($_SESSION['nadi']=='Madhya') echo "selected";?>>Madhya</option>
-                                            <option value="Antya"<?php if($_SESSION['nadi']=='Antya') echo "selected";?>>Antya</option>
-										</select>
-                                    </div>
-                                </div>
-                                <div class="form-group">
-                                    <label class="col-sm-4 control-label" for="gan">Gan</label>  
-                                    <div class="col-md-8">
-                                    	<select id="gan" name="gan" class="form-control input-md" required>
-                                        	<option></option>
-                                            <option value="Dev Gan"<?php if($_SESSION['gan']=='Dev Gan') echo "selected";?>>Dev Gan</option>
-                                            <option value="Manush Gan"<?php if($_SESSION['gan']=='Manush Gan') echo "selected";?>>Manush Gan</option>
-                                            <option value="Rakshas Gan"<?php if($_SESSION['gan']=='Rakshas Gan') echo "selected";?>>Rakshas Gan</option>
-                                        </select>
-                                    </div>
-                                </div>
-                                <div class="form-group">
-                                    <label class="col-sm-4 control-label" for="guru">Guru</label>  
-                                    <div class="col-md-8">
-                                        <select id="guru" name="guru" class="form-control input-md" required>
-                                        	<option></option>
-                                            <option value="1"<?php if($_SESSION['guru']=='1') echo "selected";?>>1</option>
-                                            <option value="2"<?php if($_SESSION['guru']=='2') echo "selected";?>>2</option>
-                                            <option value="3"<?php if($_SESSION['guru']=='3') echo "selected";?>>3</option>
-                                            <option value="4"<?php if($_SESSION['guru']=='4') echo "selected";?>>4</option>
-                                            <option value="5"<?php if($_SESSION['guru']=='5') echo "selected";?>>5</option>
-                                            <option value="6"<?php if($_SESSION['guru']=='6') echo "selected";?>>6</option>
-                                            <option value="7"<?php if($_SESSION['guru']=='7') echo "selected";?>>7</option>
-                                            <option value="8"<?php if($_SESSION['guru']=='8') echo "selected";?>>8</option>
-                                            <option value="9"<?php if($_SESSION['guru']=='9') echo "selected";?>>9</option>
-                                            <option value="10"<?php if($_SESSION['guru']=='10') echo "selected";?>>10</option>
-                                            <option value="11"<?php if($_SESSION['guru']=='11') echo "selected";?>>11</option>
-                                            <option value="12"<?php if($_SESSION['guru']=='12') echo "selected";?>>12</option>
-                                        </select>
-                                    </div>
-                                </div>
-                                <div class="form-group">
-                                    <label class="col-sm-4 control-label" for="manglik_status">Manglik Status</label>  
-                                    <div class="col-md-8">
-                                    	<select id="manglik_status" name="manglik_status" class="form-control input-md" required>
-                                        	<option></option>
-                                        	<option value="Yes"<?php if($_SESSION['manglik_status']=='Yes') echo "selected";?>>Yes</option>
-                                            <option value="No"<?php if($_SESSION['manglik_status']=='No') echo "selected";?>>No</option>
-                                        </select>
-
-                                    </div>
-                                </div>
-
-                        </div>
-                        <div class="navigation col-sm-6" align="right">
-                           <a href="registration_family.php">
-                           <button type="button" name="prev" class="btn btn-danger" style="background-color:#054c48;border-color:#1ba39c">Previous</button></a>
-                           <button type="submit" name="submit" class="btn btn-danger" style="background-color:#054c48;border-color:#1ba39c">Next</button></div>
-						    <div class="navigation col-sm-6"  align="right" style="padding-top:20px;">
-						   <a href="reset.php" style="color:#FFFFFF; font-size:13px; font-weight:bold">Reset</a>
-                        </div>
-                    </div>
-                    
-                   
-                    
-                </form>
-
-            </div>           
-        </section>
+        
   <?php include "main/footer.php" ; ?>
      </body>
 </html>

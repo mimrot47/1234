@@ -1,15 +1,19 @@
 <?php
 session_start();
 $email=$_SESSION['myusername'];
+include '../connect.php';
+$id=$_POST['id'];
+$description=$_POST["description"];
+$description = str_replace("'", '', $description);
 
-  include '../connect.php';
-  
-  $description=$_POST["description"];
- 
- 
-$query=mysql_query("insert into testimonial (id,email,description,status,is_del)
-	 										 values('','$email','$description','unread','no')") or die(mysql_error());
-
+if($id!="")
+{
+$quer=mysqli_query($conn,"update testimonial SET description='$description'  where id='$id' ");
+}
+else
+{
+$query=mysqli_query($conn,"insert into testimonial (id,email,description,status,is_del) values('','$email','$description','unread','no')") or die(mysqli_error($conn));
+}
 
 
 

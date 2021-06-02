@@ -1,20 +1,9 @@
 <?php
-
-/*$DB_host = "localhost";
+$DB_host = "localhost";
 $DB_user = "root";
 $DB_pass = "";
-$DB_name = "bhavsar";*/
+$DB_name = "bramhin_matrimony";
 
-$DB_host = "localhost";
-$DB_user = "backtel1_bhadmin";
-$DB_pass = "Nb!do3BT4Ix]";
-$DB_name = "backtel1_bhavsar";
-
-/*$host="localhost"; // Host name
-$username="backtel1_bhadmin"; // Mysql username
-$password="Nb!do3BT4Ix]"; // Mysql password
-$db_name="backtel1_bhavsar"; // Database name
-*/
 try
 {
 	$DB_con = new PDO("mysql:host={$DB_host};dbname={$DB_name}",$DB_user,$DB_pass);

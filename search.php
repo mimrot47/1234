@@ -4,12 +4,32 @@
 <title>MATRIMONY</title>
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <!-- Bootstrap -->
-<link href="http://www.htmlpreviews.com/cloud/badminton/credon8/css/bootstrap.min.css" rel="stylesheet">
+<link href="css/bootstrap.min.css" rel="stylesheet">
 <link href='http://fonts.googleapis.com/css?family=Dosis:200,300,400,500,600,700,800' rel='stylesheet' type='text/css'>
 <link href='http://fonts.googleapis.com/css?family=Open+Sans:400,300,700,800' rel='stylesheet' type='text/css'>
 <link href="css/style.css" rel="stylesheet">
  <script src="js/custom_js.js" type="text/javascript"></script>
          <style>
+          @font-face {
+			font-family: CenturyGothict;
+			src: url(fonts/CenturyGothic.ttf);
+		}
+		@font-face {
+			font-family: CaviarDreams_Bold;
+			src: url(fonts/CaviarDreams_Bold.ttf);
+		}
+		@font-face {
+			font-family: CaviarDreams;
+			src: url(fonts/CaviarDreams.ttf);
+		}
+		@font-face {
+			font-family: BerlinSans;
+			src: url(fonts/BRLNSR.ttf);
+		}
+		@font-face {
+			font-family: BebasNeue;
+			src: url(fonts/BebasNeue.otf);
+		}
             ._heading{
                 text-align: center;
             }
@@ -64,32 +84,39 @@
 </head>
 <body > 
 
-<header class="main__header" style="background-image:url(img/header.png)">
-  <div class="container">
-    <nav class="navbar navbar-default" role="navigation"> 
-      <div class="navbar-header">
-        <h1 class="navbar-brand"><a href="index.php">MATRIMONY</a></h1>
-        <a href="#" class="submenu">Menus</a> </div>
-      <div class="menuBar">
-        <ul class="menu">
-          <li ><a href="index.php">Home</a></li>
-          <li ><a href="registration_personal.php">Register</a></li>
-        </ul>
-      </div>
-      <!-- /.navbar-collapse --> 
-    </nav>
-  </div>
+<header class="main__header" >
+	<div style="background-color:#225169; height:50px">&nbsp;</div>
+		<div class="container">
+			<nav class="navbar navbar-default" role="navigation"> 
+			<div class="navbar-header">
+				<h1 class="navbar-brand" style="font-family:CenturyGothict; font-size:30px"><a href="index.php"><span style="color:#FF4500">MALI</span> <span style="color:#225169">MATRIMONY</span></a></h1>
+				<a href="#" class="submenu" style="background-image:url(img/default-logo.png); width:40px; height:40px">Menus</a> 
+			</div>
+			<div class="menuBar">
+				<ul class="menu">
+					<li ><a href="index.php">Home</a></li>
+          				<li ><a href="registration_personal.php">Register</a></li> 
+				</ul>
+			</div>
+			<!-- /.navbar-collapse --> 
+		</nav>
+	</div>
 </header>
 
-
 <!--end of slider section-->
-<section class="main__middle__container homepage" style="margin-top:100px;height: 100vh;">
-<?php include_once "session.php";
+<section class="main__middle__container homepage" style="margin-top:132px;height: 100vh;background-color: #ebecec;">
+<?php
+header('Cache-Control: no cache'); //no cache
+session_cache_limiter('private_no_expire'); // works
+ include_once "session.php";
+//error_reporting(0);
+ ob_start();
 include "connect.php";
 
-    $marriageType=$_POST['marriageType'];
+    $marriageType=$_SESSION['marriageType'] = $_POST['marriageType'];
     $academic_level=$_POST['academic_level'];
     $gender=$_POST['gender'];
+	$subcast=$_POST['subcast'];
     $states=$_SESSION['states']=$_POST['states'];
     $city=$_POST['city'];
     $from=$_POST['from'];
@@ -97,17 +124,17 @@ include "connect.php";
     $age=$from ." ". $to;
 	?>
     <div class="row grey-info-block text-center"  >
-    <div class="container"  style="float:left">
-
+    <div class="container"  >
+<h2 class="text-center" style='margin-top: 0;margin-bottom: 25px;'><span style="font-family:CaviarDreams_Bold;text-transform:none;color:#c73828;">All Registered <?php echo $gender.'s';?> <?php if($city!='') { echo 'in '.$city.' ('.$states.')';}?></span></h2>
     <?php 
 	if($city!='' && $city!='Select City')
 	{
 		$from=$_POST['from'];
 		$to=$_POST['to']; 
-		$qry="select * from matrimonialall where gender='$gender' and is_del='no' and marriageType='$marriageType' and faculty='$academic_level' and states='$states'and city='$city' and age BETWEEN $from AND $to ";
-		$show_marg=mysql_query($qry) or die(mysql_error());
+		$qry="select * from matrimonialall where gender='$gender' and subcast='$subcast' and is_del='no' and marriageType='$marriageType' and payment='Yes' and faculty='$academic_level' and states='$states' and city='$city' and age BETWEEN $from AND $to ";
+		$show_marg=mysqli_query($conn,$qry) or die(mysqli_error($conn));
 		$image_mime_type="image/png|image/jpeg|image/gif";
-		$number = mysql_num_rows($show_marg);
+		$number = mysqli_num_rows($show_marg);
 		if($number==0)
 		{
 		?><strong style="color:#FF0000; font-size:24px">
@@ -119,51 +146,56 @@ include "connect.php";
 		}
 		else
 		{  
-		while($row_marg=mysql_fetch_array($show_marg))
+		while($row_marg=mysqli_fetch_array($show_marg))
 		{
 	?>
-    
-     <div class="col-md-4"> 
-     <?php 
+    <div class="col-xs-3" style="margin-bottom:25px">
+		<p class="brideslider" style="text-align:left;"> <?php echo ucfirst($row_marg['first_name']);?><br>
+		<?php echo "<a href=login.php?id=".$row_marg['unique_id']." >";?>
+		<?php 
 			 if($row_marg['profile_pic']=='')
 			 {
 				 if($gender=="Bride")
 				 {
 				 ?>         
-				 <img src="img/Female.png" class="img-rounded img-responsive" id="img-success" style="width:150px; height: 160px;">
+					<img src="img/bride.png" class="img-responsive slide-image" id="img-success" >
 				 <?php
 				 }
 				 else
 				 {?>
-					 <img src="img/Male.png" class="img-rounded img-responsive" id="img-success" style="width:150px; height: 160px;">
+					 <img src="img/groom.png" class="img-responsive slide-image" id="img-success" >
 				  <?php
 				 }
 			 }
 			 else
 			 {
-			 echo '<img src="data:'.$image_mime_type.';base64,'.base64_encode($row_marg['profile_pic']).'" class="img-rounded img-responsive" 
-			 id="img-success" style="width:150px; height: 160px;"/>';
+				?>
+				<img src="profile_photos/<?php echo $row_marg['profile_pic'];?>" class="img-rounded img-responsive slide-image" id="img-success">
+				<?php
+				
 			 }
-	 ?>
-        <center><font color="#000099"><strong><?php echo ucfirst($row_marg['first_name'])." ".ucfirst($row_marg['last_name']);?></strong><?php echo ", ".$row_marg['age']; ?></font>
-        <p> <?php echo $row_marg['city']; ?><br>
-        <?php  echo "<a href=login.php?id=".$row_marg['unique_id']." >View Details</a>";
-		//echo "<button class=btn btn-info ><a role=button href=login.php?id=".$row_marg['unique_id']." >View Details</a></button>"?></p></center>
-      </div>
-	<?php			
-		}/*while*/		
+			?>
+			</a>
+		Age - <?php echo $row_marg['age'];?><br> City - <?php echo $row_marg['city'];?>,<br> State - <?php echo $row_marg['states'];?>
+		</P>
+		</div>
+		<?php
+		}
+		?>
+	</div>	
+     <?php			
+		}	
 	}
-	}/*if*/
 	else
 	{
 		if($marriageType!='Select Marriage Status' && $academic_level!='Select Qualification')
 		{
 		$from=$_POST['from'];
 		$to=$_POST['to'];
-		$qry="select * from matrimonialall where gender='$gender' and is_del='no' and marriageType='$marriageType' and faculty='$academic_level' and states='$states' and age BETWEEN $from AND $to ";
-		$show_marg=mysql_query($qry) or die(mysql_error());
+		$qry="select * from matrimonialall where gender='$gender' and subcast='$subcast' and is_del='no' and marriageType='$marriageType' and payment='Yes' and faculty='$academic_level' and states='$states' and age BETWEEN $from AND $to ";
+		$show_marg=mysqli_query($conn,$qry) or die(mysqli_error($conn));
 		$image_mime_type="image/png|image/jpeg|image/gif";
-		$number = mysql_num_rows($show_marg);
+		$number = mysqli_num_rows($show_marg);
 		if($number==0)
 		{
 		?><strong style="color:#FF0000; font-size:24px">
@@ -175,36 +207,39 @@ include "connect.php";
 		}
 		else
 		{ 
-		while($row_marg=mysql_fetch_array($show_marg))
+		while($row_marg=mysqli_fetch_array($show_marg))
 		{
 	?>
     
-     <div class="col-md-4"> 
+     <div class="col-md-3"> 
      <?php 
 	 if($row_marg['profile_pic']=='')
 	 {
 		 if($gender=="Bride")
 		 {
 		 ?>         
-         <img src="img/Female.png" class="img-rounded img-responsive" id="img-success" style="width:150px; height: 160px;">
+         		<img src="img/bide.png" class="img-rounded img-responsive slide-image" id="img-success" >
          <?php
 		 }
 		 else
 		 {?>
-			 <img src="img/Male.png" class="img-rounded img-responsive" id="img-success" style="width:150px; height: 160px;">
+			 <img src="img/groom.png" class="img-rounded img-responsive slide-image" id="img-success" >
           <?php
 		 }
 	 }
 	 else
 	 {
-	 echo '<img src="data:'.$image_mime_type.';base64,'.base64_encode($row_marg['profile_pic']).'" class="img-rounded img-responsive" 
-     id="img-success" style="width:150px; height: 160px;"/>';
+	 ?>
+	 <img src="profile_photos/<?php echo $row_marg['profile_pic'];?>" class="img-rounded img-responsive slide-image" id="img-success">
+	 <?php
 	 }
 	 ?>
-       <center><font color="#000099"><strong><?php echo ucfirst($row_marg['first_name'])." ".ucfirst($row_marg['last_name']);?></strong><?php echo ", ".$row_marg['age']; ?></font>
+       <center>
+	   <font color="#000099"><strong><?php echo ucfirst($row_marg['first_name'])." ".ucfirst($row_marg['last_name']);?></strong><?php echo ", ".$row_marg['age']; ?></font>
         <p> <?php echo $row_marg['city']; ?><br>
-        <?php  echo "<a href=login.php?id=".$row_marg['unique_id']." >View Details</a>";
-		//echo "<button class=btn btn-info ><a role=button href=login.php?id=".$row_marg['unique_id']." >View Details</a></button>"?></p></center>
+        <?php  echo "<a href=login.php?id=".$row_marg['unique_id']." >View Details</a>";?>
+		</p>
+		</center>
       </div>
 		<?php			
 		}
@@ -224,14 +259,11 @@ include "connect.php";
 	?> 
    </div>
  </div>
-  
-  
+ 
  
 </section>
-
- <div style="margin-top:72px;">
-  
-  <?php include "main/footer.php" ; ?>
+<div style="margin-top:-20px;">
+<?php include "main/footer.php" ; ?>
 </div>
 </body>
 

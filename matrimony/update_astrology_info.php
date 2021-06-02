@@ -14,7 +14,7 @@ $gan=$_POST['gan'];
 $guru=$_POST['guru'];$manglik_status=$_POST['manglik_status'];	
 	
 	
-	mysql_query( "UPDATE matrimonialall SET birth_name='$birth_name',own_kul='$own_kul',mamkul='$mamkul',gotra='$gotra',nakshtra='$nakshtra',charan='$charan',rashi='$rashi',nadi='$nadi',gan='$gan',guru='$guru',manglik_status='$manglik_status' where email='$email'") or die(mysql_error());
+	mysqli_query($conn, "UPDATE matrimonialall SET birth_name='$birth_name',own_kul='$own_kul',mamkul='$mamkul',gotra='$gotra',nakshtra='$nakshtra',charan='$charan',rashi='$rashi',nadi='$nadi',gan='$gan',guru='$guru',manglik_status='$manglik_status' where email='$email'") or die(mysqli_error($conn));
 	
 	echo '<script type="text/javascript">'; 
 	echo 'alert(" Updated..");'; 

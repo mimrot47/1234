@@ -1,4 +1,3 @@
-
 <?php include "../connect.php";
 session_start();
  $email=$_SESSION['myusername'];
@@ -46,8 +45,8 @@ session_start();
                                 	<form action="testimonial_update.php" method="post">
                                    <?php
 								   $id=$_GET['id'];
-								   $show1=mysql_query("select * from testimonial");
-                            while($row=mysql_fetch_array($show1))
+								   $show1=mysqli_query($conn,"select * from testimonial");
+                            while($row=mysqli_fetch_array($show1))
                             {
                             $dec= $row['description'];
                            

@@ -20,6 +20,7 @@
 	height:300px;
 }
 
+
 </style>
 
 </head>
@@ -363,7 +364,7 @@
         </div>
      </div>
 </footer>
-<p class="text-center copyright">&copy; Copyright ABC Company. All Rights Reserved.</p>
+<p class="text-center copyright">&copy; Copyright Company. All Rights Reserved.</p>
 <!-- jQuery (necessary for Bootstrap's JavaScript plugins) --> 
 <script type="text/javascript" src="http://www.htmlpreviews.com/cloud/badminton/credon8/js/jquery.min.js"></script> 
 <!-- Include all compiled plugins (below), or include individual files as needed --> 

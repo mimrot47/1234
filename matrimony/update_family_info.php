@@ -20,7 +20,7 @@ $parent_conatct_no=$_POST['parent_conatct_no'];
 	
 	
 	
-	mysql_query( "UPDATE matrimonialall SET father_name='$father_name',occupation_father='$occupation_father',mother_name='$mother_name',occupation_mother='$occupation_mother',no_of_brother='$no_of_brother',married_brother='$married_brother',unmarried_brother='$unmarried_brother',no_of_sister='$no_of_sister',married_sister='$married_sister',unmarried_sister='$unmarried_sister',permanent_residential_address='$permanent_residential_address',parent_conatct_no='$parent_conatct_no' where email='$email'") or die(mysql_error());
+	mysqli_query($conn, "UPDATE matrimonialall SET father_name='$father_name',occupation_father='$occupation_father',mother_name='$mother_name',occupation_mother='$occupation_mother',no_of_brother='$no_of_brother',married_brother='$married_brother',unmarried_brother='$unmarried_brother',no_of_sister='$no_of_sister',married_sister='$married_sister',unmarried_sister='$unmarried_sister',permanent_residential_address='$permanent_residential_address',parent_conatct_no='$parent_conatct_no' where email='$email'") or die(mysqli_error($conn));
 	
 	echo '<script type="text/javascript">'; 
 	echo 'alert(" Updated..");'; 

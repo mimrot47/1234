@@ -5,7 +5,7 @@ error_reporting(0);
 if($_POST['id']=="Groom")
 {
 ?>
-<option>Select Marriage Status </option>
+<option value="">Select Marriage Status </option>
 <option>Never married</option>
 <option>Divorcee</option>
 <option>Widower</option>
@@ -16,7 +16,7 @@ else
 if($_POST['id']=="Bride")
 {
 ?>
-<option>Select Marriage Status </option>
+<option  value="">Select Marriage Status </option>
 <option>Never married</option>
 <option>Divorcee</option>
 <option>Widow</option>
@@ -25,7 +25,7 @@ if($_POST['id']=="Bride")
 else
 {
 ?>
-<option>Select Marriage Status </option>
+<option  value="">Select Marriage Status </option>
 <option>Never married</option>
 <option>Divorcee</option>
 <option>Widow</option>

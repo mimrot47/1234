@@ -1708,3 +1708,10 @@ a.submenu {
 	 margin-top:33px; 
 /*	 margin-bottom: -32px;*/
 }
+.hied_border{
+	border-top-style:hidden;
+	border-right-style:hidden;
+	border-left-style:hidden;
+	border-bottom-style:groove;
+	background-color:#eeee;
+	}

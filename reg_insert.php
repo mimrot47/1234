@@ -1,6 +1,8 @@
 <?php
+error_reporting(E_ALL);
+ini_set('display_errors', 1);
 include 'connect.php';
-if($_POST['button']=="SIGN IN")
+if($_POST['button']=="PAY AND SIGN UP")
 {
 
 $first_name=$_POST['first_name'];
@@ -11,7 +13,7 @@ $states=$_POST['states'];
 $city=$_POST['city'];
 $address=$_POST['address'];
 $mobile_no1=$_POST['mobile_no1'];
-$email=$_POST['email'];
+$email=trim($_POST['email']);
 $birth_date=$_POST['DATEOFBIRTH'];
 $birth_time=$_POST['birth_time'];
 $day_of_birth=$_POST['day_of_birth'];
@@ -21,6 +23,7 @@ $birth_state=$_POST['birth_state'];
 $mobile_no2=$_POST['mobile_no2'];
 $pass=$_POST['pass'];
 $cast=$_POST['cast'];
+$subcast=$_POST['subcast'];
  $age=$_POST['age'];
 $fit=$_POST['fit'];
 $inches=$_POST['inches'];
@@ -80,7 +83,7 @@ $unique_id=$last_name ."_".$rand_no;
 $marriageType;
 if ($marriageType == "divorcee")
 {
-    $query2 = mysql_query("insert into matrimonial_divorcee (id,unique_id,previous_marriage_date_divorcee,date_of_divorce,child_status_divorce,child_custody_status_divorce,previous_marriage_address_divorce)
+    $query2 = mysqli_query($conn,"insert into matrimonial_divorcee (id,unique_id,previous_marriage_date_divorcee,date_of_divorce,child_status_divorce,child_custody_status_divorce,previous_marriage_address_divorce)
 	values('','$unique_id','$previous_marriage_date_divorcee','$date_of_divorce','$child_status_divorce','$child_custody_status_divorce','$previous_marriage_address_divorce')");
 }
 else if ($marriageType == "widow")
@@ -88,13 +91,13 @@ else if ($marriageType == "widow")
 	if($gender=='Groom')
 	{
 	$marriageType = 'widower';
-	$query2 = mysql_query("insert into matrimonial_widow (id,unique_id,previous_marriage_date_widow,date_partner_death_widow,child_status_widow,previous_marriage_address_widow)
+	$query2 = mysqli_query($conn,"insert into matrimonial_widow (id,unique_id,previous_marriage_date_widow,date_partner_death_widow,child_status_widow,previous_marriage_address_widow)
 	values('','$unique_id','$previous_marriage_date_widow','$date_partner_death_widow','$child_status_widow','$previous_marriage_address_widow')");
 	}
 	else
 	{
 	$marriageType = 'widow';
-	$query2 = mysql_query("insert into matrimonial_widow (id,unique_id,previous_marriage_date_widow,date_partner_death_widow,child_status_widow,previous_marriage_address_widow)
+	$query2 = mysqli_query($conn,"insert into matrimonial_widow (id,unique_id,previous_marriage_date_widow,date_partner_death_widow,child_status_widow,previous_marriage_address_widow)
 	values('','$unique_id','$previous_marriage_date_widow','$date_partner_death_widow','$child_status_widow','$previous_marriage_address_widow')");
 	}
 
@@ -102,8 +105,8 @@ else if ($marriageType == "widow")
 
 $keyword= $gender.",".$marriageType.",". $age.",".$academic_level .",". $states.",".$city.",".$mobile_no2.",".$mobile_no1 ;
 
-$query=mysql_query("insert into matrimonialall (candidate_id,unique_id,first_name,middle_name,last_name,gender,states,city,address,mobile_no1,email,birth_date,birth_time,day_of_birth,birth_city,birth_district,birth_state,mobile_no2,pass,cast,age,fit,inches,body_weight,skin_tone,blood_group,spectacles,hobbies,any_disability,any_disability_desc,acceptation,describe_yourself,faculty,academic_level,college_name,college_address,office_contact,job_busi_status,working_post,annual_income,work_place_address,father_name,occupation_father,mother_name,occupation_mother,no_of_brother,married_brother,unmarried_brother,no_of_sister,married_sister,unmarried_sister,permanent_residential_address,parent_conatct_no,birth_name,own_kul,mamkul,gotra,nakshtra,charan,rashi,nadi,gan,guru,manglik_status,marriageType,keyword,is_del)
-	 										 values('','$unique_id','$first_name','$middle_name','$last_name','$gender','$states','$city','$address','$mobile_no1','$email','$birth_date','$birth_time','$day_of_birth','$birth_city','$birth_district','$birth_state','$mobile_no2','$pass','$cast','$age','$fit','$inches','$body_weight','$skin_tone','$blood_group','$spectacles','$hobbies','$any_disability','$any_disability_desc','$acceptation','$describe_yourself','$faculty','$academic_level','$college_name','$college_address','$office_contact','$job_busi_status','$working_post','$annual_income','$work_place_address','$father_name','$occupation_father','$mother_name','$occupation_mother','$no_of_brother','$married_brother','$unmarried_brother','$no_of_sister','$married_sister','$unmarried_sister','$permanent_residential_address','$parent_conatct_no','$birth_name','$own_kul','$mamkul','$gotra','$nakshtra','$charan','$rashi','$nadi','$gan','$guru','$manglik_status','$marriageType','$keyword','no')") or die(mysql_error());
+$query=mysqli_query($conn,"insert into matrimonialall (candidate_id,unique_id,first_name,middle_name,last_name,gender,states,city,address,mobile_no1,email,birth_date,birth_time,day_of_birth,birth_city,birth_district,birth_state,mobile_no2,pass,cast,subcast,age,fit,inches,body_weight,skin_tone,blood_group,spectacles,hobbies,any_disability,any_disability_desc,acceptation,describe_yourself,faculty,academic_level,college_name,college_address,office_contact,job_busi_status,working_post,annual_income,work_place_address,father_name,occupation_father,mother_name,occupation_mother,no_of_brother,married_brother,unmarried_brother,no_of_sister,married_sister,unmarried_sister,permanent_residential_address,parent_conatct_no,birth_name,own_kul,mamkul,gotra,nakshtra,charan,rashi,nadi,gan,guru,manglik_status,marriageType,keyword,is_del)
+	 										 values('','$unique_id','$first_name','$middle_name','$last_name','$gender','$states','$city','$address','$mobile_no1','$email','$birth_date','$birth_time','$day_of_birth','$birth_city','$birth_district','$birth_state','$mobile_no2','$pass','$cast','$subcast','$age','$fit','$inches','$body_weight','$skin_tone','$blood_group','$spectacles','$hobbies','$any_disability','$any_disability_desc','$acceptation','$describe_yourself','$faculty','$academic_level','$college_name','$college_address','$office_contact','$job_busi_status','$working_post','$annual_income','$work_place_address','$father_name','$occupation_father','$mother_name','$occupation_mother','$no_of_brother','$married_brother','$unmarried_brother','$no_of_sister','$married_sister','$unmarried_sister','$permanent_residential_address','$parent_conatct_no','$birth_name','$own_kul','$mamkul','$gotra','$nakshtra','$charan','$rashi','$nadi','$gan','$guru','$manglik_status','$marriageType','$keyword','no')") or die(mysqli_error($conn));
 
 
 //email sending
@@ -112,7 +115,7 @@ $message11='Welcome to Bhavsar Matrimony. Your Username and Password as below :
 	Password : '.$pass.'
 				';
 	$to= $email;
-//$from="info@bhavsar.org";
+$from="info@bhavsar.org";
 $subject1 = " Registration in Bhavsar Matrimony ";
 $mail_body = '
 Message: '.$message11.'
@@ -127,8 +130,13 @@ mail($to, $subject1, $mail_body, $headers);
 
 
 echo '<script type="text/javascript">'; 
-echo 'alert("Your Registeration Successfully Done.\nYour Username and Password has been send on your registerd email Id. ");'; 
-echo 'window.location.href = "login.php";';
+echo 'console.log("Your Registeration Successfully Done.\nYour Username and Password has been send on your registerd email Id. ccavRequestHandler.php?merchant_id=152580&order_id='.mysqli_insert_id($conn).'&currency=INR&amount=500.00&redirect_url=bhavsarmarriage.com/payment_successfull.php&cancel_url=bhavsarmarriage.com/payment_cancel.php&language=EN");'; 
+
+$ur = "ccavRequestHandler.php?tid=".rand(1111111111,9999999999)."&merchant_id=152580&order_id=".mysqli_insert_id($conn)."&currency=INR&amount=500.00&redirect_url=http://bhavsarmarriage.com/payment_successfull.php&cancel_url=http://bhavsarmarriage.com/payment_cancel.php&language=EN";
+
+// echo 'console.log("ccavRequestHandler.php?merchant_id=152580&order_id='.mysqli_insert_id($conn).'&currency=INR&amount=500.00&redirect_url=bhavsarmarriage.com/payment_successfull.php&cancel_url=bhavsarmarriage.com/payment_cancel.php&language=EN");';
+echo 'window.location.href = "'.$ur.'";';
+
 echo '</script>';
 session_start();
 session_unset();

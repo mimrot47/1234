@@ -15,6 +15,97 @@ error_reporting(0);
 <link href='http://fonts.googleapis.com/css?family=Open+Sans:400,300,700,800' rel='stylesheet' type='text/css'>
 <link href="css/style.css" rel="stylesheet">
 <link href="responcive.css" rel="stylesheet" type="text/css">
+<script type="text/javascript" src="jquery-1.4.1.min.js"></script>
+<script type="text/javascript">
+$(document).ready(function()
+{
+
+	$("#loding2").hide();
+	
+	
+	$("#no_of_brother").change(function()
+	{
+		$("#loding2").show();
+		var id=$(this).val();
+		var dataString = 'id='+ id;
+	        if(id==0)
+	        {
+	         $("#married_brother").val(0);
+	         $("#unmarried_brother").val(0);
+	        }
+	        else
+	        {
+		$.ajax
+		({
+			type: "POST",
+			url: "get_brother.php",
+			data: dataString,
+			cache: false,
+			success: function(html)
+			{
+				$("#loding2").hide();
+				$("#married_brother").html(html);
+				//$("#unmarried_brother").html(html);
+			} 
+		});
+		}
+	});
+	
+	$("#married_brother").change(function()
+	{
+		$("#loding2").show();
+		var id=$(this).val();
+		var i = $("#no_of_brother").val();
+		var j= ((i - id));
+		
+	        $("#unmarried_brother").val(j);
+		
+	})
+	
+	
+	$("#no_of_sister").change(function()
+	{
+		$("#loding2").show();
+		var id=$(this).val();
+		var dataString = 'id='+ id;
+	       if(id==0)
+	        {
+	         $("#married_sister").val(0);
+	         $("#unmarried_sister").val(0);
+	        }
+	        else
+	        {
+		$.ajax
+		({
+			type: "POST",
+			url: "get_sister.php",
+			data: dataString,
+			cache: false,
+			success: function(html)
+			{
+				$("#loding2").hide();
+				$("#married_sister").html(html);
+				
+			} 
+		});
+		}
+	});
+	
+	$("#married_sister").change(function()
+	{
+		$("#loding2").show();
+		var id=$(this).val();
+		var i = $("#no_of_sister").val();
+		var j= ((i - id));
+		
+	        $("#unmarried_sister").val(j);
+		
+	})
+	
+});
+
+
+</script>
 <script>
 function countAge(object, birthDay){
       now = new Date();
@@ -452,33 +543,55 @@ function countAge(object, birthDay){
 						  
 	          </script>
           
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css"> 
         <script src="js/custom_js.js" type="text/javascript"></script>
         <style>
+            @font-face {
+			font-family: CenturyGothict;
+			src: url(fonts/CenturyGothic.ttf);
+		}
+		@font-face {
+			font-family: CaviarDreams_Bold;
+			src: url(fonts/CaviarDreams_Bold.ttf);
+		}
+		@font-face {
+			font-family: CaviarDreams;
+			src: url(fonts/CaviarDreams.ttf);
+		}
+		@font-face {
+			font-family: BerlinSans;
+			src: url(fonts/BRLNSR.ttf);
+		}
+		@font-face {
+			font-family: BebasNeue;
+			src: url(fonts/BebasNeue.otf);
+		}
             ._heading{
-                text-align: center;
+               text-align:center;
             }
             .main_heading h2{
                 margin:0;
                 padding:10px;
                 text-align: center;
-            }
+				font-family:Arial;
+				font-size:26px;
+			}
             ._heading h4{
-                color:#1ba39c;
+                color:#225169;
                 padding:10px 0;
-                margin-bottom:30px;
+                margin-bottom:15px;
                 margin-top:10px;
-                text-align: left;
-                border-bottom: 1px solid #1ba39c;
-            }
+				font-family:Arial;
+             }
             .col-sm-4.control-label {
                 text-align: left;
+				font-family:CenturyGothict;
             }
-             .navigation{
+            .navigation{
                 margin-top:15px;
                 padding:15px;
-                //text-align: center;
-				height:60px;
-                background-color:#1ba39c;
+                height:60px;
+                background-color:#225169;
 
             }
 
@@ -487,7 +600,8 @@ function countAge(object, birthDay){
                 margin-bottom:20px;
             }
             .main_heading{
-                background-color:#1ba39c;
+                background-color:#225169;
+				border-bottom: 2px solid orangered;
             }
             .main_form{
                 border:2px solid #1ba39c;
@@ -504,6 +618,26 @@ function countAge(object, birthDay){
             #id05 .tab-content{
                 padding-top:20px;
             }
+			
+	.form-panel:not(.active) {
+		display:none;
+	}
+	.steps{
+		margin-top:490px;
+		border:1px solid #000;
+		border-radius:25px;
+		background-color: black;
+		opacity: 0.4; 
+		padding:50px;
+	}
+	.hied_border{
+		border-style:hidden; 
+		border-top-style:hidden;
+		border-bottom-style:groove;
+		background-color:#F8F8F9;
+		border-radius:0px;
+		box-shadow:none;
+	}
 
         </style>
         <script language="Javascript" type="text/javascript">
@@ -517,7 +651,7 @@ function countAge(object, birthDay){
                     var charCode = e.which;
                 }
                 else { return true; }
-                if ((charCode > 64 && charCode < 91) || (charCode > 96 && charCode < 123))
+               if ((charCode > 64 && charCode < 91) || (charCode > 96 && charCode < 123) || charCode == 32 || charCode == 46)
                     return true;
                 else
                     return false;
@@ -549,73 +683,185 @@ function countAge(object, birthDay){
             }
         }
  
+ 	document.addEventListener('DOMContentLoaded', function() {
+	  
+	  var input = document.getElementById('permanent_residential_address');
+	  input.addEventListener('keydown', function(e){      
+	       var input = e.target;
+	       var val = input.value;
+	       var end = input.selectionEnd;
+	       if(e.keyCode == 32 && (val[end - 1] == " " || val[end] == " ")) {
+	         e.preventDefault();
+	         return false;
+	      }      
+	    });
+	});
+	
+	document.addEventListener('DOMContentLoaded', function() {
+	  
+	  var input = document.getElementById('father_name');
+	  input.addEventListener('keydown', function(e){      
+	       var input = e.target;
+	       var val = input.value;
+	       var end = input.selectionEnd;
+	       if(e.keyCode == 32 && (val[end - 1] == " " || val[end] == " ")) {
+	         e.preventDefault();
+	         return false;
+	      }      
+	    });
+	});
+	document.addEventListener('DOMContentLoaded', function() {
+	  
+	  var input = document.getElementById('mother_name');
+	  input.addEventListener('keydown', function(e){      
+	       var input = e.target;
+	       var val = input.value;
+	       var end = input.selectionEnd;
+	       if(e.keyCode == 32 && (val[end - 1] == " " || val[end] == " ")) {
+	         e.preventDefault();
+	         return false;
+	      }      
+	    });
+	});
+	document.addEventListener('DOMContentLoaded', function() {
+	  
+	  var input = document.getElementById('occupation');
+	  input.addEventListener('keydown', function(e){      
+	       var input = e.target;
+	       var val = input.value;
+	       var end = input.selectionEnd;
+	       if(e.keyCode == 32 && (val[end - 1] == " " || val[end] == " ")) {
+	         e.preventDefault();
+	         return false;
+	      }      
+	    });
+	});
+	document.addEventListener('DOMContentLoaded', function() {
+	  
+	  var input = document.getElementById('occupation_mother');
+	  input.addEventListener('keydown', function(e){      
+	       var input = e.target;
+	       var val = input.value;
+	       var end = input.selectionEnd;
+	       if(e.keyCode == 32 && (val[end - 1] == " " || val[end] == " ")) {
+	         e.preventDefault();
+	         return false;
+	      }      
+	    });
+	});
+	
+	$(document).ready(function(){
+  	 	$("#contact").on("blur", function(){
+	        var mobNum = $(this).val();
+	        var filter = /^\d*(?:\.\d{1,2})?$/;
+	
+	          if (filter.test(mobNum)) 
+	          {
+	            if(mobNum.length==10)
+	            {
+	                $("#contact").css({"border":"1px solid green"});
+	                $("#folio-invalid").addClass("hidden");
+	            } 
+	            else 
+	            {
+	                $("#folio-invalid").removeClass("hidden");
+	                $("#contact").val('');
+	                $("#contact").css({"border":"1px solid red"});
+	                return false;
+	            }
+	         }
+	   });
+	});
     </script>
    
 
 </head>
 <body style="color:#0d0e0e" onLoad="activate('frm01', arr);"> 
-<header class="main__header" style="background-image:url(img/header.png)">
-  <div class="container">
-    <nav class="navbar navbar-default" role="navigation"> 
-      <div class="navbar-header">
-        <h1 class="navbar-brand"><a href="index.php">MATRIMONY</a></h1>
-        <a href="#" class="submenu">Menus</a> </div>
-      <div class="menuBar">
-        <ul class="menu">
-          <li class="active"><a href="index.php">Home</a></li>
-           <li><a href="login.php">Login</a></li>
-        </ul>
-      </div>
-      <!-- /.navbar-collapse --> 
-    </nav>
-  </div>
+<header class="main__header" >
+	<div style="background-color:#225169; height:50px">&nbsp;</div>
+		<div class="container">
+			<nav class="navbar navbar-default" role="navigation"> 
+			<div class="navbar-header">
+				<h1 class="navbar-brand" style="font-family:CenturyGothict; font-size:30px"><a href="index.php"><span style="color:#FF4500">MALI</span> <span style="color:#225169">MATRIMONY</span></a></h1>
+				<a href="#" class="submenu" style="background-image:url(img/default-logo.png); width:40px; height:40px">Menus</a> 
+			</div>
+			<div class="menuBar">
+				<ul class="menu">
+					<li ><a href="index.php">Home</a></li>
+					<li ><a href="login.php">Login</a></li>
+          			</ul>
+			</div>
+			<!-- /.navbar-collapse --> 
+		</nav>
+	</div>
 </header>
-
-        <section class="main__middle__container homepage" style="margin-top:100px;">
-            <div class="container main_form" style="width:600px">
-                <div class="col-sm-12 main_heading">
-                    <h2 style="color:#fff">REGISTRATION FORM</h2>
-                </div>
-                <form class="form-horizontal" name="form1" action="registration_astrological.php" method="post"> 
-                        <?php
-						if(isset($_POST['first_name'])){$first_name = $_SESSION['first_name']=$_POST['first_name'];}
-						if(isset($_POST['middle_name'])){$middle_name = $_SESSION['middle_name'] = $_POST['middle_name'];}
-						if(isset($_POST['last_name'])){$last_name = $_SESSION['last_name'] = $_POST['last_name'];}
-						if(isset($_POST['gender'])){$gender = $_SESSION['gender'] = $_POST['gender'];}
-						if(isset($_POST['states'])){$states = $_SESSION['states'] = $_POST['states'];}
-						if(isset($_POST['city'])){$city = $_SESSION['city'] = $_POST['city'];}
-						if(isset($_POST['address'])){$address = $_SESSION['address'] = $_POST['address'];}
-						if(isset($_POST['mobile_no1'])){$mobile_no1 = $_SESSION['mobile_no1'] =$_POST['mobile_no1'];}
-						if(isset($_POST['mobile_no2'])){$mobile_no2 = $_SESSION['mobile_no2'] = $_POST['mobile_no2'];}
-						if(isset($_POST['DATEOFBIRTH'])){$birth_date = $_SESSION['DATEOFBIRTH'] = $_POST['DATEOFBIRTH'];}
-						if(isset($_POST['age'])){$age = $_SESSION['age'] = $_POST['age'];}
-						if(isset($_POST['birth_time'])){$birth_time = $_SESSION['birth_time'] = $_POST['birth_time'];}
-						if(isset($_POST['day_of_birth'])){$day_of_birth = $_SESSION['day_of_birth'] = $_POST['day_of_birth'];}
-						if(isset($_POST['birth_city'])){$birth_city = $_SESSION['birth_city'] = $_POST['birth_city'];}
-						if(isset($_POST['birth_district'])){$birth_district = $_SESSION['birth_district'] =$_POST['birth_district'];}
-						if(isset($_POST['birth_state'])){$birth_state = $_SESSION['birth_state'] = $_POST['birth_state'];}
-						if(isset($_POST['cast'])){$cast=$_SESSION['cast']=$_POST['cast'];}
-						if(isset($_POST['fit'])){$fit=$_SESSION['fit']=$_POST['fit'];}
-						if(isset($_POST['inches'])){$inches=$_SESSION['inches']=$_POST['inches'];}
-						if(isset($_POST['body_weight'])){$body_weight=$_SESSION['body_weight']=$_POST['body_weight'];}
-						if(isset($_POST['skin_tone'])){$skin_tone=$_SESSION['skin_tone']=$_POST['skin_tone'];}
-						if(isset($_POST['blood_group'])){$blood_group=$_SESSION['blood_group']=$_POST['blood_group'];}
-						if(isset($_POST['spectacles'])){$spectacles=$_SESSION['spectacles']=$_POST['spectacles'];}
-						if(isset($_POST['hobbies'])){$hobbies=$_SESSION['hobbies']=$_POST['hobbies'];}
-						if(isset($_POST['any_disability'])){$any_disability=$_SESSION['any_disability']=$_POST['any_disability'];}
-						if(isset($_POST['any_disability_desc'])){$any_disability_desc=$_SESSION['any_disability_desc']=$_POST['any_disability_desc'];}
-						if(isset($_POST['acceptation'])){$acceptation=$_SESSION['acceptation']=$_POST['acceptation'];}
-						if(isset($_POST['describe_yourself'])){$describe_yourself=$_SESSION['describe_yourself']=$_POST['describe_yourself'];}
-						if(isset($_POST['faculty'])){$faculty=$_SESSION['faculty']=$_POST['faculty'];}
-						//if(isset($_POST['academic_level'])){$academic_level=$_POST['academic_level'];}
-						if(isset($_POST['college_name'])){$college_name=$_SESSION['college_name']=$_POST['college_name'];}
-						if(isset($_POST['college_address'])){$college_address=$_SESSION['college_address']=$_POST['college_address'];}
-						if(isset($_POST['office_contact'])){$office_contact=$_SESSION['office_contact']=$_POST['office_contact'];}
-						if(isset($_POST['job_busi_status'])){$job_busi_status=$_SESSION['job_busi_status']=$_POST['job_busi_status'];}
-						if(isset($_POST['working_post'])){$working_post=$_SESSION['working_post']=$_POST['working_post'];}
-						if(isset($_POST['annual_income'])){$annual_income=$_SESSION['annual_income']=$_POST['annual_income'];}
-						if(isset($_POST['work_place_address'])){$work_place_address=$_SESSION['work_place_address']=$_POST['work_place_address'];}
-							?>
+<div class="reg_container col-sm-12" style="background-image:url(img/RegisterpagePreview.jpg); background-repeat:round; margin-top:120px;">
+	<div class="container" style="margin-top:150px; margin-bottom:100px;">
+		<div class="container col-md-7 steps" style="">
+			<div class="form-panel active">
+				<h2 class='list-h2'>How To Register</h2>
+				<h4 class='list-h4'><strong>Step 1</strong></h4>
+				<p class='list-p'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Fill all forms carefully.All fields are mandatory of each form. </p>
+			</div>
+			<div class="form-panel">
+				<h2 class='list-h2'>How To Register</h2>
+				<h4 class='list-h4'><strong>Step 2</strong></h4>
+				<p class='list-p'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Check all information filled by you. </p>
+			</div>
+			<div class="form-panel">
+				<h2 class='list-h2'>How To Register</h2>
+				<h4 class='list-h4'><strong>Step 3</strong></h4>
+				<p class='list-p'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Make payment and signup. </p>
+			</div>
+			
+			<img align="right" class="next" src="img/ICON 1/next.png" height="50" width="50" style="cursor:pointer;">
+			<img align="right" class="previous" src="img/ICON 1/Prev.png" height="50" width="50" style="cursor:pointer;">
+		</div>
+		<div class="container col-md-offset-8 reg-form">
+			<div class="col-sm-12 main_heading">
+				<h2 style="color:#fff">REGISTRATION FORM</h2>
+			</div>
+			 <form class="form-horizontal" name="form1" action="registration_astrological.php" method="post"> 
+			 <?php
+				if(isset($_POST['first_name'])){$first_name = $_SESSION['first_name']=$_POST['first_name'];}
+				if(isset($_POST['middle_name'])){$middle_name = $_SESSION['middle_name'] = $_POST['middle_name'];}
+				if(isset($_POST['last_name'])){$last_name = $_SESSION['last_name'] = $_POST['last_name'];}
+				if(isset($_POST['gender'])){$gender = $_SESSION['gender'] = $_POST['gender'];}
+				if(isset($_POST['states'])){$states = $_SESSION['states'] = $_POST['states'];}
+				if(isset($_POST['city'])){$city = $_SESSION['city'] = $_POST['city'];}
+				if(isset($_POST['address'])){$address = $_SESSION['address'] = $_POST['address'];}
+				if(isset($_POST['mobile_no1'])){$mobile_no1 = $_SESSION['mobile_no1'] =$_POST['mobile_no1'];}
+				if(isset($_POST['mobile_no2'])){$mobile_no2 = $_SESSION['mobile_no2'] = $_POST['mobile_no2'];}
+				if(isset($_POST['DATEOFBIRTH'])){$birth_date = $_SESSION['DATEOFBIRTH'] = $_POST['DATEOFBIRTH'];}
+				if(isset($_POST['age'])){$age = $_SESSION['age'] = $_POST['age'];}
+				if(isset($_POST['birth_time'])){$birth_time = $_SESSION['birth_time'] = $_POST['birth_time'];}
+				if(isset($_POST['day_of_birth'])){$day_of_birth = $_SESSION['day_of_birth'] = $_POST['day_of_birth'];}
+				if(isset($_POST['birth_city'])){$birth_city = $_SESSION['birth_city'] = $_POST['birth_city'];}
+				if(isset($_POST['birth_district'])){$birth_district = $_SESSION['birth_district'] =$_POST['birth_district'];}
+				if(isset($_POST['birth_state'])){$birth_state = $_SESSION['birth_state'] = $_POST['birth_state'];}
+				if(isset($_POST['cast'])){$cast=$_SESSION['cast']=$_POST['cast'];}
+				if(isset($_POST['subcast'])){$subcast=$_SESSION['subcast']=$_POST['subcast'];}
+				if(isset($_POST['fit'])){$fit=$_SESSION['fit']=$_POST['fit'];}
+				if(isset($_POST['inches'])){$inches=$_SESSION['inches']=$_POST['inches'];}
+				if(isset($_POST['body_weight'])){$body_weight=$_SESSION['body_weight']=$_POST['body_weight'];}
+				if(isset($_POST['skin_tone'])){$skin_tone=$_SESSION['skin_tone']=$_POST['skin_tone'];}
+				if(isset($_POST['blood_group'])){$blood_group=$_SESSION['blood_group']=$_POST['blood_group'];}
+				if(isset($_POST['spectacles'])){$spectacles=$_SESSION['spectacles']=$_POST['spectacles'];}
+				if(isset($_POST['hobbies'])){$hobbies=$_SESSION['hobbies']=$_POST['hobbies'];}
+				if(isset($_POST['any_disability'])){$any_disability=$_SESSION['any_disability']=$_POST['any_disability'];}
+				if(isset($_POST['any_disability_desc'])){$any_disability_desc=$_SESSION['any_disability_desc']=$_POST['any_disability_desc'];}
+				if(isset($_POST['acceptation'])){$acceptation=$_SESSION['acceptation']=$_POST['acceptation'];}
+				if(isset($_POST['describe_yourself'])){$describe_yourself=$_SESSION['describe_yourself']=$_POST['describe_yourself'];}
+				if(isset($_POST['faculty'])){$faculty=$_SESSION['faculty']=$_POST['faculty'];}
+				//if(isset($_POST['academic_level'])){$academic_level=$_POST['academic_level'];}
+				if(isset($_POST['college_name'])){$college_name=$_SESSION['college_name']=$_POST['college_name'];}
+				if(isset($_POST['college_address'])){$college_address=$_SESSION['college_address']=$_POST['college_address'];}
+				if(isset($_POST['office_contact'])){$office_contact=$_SESSION['office_contact']=$_POST['office_contact'];}
+				if(isset($_POST['job_busi_status'])){$job_busi_status=$_SESSION['job_busi_status']=$_POST['job_busi_status'];}
+				if(isset($_POST['working_post'])){$working_post=$_SESSION['working_post']=$_POST['working_post'];}
+				if(isset($_POST['annual_income'])){$annual_income=$_SESSION['annual_income']=$_POST['annual_income'];}
+				if(isset($_POST['work_place_address'])){$work_place_address=$_SESSION['work_place_address']=$_POST['work_place_address'];}
+			?>
                           <input name="first_name" type="hidden" value="<?php echo $first_name;  ?>"  >
                           <input name="middle_name" type="hidden" value="<?php echo $middle_name;  ?>" >
                           <input name="last_name" type="hidden" value="<?php echo $last_name;  ?>">
@@ -634,6 +880,7 @@ function countAge(object, birthDay){
                           <input type="hidden" name="birth_state" value="<?php echo $birth_state;  ?>">
                           
                           <input name="cast" type="hidden"value="<?php echo $cast;  ?>"   >
+						  <input name="subcast" type="hidden" value="<?php echo $subcast; ?>" >
                           <input name="fit" type="hidden" value="<?php echo $fit;  ?>">
                           <input type="hidden" name="inches" value="<?php echo $inches;  ?>">
                           <input type="hidden" name="body_weight" value="<?php echo $body_weight; ?>"> 
@@ -655,156 +902,174 @@ function countAge(object, birthDay){
                           <input name="annual_income" type="hidden" value="<?php echo $annual_income;  ?>" >
                           <input name="office_contact" type="hidden" value="<?php echo $office_contact;  ?>" >
                           <input name="work_place_address" type="hidden" value="<?php echo $work_place_address;  ?>" >
-                    
-                    
-                    <div id="frm04">
-                        <div class="col-sm-12">
-                            <div class="col-sm-12 _heading">
-                                <h4><img src="img/ICON 1/Family Information.png" style="width:50px;height:50px;">
-                               Family Information</h4>
-                            </div>
-                                <!-- Text input-->
-                                <div class="form-group">
-                                    <label class="col-sm-4 control-label" for="Father's name ">Father's Name</label>  
-                                    <div class="col-sm-8">
-                                        <input id="father_name" name="father_name" type="text" onKeyPress="return onlyAlphabets(event,this);" class="form-control input-md" required value="<?php echo $_SESSION['father_name'];?>" >
-                                    </div>
-                                </div>
-                                <!-- Text input-->
-                                <div class="form-group">
-                                    <label class="col-sm-4 control-label" for="occupation">Occupation</label>  
-                                    <div class="col-sm-8">
-                                        <input id="occupation" name="occupation_father" type="text"  class="form-control input-md" required value="<?php echo $_SESSION['occupation_father'];?>">
-                                    </div>
-                                </div>
-                                <div class="form-group">
-                                    <label class="col-sm-4 control-label" for="mother_name">Mother's Name </label>  
-                                    <div class="col-sm-8">
-                                        <input id="mother_name" name="mother_name" type="text" onKeyPress="return onlyAlphabets(event,this);" class="form-control input-md" required  value="<?php echo $_SESSION['mother_name'];?>">
-                                    </div>
-                                </div>
-                                <div class="form-group">
-                                    <label class="col-sm-4 control-label" for="occupation_mother">Occupation</label>
-                                    <div class="col-sm-8">                     
-                                        <input type="text" class="form-control" id="occupation_mother" name="occupation_mother" required value="<?php echo $_SESSION['occupation_mother'];?>" >
-                                    </div>
-                                </div>
-                                <div class="form-group">
-                                    <label class="col-sm-4 control-label" for="no_of_siblings">No. of  Brothers  </label>  
-                                    <div class="col-sm-8">
-                                        
-                                        <select name="no_of_brother"   class="form-control input-md" required>
-                                        	<option value="0"<?php if($_SESSION['no_of_brother']=='0') echo "selected";?>>0</option>
-                                            <option value="1"<?php if($_SESSION['no_of_brother']=='1') echo "selected";?>>1</option>
-                                            <option value="2"<?php if($_SESSION['no_of_brother']=='2') echo "selected";?>>2</option>
-                                            <option value="3"<?php if($_SESSION['no_of_brother']=='3') echo "selected";?>>3</option>
-                                            <option value="4"<?php if($_SESSION['no_of_brother']=='4') echo "selected";?>>4</option>
-                                            <option value="5"<?php if($_SESSION['no_of_brother']=='5') echo "selected";?>>5</option>
-                                            <option value="6"<?php if($_SESSION['no_of_brother']=='6') echo "selected";?>>6</option>
-                                            <option value="None"<?php if($_SESSION['no_of_brother']=='None') echo "selected";?>>None</option>
-                                        </select>
-                                    </div>
-                                </div>
-                            
-                                <div class="form-group">
-                                    <label class="col-sm-4 control-label" for="marital_satus_of_siblings">Married Brother</label>  
-                                    <div class="col-sm-8">
-                                    <select name="married_brother"   class="form-control input-md" required>
-                                    	<option value="0"<?php if($_SESSION['married_brother']=='0') echo "selected";?>>0</option>
-										<option value="1"<?php if($_SESSION['married_brother']=='1') echo "selected";?>>1</option>
-										<option value="2"<?php if($_SESSION['married_brother']=='2') echo "selected";?>>2</option>
-										<option value="3"<?php if($_SESSION['married_brother']=='3') echo "selected";?>>3</option>
-										<option value="4"<?php if($_SESSION['married_brother']=='4') echo "selected";?>>4</option>
-										<option value="5"<?php if($_SESSION['married_brother']=='5') echo "selected";?>>5</option>                                    </select>
-                                    </div>
-                                </div>
-                                
-                                 <div class="form-group">
-                                    <label class="col-sm-4 control-label" for="marital_satus_of_siblings">Unmarried Brother</label>  
-                                    <div class="col-sm-8">
-                                    <select name="unmarried_brother"   class="form-control input-md" required>
-                                    	<option value="0"<?php if($_SESSION['unmarried_brother']=='0') echo "selected";?>>0</option>
-										<option value="1"<?php if($_SESSION['unmarried_brother']=='1') echo "selected";?>>1</option>
-										<option value="2"<?php if($_SESSION['unmarried_brother']=='2') echo "selected";?>>2</option>
-										<option value="3"<?php if($_SESSION['unmarried_brother']=='3') echo "selected";?>>3</option>
-										<option value="4"<?php if($_SESSION['unmarried_brother']=='4') echo "selected";?>>4</option>
-										<option value="5"<?php if($_SESSION['unmarried_brother']=='5') echo "selected";?>>5</option>                                        </select>
-                                    </div>
-                                </div>
-                                
-                                <div class="form-group">
-                                    <label class="col-sm-4 control-label" for="no_of_siblings">No. of  Sisters  </label>  
-                                    <div class="col-sm-8">
-                                        
-                                        <select name="no_of_sister"   class="form-control input-md" required>
-                                        	<option value="0"<?php if($_SESSION['no_of_sister']=='0') echo "selected";?>>0</option>
-                                            <option value="1"<?php if($_SESSION['no_of_sister']=='1') echo "selected";?>>1</option>
-                                            <option value="2"<?php if($_SESSION['no_of_sister']=='2') echo "selected";?>>2</option>
-                                            <option value="3"<?php if($_SESSION['no_of_sister']=='3') echo "selected";?>>3</option>
-                                            <option value="4"<?php if($_SESSION['no_of_sister']=='4') echo "selected";?>>4</option>
-                                            <option value="5"<?php if($_SESSION['no_of_sister']=='5') echo "selected";?>>5</option>
-                                            <option value="6"<?php if($_SESSION['no_of_sister']=='6') echo "selected";?>>6</option>
-                                            <option value="None"<?php if($_SESSION['no_of_sister']=='None') echo "selected";?>>None</option>
-                                        </select>
-                                    </div>
-                                </div>
-                            
-                                <div class="form-group">
-                                    <label class="col-sm-4 control-label" for="marital_satus_of_siblings">Married sister</label>  
-                                    <div class="col-sm-8">
-                                    <select name="married_sister"   class="form-control input-md" required>
-                                     	<option value="0"<?php if($_SESSION['married_sister']=='0') echo "selected";?>>0</option>
-										<option value="1"<?php if($_SESSION['married_sister']=='1') echo "selected";?>>1</option>
-										<option value="2"<?php if($_SESSION['married_sister']=='2') echo "selected";?>>2</option>
-										<option value="3"<?php if($_SESSION['married_sister']=='3') echo "selected";?>>3</option>
-										<option value="4"<?php if($_SESSION['married_sister']=='4') echo "selected";?>>4</option>
-										<option value="5"<?php if($_SESSION['married_sister']=='5') echo "selected";?>>5</option>                                        </select>
-                                    </div>
-                                </div>
-                                
-                                 <div class="form-group">
-                                    <label class="col-sm-4 control-label" for="marital_satus_of_siblings">Unmarried Sister</label>  
-                                    <div class="col-sm-8">
-                                       <select name="unmarried_sister"   class="form-control input-md" required>
-                                        	<option value="0"<?php if($_SESSION['unmarried_sister']=='0') echo "selected";?>>0</option>
-                                            <option value="1"<?php if($_SESSION['unmarried_sister']=='1') echo "selected";?>>1</option>
-                                            <option value="2"<?php if($_SESSION['unmarried_sister']=='2') echo "selected";?>>2</option>
-                                            <option value="3"<?php if($_SESSION['unmarried_sister']=='3') echo "selected";?>>3</option>
-                                            <option value="4"<?php if($_SESSION['unmarried_sister']=='4') echo "selected";?>>4</option>
-                                            <option value="5"<?php if($_SESSION['unmarried_sister']=='5') echo "selected";?>>5</option>                                        </select>
-                                    </div>
-                                </div>
-                                
-                                <div class="form-group">
-                                    <label class="col-sm-4 control-label" for="permanent_residential_address">Permanent Residential Address</label>  
-                                    <div class="col-sm-8">
-                                        <textarea id="permanent_residential_address" name="permanent_residential_address"required rows="2"  class="form-control input-md"><?php echo $_SESSION['permanent_residential_address'];?> </textarea>
-                                    </div>
-                                </div>
-                                
-                                <div class="form-group">
-                                    <label class="col-sm-4 control-label" for="parent_conatct_no">Contact Number for Parents</label>  
-                                    <div class="col-sm-8">                     
-                                        <input type="text" class="form-control input-md" maxlength="12" required onKeyPress="return onlyNos(event,this);" name="parent_conatct_no" value="<?php echo $_SESSION['parent_conatct_no'];?>" >
-                                    </div>
-                                </div>
-                        </div>
-                        <div class="navigation col-sm-6" align="right">
-                           <a href="registration_professlonal.php">
-                           <button type="button" name="prev" class="btn btn-danger" style="background-color:#054c48;border-color:#1ba39c">Previous</button></a>
-                           <button type="submit" name="submit" class="btn btn-danger" style="background-color:#054c48;border-color:#1ba39c">Next</button></div>
-						    <div class="navigation col-sm-6"  align="right" style="padding-top:20px;">
-						   <a href="reset.php" style="color:#FFFFFF; font-size:13px; font-weight:bold">Reset</a>
-                        </div>
-                 </div>
-                    
-                    
-                    
-                    
-                </form>
+                          
+				<div class="col-sm-12" style="	background-color:#F8F8F9;">
+					<div class="col-sm-12 _heading" >
+						<h4><img src="img/ICON 1/Family Information.png" style="width:25px;height:25px;">&nbsp;Family Information</h4>
+					</div>
+					<h5 style="font-size:14px;text-transform:none; color:red;text-align:right;margin-bottom:15px;font-family:Arial;">* All fields are mandatory</h5>
+					<div class="form-group" >
+	                                    <label class="col-sm-4 control-label" for="Father's name ">Father's Name</label>  
+	                                    <div class="col-sm-8">
+	                                        <input id="father_name" name="father_name" type="text" onKeyPress="return onlyAlphabets(event,this);" class="form-control input-md hied_border" required value="<?php echo $_SESSION['father_name'];?>" >
+	                                    </div>
+	                                </div>
+	                                <!-- Text input-->
+	                                <div class="form-group">
+	                                    <label class="col-sm-4 control-label" for="occupation">Occupation</label>  
+	                                    <div class="col-sm-8">
+	                                        <input id="occupation" name="occupation_father" type="text"  class="form-control input-md hied_border" required  onKeyPress="return onlyAlphabets(event,this);" value="<?php echo $_SESSION['occupation_father'];?>">
+	                                    </div>
+	                                </div>
+	                                <div class="form-group">
+	                                    <label class="col-sm-4 control-label" for="mother_name">Mother's Name </label>  
+	                                    <div class="col-sm-8">
+	                                        <input id="mother_name" name="mother_name" type="text" onKeyPress="return onlyAlphabets(event,this);" class="form-control input-md hied_border" required  value="<?php echo $_SESSION['mother_name'];?>">
+	                                    </div>
+	                                </div>
+	                                <div class="form-group">
+	                                    <label class="col-sm-4 control-label" for="occupation_mother">Occupation</label>
+	                                    <div class="col-sm-8">                     
+	                                        <input type="text" class="form-control hied_border" id="occupation_mother" name="occupation_mother" onKeyPress="return onlyAlphabets(event,this);" required value="<?php echo $_SESSION['occupation_mother'];?>" >
+	                                    </div>
+	                                </div>
 
-            </div>           
-        </section>
+                                	
+	                                <div class="form-group">
+	                                    <label class="col-sm-4 control-label" for="no_of_siblings">No. of  Brothers  </label>  
+	                                    <div class="col-sm-8">
+	                                        
+	                                        <select name="no_of_brother" id="no_of_brother"  class="form-control input-md hied_border" required>
+	                                            <option value="0"<?php if($_SESSION['no_of_brother']=='0') echo "selected";?>>0</option>
+	                                            <option value="1"<?php if($_SESSION['no_of_brother']=='1') echo "selected";?>>1</option>
+	                                            <option value="2"<?php if($_SESSION['no_of_brother']=='2') echo "selected";?>>2</option>
+	                                            <option value="3"<?php if($_SESSION['no_of_brother']=='3') echo "selected";?>>3</option>
+	                                            <option value="4"<?php if($_SESSION['no_of_brother']=='4') echo "selected";?>>4</option>
+	                                            <option value="5"<?php if($_SESSION['no_of_brother']=='5') echo "selected";?>>5</option>
+	                                            <option value="6"<?php if($_SESSION['no_of_brother']=='6') echo "selected";?>>6</option>
+	                                            <option value="7"<?php if($_SESSION['no_of_brother']=='7') echo "selected";?>>7</option>
+	                                            <option value="8"<?php if($_SESSION['no_of_brother']=='8') echo "selected";?>>8</option>
+	                                            <option value="9"<?php if($_SESSION['no_of_brother']=='9') echo "selected";?>>9</option>
+	                                            <option value="10"<?php if($_SESSION['no_of_brother']=='10') echo "selected";?>>10</option>
+	                                            
+	                                        </select>
+	                                    </div>
+	                                </div>
+                            
+	                                <div class="form-group">
+	                                    <label class="col-sm-4 control-label" for="marital_satus_of_siblings">Married Brother</label>  
+	                                    <div class="col-sm-8">
+	                                    <select name="married_brother"  id="married_brother" class="form-control input-md hied_border" required>
+	                                    	<option value="0"<?php if($_SESSION['married_brother']=='0') echo "selected";?>>0</option>
+						<!--<option value="1"<?php if($_SESSION['married_brother']=='1') echo "selected";?>>1</option>
+						<option value="2"<?php if($_SESSION['married_brother']=='2') echo "selected";?>>2</option>
+						<option value="3"<?php if($_SESSION['married_brother']=='3') echo "selected";?>>3</option>
+						<option value="4"<?php if($_SESSION['married_brother']=='4') echo "selected";?>>4</option>
+						<option value="5"<?php if($_SESSION['married_brother']=='5') echo "selected";?>>5</option>-->   
+					    </select>
+	                                    </div>
+	                                </div>
+	                                
+	                                 <div class="form-group">
+	                                    <label class="col-sm-4 control-label" for="marital_satus_of_siblings">Unmarried Brother</label>  
+	                                    <div class="col-sm-8">
+	                                    <input type="text" class="form-control input-md hied_border" id="unmarried_brother"  name="unmarried_brother" value="<?php if($_SESSION['unmarried_brother']){echo $_SESSION['unmarried_brother'];}else{echo "0";}?>" readonly>
+	                                    
+	                                    </div>
+	                                </div>
+                                
+	                                <div class="form-group">
+	                                    <label class="col-sm-4 control-label" for="no_of_siblings">No. of  Sisters  </label>  
+	                                    <div class="col-sm-8">
+	                                        
+	                                        <select name="no_of_sister"  id="no_of_sister" class="form-control input-md hied_border" required>
+	                                        	<option value="0"<?php if($_SESSION['no_of_sister']=='0') echo "selected";?>>0</option>
+	                                            <option value="1"<?php if($_SESSION['no_of_sister']=='1') echo "selected";?>>1</option>
+	                                            <option value="2"<?php if($_SESSION['no_of_sister']=='2') echo "selected";?>>2</option>
+	                                            <option value="3"<?php if($_SESSION['no_of_sister']=='3') echo "selected";?>>3</option>
+	                                            <option value="4"<?php if($_SESSION['no_of_sister']=='4') echo "selected";?>>4</option>
+	                                            <option value="5"<?php if($_SESSION['no_of_sister']=='5') echo "selected";?>>5</option>
+	                                            <option value="6"<?php if($_SESSION['no_of_sister']=='6') echo "selected";?>>6</option>
+	                                            <option value="7"<?php if($_SESSION['no_of_sister']=='7') echo "selected";?>>7</option>
+	                                            <option value="8"<?php if($_SESSION['no_of_sister']=='8') echo "selected";?>>8</option>
+	                                            <option value="9"<?php if($_SESSION['no_of_sister']=='9') echo "selected";?>>9</option>
+	                                            <option value="10"<?php if($_SESSION['no_of_sister']=='10') echo "selected";?>>10</option>
+	                                        </select>
+	                                    </div>
+	                                </div>
+	                            
+	                                <div class="form-group">
+	                                    <label class="col-sm-4 control-label" for="marital_satus_of_siblings">Married sister</label>  
+	                                    <div class="col-sm-8">
+	                                    <select name="married_sister" id="married_sister"  class="form-control input-md hied_border" required>
+	                                     	<option value="0"<?php if($_SESSION['married_sister']=='0') echo "selected";?>>0</option>
+											<!--<option value="1"<?php if($_SESSION['married_sister']=='1') echo "selected";?>>1</option>
+											<option value="2"<?php if($_SESSION['married_sister']=='2') echo "selected";?>>2</option>
+											<option value="3"<?php if($_SESSION['married_sister']=='3') echo "selected";?>>3</option>
+											<option value="4"<?php if($_SESSION['married_sister']=='4') echo "selected";?>>4</option>
+											<option value="5"<?php if($_SESSION['married_sister']=='5') echo "selected";?>>5</option>-->                                        </select>
+	                                    </div>
+	                                </div>
+                                
+	                                 <div class="form-group">
+	                                    <label class="col-sm-4 control-label" for="marital_satus_of_siblings">Unmarried Sister</label>  
+	                                    <div class="col-sm-8">
+	                                     <input type="text" class="form-control input-md hied_border" id="unmarried_sister"  name="unmarried_sister" value="<?php if($_SESSION['unmarried_sister']){echo $_SESSION['unmarried_sister'];}else{echo "0";}?>" readonly>
+	                                      
+	                                    </div>
+	                                </div>
+	                                
+	                                <div class="form-group">
+	                                    <label class="col-sm-4 control-label" for="permanent_residential_address">Permanent Residential Address</label>  
+	                                    <div class="col-sm-8">
+	                                    <textarea class="form-control hied_border" id="permanent_residential_address" name="permanent_residential_address"rows="2" required ><?php echo $_SESSION['permanent_residential_address']; ?></textarea>
+	                                    
+	                                    </div>
+	                                </div>
+                                
+	                                <div class="form-group">
+	                                    <label class="col-sm-4 control-label" for="parent_conatct_no">Contact Number of Parents</label>  
+	                                    <div class="col-sm-8">                     
+	                                        <input type="text" id="contact" class="form-control input-md hied_border" maxlength="10" required onKeyPress="return onlyNos(event,this);" name="parent_conatct_no" value="<?php echo $_SESSION['parent_conatct_no'];?>" >
+	                                        <span id="folio-invalid" class="hidden mob-helpers">
+							<i class="fa fa-times mobile-invalid"></i>Enter 10 Digit Number
+						</span>
+	                                    </div>
+	                                </div>
+                               
+					<div class="form-group" style="margin-bottom:0px">
+						<div class="navigation col-sm-6" align="left" style="padding-top:15px;">
+							<a class="btn" href="reset.php" style="color:#FFFFFF; font-size:15px; font-weight:bold; text-align:right; border:1px solid;">Reset</a>
+						</div>
+						<div class="navigation col-sm-6" align="right">
+							<button class="btn" type="submit" name="submit" style="float:right; color:#ffffff; background-color:#4b6a79; padding:0px; width:90px"> <img align="right" src="img/ICON 1/RegistrationFormNext.png" style="height:35px;width:90px"> </button>
+							<a href="registration_professlonal.php" name="prev" style="float:right; margin-right:15px;">
+								<img align="right" src="img/ICON 1//RegistrationFormPrevious.png" style="height:37px">
+							</a>
+						</div>
+					</div>
+			</form>  
+		</div> 
+	</div> 
+</div>
+<script src="js/jquery.min.js"></script>
+<script>
+	$('.previous').click(function () {
+		var cur = $('.form-panel').index($('.form-panel.active'));
+		if (cur!=0) {
+			$('.form-panel').removeClass('active');
+			$('.form-panel').eq(cur-1).addClass('active');
+		}
+	});
+	$('.next').click(function () {
+		var cur = $('.form-panel').index($('.form-panel.active'));
+		if (cur!=$('.form-panel').length-1) {
+			$('.form-panel').removeClass('active');
+			$('.form-panel').eq(cur+1).addClass('active');
+		}
+	});
+</script>
+       
   <?php include "main/footer.php" ; ?>
      </body>
 </html>

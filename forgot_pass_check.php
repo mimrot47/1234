@@ -1,47 +1,41 @@
-
 <?php
 include "connect.php";
 $pass='';
-  $email1=$_POST['email'];
+$email1=$_POST['email'];
 $count="";
 $sql="SELECT * FROM matrimonialall WHERE email='$email1' ";
-$result=mysql_query($sql) or die(mysql_error());
+$result=mysqli_query($conn,$sql) or die(mysqli_error($conn));
 
-while($row=mysql_fetch_array($result))
+while($row=mysqli_fetch_array($result))
 {
 	$email=$row['email'];
 	$pass=$row['pass'];
 	$count=1;
 }
 
-
 if($count==1)
 {
-	
-$message11=' Your Registration Email and Password for bhavsar.org:
-					Email : '.$email.'
-					Password : '.$pass.'
-				';
-	$to= $email;
-//$from="info@bhavsar.org";
-$subject1 = " request for password ";
+
+$message11=" Your Registration Email(Username) and Password for malimatrimony.org Matrimony : Email : ".$email." Password : ".$pass;
+$to= $email;
+$from="info@bhavsar.org";
+$subject = " Request for password ";
 $mail_body = '
 Message: '.$message11.'
 From: ' . $from . '
-Subject: ' . $subject1 . '
+Subject: ' . $subject . '
 ';
 $headers  = "From: info@bhavsar.org";
 //$headers .= "Content-type: text/htmlrn";
-mail($to, $subject1, $mail_body, $headers);
+mail($to, $subject, $mail_body, $headers);
+  
  
- 
-
 echo '<script type="text/javascript">'; 
 echo 'alert("Your Password Is Sent On Your Mail");'; 
 echo 'window.location.href = "index.php";';
 echo '</script>';
 
- 
+
 
 }
 else

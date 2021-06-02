@@ -1,15 +1,15 @@
-<?php 
+<?php
 $host="localhost"; // Host name
-$username="backtel1_bhadmin"; // Mysql username
-$password="Nb!do3BT4Ix]"; // Mysql password
-$db_name="backtel1_bhavsar"; // Database name
+$username="root"; // Mysql username
+$password=""; // Mysql password
+$db_name="bramhin_matrimony"; // Database name
 
-$connect = mysql_connect("$host", "$username", "$password");
-if(!$connect)
+// Connect to server and select databse.
+$conn = mysqli_connect("$host", "$username", "$password", $db_name);
+if(!$conn)
 {
 	die("cannot connect");
 }
-mysql_select_db("$db_name")or die("cannot select DB");
 
 
 ?>

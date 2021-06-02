@@ -1,3 +1,13 @@
+ <?php 
+include"connect.php";
+session_start();
+
+if(isset($_SESSION['myusername']))
+{
+	header('location:http://bhavsarmarriage.com/matrimony/my_account.php');
+}
+//error_reporting(0);
+?>
 <!DOCTYPE html>
 <html>
 <head>
@@ -10,7 +20,60 @@
 <link href="css/style.css" rel="stylesheet">
 <link href="responcive.css" rel="stylesheet" type="text/css">
  <script src="js/custom_js.js" type="text/javascript"></script>
+ <script>
+ function validateEmail(emailField){ 
+        var reg = /^([A-Za-z0-9_\-\.])+\@([A-Za-z0-9_\-\.])+\.([A-Za-z]{2,4})$/;
+
+        if (reg.test(emailField.value) == false) 
+        {
+             document.getElementById('email').value= "";
+            //alert('Invalid Email Address');
+             document.getElementById('email').style.borderColor = "red";
+            return false;
+           
+        }
+	document.getElementById('email').style.borderColor = "green";
+        return true;
+
+}
+
+
+
+ </script>
          <style>
+         @font-face {
+			font-family: CenturyGothict;
+			src: url(fonts/CenturyGothic.ttf);
+	}
+	@font-face {
+		font-family: CaviarDreams_Bold;
+		src: url(fonts/CaviarDreams_Bold.ttf);
+	}
+	@font-face {
+		font-family: CaviarDreams;
+		src: url(fonts/CaviarDreams.ttf);
+	}
+	@font-face {
+		font-family: BerlinSans;
+		src: url(fonts/BRLNSR.TTF);
+	}
+	
+		body { 
+		 background:url(img/Register logine page BG.jpg) no-repeat center center fixed; 
+		 -webkit-background-size: cover;
+		 -moz-background-size: cover;
+		 -o-background-size: cover;
+		 background-size: cover;
+		}
+		
+		.panel-default {
+		 opacity: 0.9;
+		 margin-top:30px;
+		 padding-left:20px;
+		 padding-right:20px;
+		 padding-top:20px;
+		 background-color:#FFFFFF;
+		}
             ._heading{
                 text-align: center;
             }
@@ -61,42 +124,136 @@
                 padding-top:20px;
             }
 
+
+
         </style>
+        
+        <script language="Javascript" type="text/javascript">
+ 
+        function onlyAlphabets(e, t) {
+            try {
+                if (window.event) 
+                {
+                    var charCode = window.event.keyCode;
+                    
+                }
+                else if (e) 
+                {
+                    var charCode = e.which;
+                }
+                else 
+                { 
+                	return true; 
+                }
+                if ((charCode > 45 && charCode <= 190)) 
+                    return true;
+                else
+                    return false;
+            }
+            catch (err) {
+                alert(err.Description);
+            }
+        }
+ 
+    </script>
 </head>
 <body > 
-
-<header class="main__header" style="background-image:url(img/header.png)">
-  <div class="container">
-    <nav class="navbar navbar-default" role="navigation"> 
-      <div class="navbar-header">
-        <h1 class="navbar-brand"><a href="index.php">MATRIMONY</a></h1>
-        <a href="#" class="submenu">Menus</a> </div>
-      <div class="menuBar">
-        <ul class="menu">
-          <li ><a href="index.php">Home</a></li>
-          <li ><a href="registration_personal.php">Register</a></li>
-        </ul>
-      </div>
-      <!-- /.navbar-collapse --> 
-    </nav>
-  </div>
+<header class="main__header" >
+	<div style="background-color:#225169; height:50px">&nbsp;</div>
+		<div class="container">
+			<nav class="navbar navbar-default" role="navigation"> 
+			<div class="navbar-header">
+				<h1 class="navbar-brand" style="font-family:CenturyGothict; font-size:30px"><a href="index.php"><span style="color:#FF4500">MALI</span> <span style="color:#225169">MATRIMONY</span></a></h1>
+				<a href="#" class="submenu" style="background-image:url(img/default-logo.png); width:40px; height:40px">Menus</a> 
+			</div>
+			<div class="menuBar">
+				<ul class="menu">
+					<li ><a href="index.php">Home</a></li>
+          				<li ><a href="registration_personal.php">Register</a></li> 
+				</ul>
+			</div>
+			<!-- /.navbar-collapse --> 
+		</nav>
+	</div>
 </header>
 
 
 <!--end of slider section-->
-<section class="main__middle__container homepage" style="margin-top:100px;">
-<class="col-sm-12 ">
-            <div class="container main_form" style="width:600px">
+<section class="main__middle__container homepage" style="margin-top:100px;margin-top:2%;height:90vh;">
+  	<div style="background-image:url(img/couple22.jpg); background-repeat:round;margin-top:7%;  height:100%; width:100%">
+  	<?php
+  if(isset($_GET["success"])){
+
+  ?>
+  <br>
+  <br>
+  <center><span style="color: green;font-weight: bold;font-size: 18px;">Registration and Payment Successfully Done</span></center>
+  <br>
+  <br>
+  <?php
+  } else if(isset($_GET["fail"])){
+  ?>
+  <br>
+  <br>
+  <center><span style="color: red;font-weight: bold;font-size: 18px;">Payment Failed</span></center>
+  <br>
+  <br>
+  <?php
+  }
+  ?>
+		<div class="col-md-3 col-md-offset-8" style="margin-top:120px">
+			<div class="panel panel-default log-panel">
+				<div align="center">
+				  <strong style="font-size:25px; font-family:CaviarDreams_Bold;">Login</strong>
+				</div>
+				<div class="panel-body">
+					 <form class="form-horizontal" role="form" name="as400samplecode"  action="login_check.php" method="post" > 
+                			 <input type="hidden" name="id" value="<?php if(empty($_GET['id'])){}else{echo $_GET['id']; } ?>">
+					
+					<div class="form-group">
+						<div class="col-sm-12">
+							 <input type="email" class="form-control" id="" name="email" pattern="/^([A-Za-z0-9_\-\.])+\@([A-Za-z0-9_\-\.])+\.([A-Za-z]{2,4})$/" required onBlur="validateEmail(this);" onKeyPress="return onlyAlphabets(event,this);" style="font-family:CaviarDreams;" placeholder="Username">
+						</div>
+					</div>
+					<div class="form-group">
+						<div class="col-sm-12">
+							<input type="password" class="form-control input-md" name="pass" placeholder="Password" required style="font-family:CaviarDreams;">
+						</div>
+					</div>
+					<div class="form-group">
+						<div class="col-sm-12">
+							
+							<input type="submit" value="Sign In" name="button" id="button" class="btn btn-success col-sm-12" style="font-family:CaviarDreams_Bold; font-size:18px">
+						</div>
+					</div>
+					<div class="form-group">
+						<div class="col-sm-8">
+							<div class="checkbox">
+								<label class='login-label' ><input type="checkbox" >Remember me</label>
+							</div>
+						</div>
+						<div class="col-sm-offset-8">
+							<div class="checkbox">
+								<label class='login-label' ><a href="forgot_password.php" style="text-decoration: none;">Forgot Password?</a></label>
+							</div>
+						</div>
+					</div>
+					</form>
+				</div>
+			</div>
+			<span class='login-span'>Don't have an account? <a href="registration_personal.php" style="color:#54aa51;font-family:CaviarDreams_Bold;text-decoration: none;">Sign Up</a> here !</span>
+		</div>
+	</div>
+		
+            <!--<div class="container main_form" style="width:600px;">
                 <div class="col-sm-12 main_heading">
                     <h2 style="color:#fff">USER LOGIN </h2>
                 </div>
                 <form class="form-horizontal" name="as400samplecode"  action="login_check.php" method="post" > 
-                <?php 
-				include"connect.php";
-				error_reporting(0);
-				?><input type="hidden" name="id" value="<?php echo $_GET['id'];  ?>">
+               
+				<input type="hidden" name="id" value="<?php echo $_GET['id'];  ?>">
 					<div id="frm07">
-                        <div class="col-sm-12" id="id05">
+                        <div class="col-sm-12" id="id05">                          
                         <br><br>
                             <div class="form-group">
                                     <label class="col-sm-3 control-label" for="first_name">Email Id</label> 
@@ -104,10 +261,11 @@
                                     	<img src="img/ICON 1/Oxygen-Icons.org-Oxygen-Apps-preferences-desktop-user-password.ico" style="width:30px;height:20px;">
                                     </div> 
                                     <div class="col-sm-8">
-                                        <input type="email" class="form-control input-md" name="email" required>
+                                        <input type="email" class="form-control input-md" id="email" name="email" pattern="/^([A-Za-z0-9_\-\.])+\@([A-Za-z0-9_\-\.])+\.([A-Za-z]{2,4})$/" required onblur="validateEmail(this);" onKeyPress="return onlyAlphabets(event,this);">
                                     </div>
                                 </div>
-                                <!-- Text input-->
+                                
+                               
                                 <div class="form-group">
                                     <label class="col-sm-3 control-label" for="middle_name">Password</label>  
                                     <div class="col-sm-1">
@@ -131,61 +289,15 @@
                         </div>
                     </div>
                     </form>
-					</div>
-                    </div>
-  <!--<div class="row three__blocks no_padding no-margin">
-    <div class="container"><div class="col-md-6">
-     <section class="main__middle__container homepage" style="margin-top:100px;">
-            <div class="container main_form" style="width:500px">
-                <div class="col-sm-12 main_heading" >
-                    <h2>LOGIN FORM</h2>
-                </div>
-                <form action="login_check.php" method="post" >
-                <div  style="padding-top:80px;padding-left:60px;">
-                  <table>
-                  <tr>
-                    <td><span class="head_color_css"> Email</span></td>
-                    <td>
-                        <input type="email" class="form-control form-control-lg" style="width:300px;" name="email" required>
-                    </td>
-                   </tr>
-                   <tr>
-                    <td><span class="head_color_css">Password</span></td>
-                    <td>
-                        <input type="password" class="form-control form-control-lg" style="padding:10px;" name="pass" required>
-                    </td>
-                   </tr>
-                   <tr><td></td></tr>
-                   <tr>
-                  <td></td>
-                  <td>
-                  <input type="submit" value="Submit" name="button"  class="btn btn-primary  ">
-                  </td>
-                  </tr>
-                  <tr>
-                  <td></td>
-                  <td><a href="forgot_password.php"><h5>Forgot Password</h5></a></td></tr>
-                  </table></div>
-              </form></div>
-			</div>
-<div class="col-md-6">
-    <img src="img/Maharashtrian-Wedding-RR-155.jpg" width="450px;" height="350px" class="img-responsive img-rounded" style="margin-top:50px;">
-    </div>
-    </section>
-    </div>
-    
-  </div>-->
+		</div>-->
   
-  
-  
- 
 </section>
 
- <div style="margin-top:72px;">
+ <div style="margin-top:-20px;">
   
 
 </div>
-<p style="position: fixed;bottom: 0px;width: 100%;" class="text-center copyright">&copy; Copyright<a href="www.backtechs.com"> Backend Technologies PVT.LTD</a>. All Rights Reserved.</p>
+<p class="text-center copyright">Copyright &copy; 2020<a href="www.cloudsoft.com"> Cloudsoft PVT.LTD</a>. All Rights Reserved.</p>
 <!-- jQuery (necessary for Bootstrap's JavaScript plugins) --> 
 <script type="text/javascript" src="http://www.htmlpreviews.com/cloud/badminton/credon8/js/jquery.min.js"></script> 
 <!-- Include all compiled plugins (below), or include individual files as needed --> 

@@ -10,7 +10,7 @@
    function displayPaginationBelow($per_page,$page){
 	   $page_url="?";
     	$query = "SELECT COUNT(*) as totalCount FROM city ";
-    	$rec = mysql_fetch_array(mysql_query($query));
+    	$rec = mysqli_fetch_array(mysqli_query($conn,$query));
     	$total = $rec['totalCount'];
         $adjacents = "2"; 
 

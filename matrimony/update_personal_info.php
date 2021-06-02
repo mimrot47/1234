@@ -10,15 +10,17 @@ $middle_name=$_POST['middle_name'];
 $last_name=$_POST['last_name'];
 $states=$_POST['states'];
 $city=$_POST['city'];
+$cast=$_POST['cast'];
+$subcast=$_POST['subcast'];
 $address=$_POST['address'];
- $mobile_no1=$_POST['mobile_no1'];
+$mobile_no1=$_POST['mobile_no1'];
 $birth_date=$_POST['DATEOFBIRTH'];
 $birth_time=$_POST['birth_time'];
 $day_of_birth=$_POST['day_of_birth'];
 $birth_city=$_POST['birth_city'];
 $birth_district=$_POST['birth_district'];
 $birth_state=$_POST['birth_state'];
- $mobile_no2=$_POST['mobile_no2'];
+$mobile_no2=$_POST['mobile_no2'];
 $age=$_POST['age'];
 $fit=$_POST['fit'];
 $inches=$_POST['inches'];
@@ -29,6 +31,9 @@ $spectacles=$_POST['spectacles'];
 $hobbies=$_POST['hobbies'];
 $any_disability=$_POST['any_disability'];
 $any_disability_desc=$_POST['any_disability_desc'];
+
+
+
 $acceptation=$_POST['acceptation'];
 $describe_yourself=$_POST['describe_yourself'];
 /*$faculty=$_POST['faculty'];
@@ -47,7 +52,7 @@ $keyword=$city.",".$mobile_no2.",".$mobile_no1 ;
 
 	
 	
-	mysql_query( "UPDATE matrimonialall SET first_name='$first_name',middle_name='$middle_name',last_name='$last_name',states='$states',city='$city',address='$address',mobile_no1='$mobile_no1',birth_date='$birth_date',birth_time='$birth_time',day_of_birth='$day_of_birth',birth_city='$birth_city',birth_district='$birth_district',birth_state='$birth_state',mobile_no2='$mobile_no2',age='$age',fit='$fit',inches='$inches',body_weight='$body_weight',skin_tone='$skin_tone',blood_group='$blood_group',spectacles='$spectacles',hobbies='$hobbies',any_disability='$any_disability',acceptation='$acceptation',describe_yourself='$describe_yourself',keyword='$keyword' where email='$email'") or die(mysql_error());
+	mysqli_query($conn, "UPDATE matrimonialall SET first_name='$first_name',middle_name='$middle_name',last_name='$last_name',states='$states',city='$city',address='$address',mobile_no1='$mobile_no1',birth_date='$birth_date',birth_time='$birth_time',day_of_birth='$day_of_birth',birth_city='$birth_city',birth_district='$birth_district',birth_state='$birth_state',mobile_no2='$mobile_no2',age='$age',cast='$cast',subcast='$subcast',fit='$fit',inches='$inches',body_weight='$body_weight',skin_tone='$skin_tone',blood_group='$blood_group',spectacles='$spectacles',hobbies='$hobbies',any_disability='$any_disability',any_disability_desc='$any_disability_desc',acceptation='$acceptation',describe_yourself='$describe_yourself',keyword='$keyword' where email='$email'") or die(mysqli_error($conn));
 	
 	echo '<script type="text/javascript">'; 
 	echo 'alert(" Updated..");'; 

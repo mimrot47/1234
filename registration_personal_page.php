@@ -2,6 +2,17 @@
 include_once "session.php";
 include "connect.php";
 error_reporting(0);
+session_start();
+if(isset($_SESSION['subcast'])){
+	 ?>
+ <script> 
+    window.open('./registration_personal_page.php','_self');
+    alert("You all information Inserted");
+    </script> 
+   <?php  
+}
+
+?>
 ?>
 <!DOCTYPE html>
 <html>
@@ -9,11 +20,11 @@ error_reporting(0);
 <title>MATRIMONY</title>
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <!-- Bootstrap -->
-<link href="css/bootstrap.min.css" rel="stylesheet">
+
 <link href='http://fonts.googleapis.com/css?family=Dosis:200,300,400,500,600,700,800' rel='stylesheet' type='text/css'>
 <link href='http://fonts.googleapis.com/css?family=Open+Sans:400,300,700,800' rel='stylesheet' type='text/css'>
 <link href="css/style.css" rel="stylesheet">
-
+<link href="css/bootstrap.min.css" rel="stylesheet">
 <script>
 function countAge(object, birthDay){
       now = new Date();
@@ -40,6 +51,8 @@ function countAge(object, birthDay){
             return true;
         });
     });
+    
+   
 </script>
   <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
         <script src="js/custom_js.js" type="text/javascript"></script>
@@ -49,7 +62,7 @@ function countAge(object, birthDay){
               $(document).ready(function(){
                     $("#button").click(function(){
 						 var button=$("#button").val();
-                          var first_name=$("#first_name").val();
+                         			 var first_name=$("#first_name").val();
 						  var middle_name=$("#middle-name").val();
 						  var last_name=$("#last_name").val();
 						  var gender=$("#gender").val();
@@ -450,34 +463,55 @@ function countAge(object, birthDay){
 				});
 						  
           </script>
-          
+         <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css"> 
         <script src="js/custom_js.js" type="text/javascript"></script>
         <style>
+            @font-face {
+			font-family: CenturyGothict;
+			src: url(fonts/CenturyGothic.ttf);
+		}
+		@font-face {
+			font-family: CaviarDreams_Bold;
+			src: url(fonts/CaviarDreams_Bold.ttf);
+		}
+		@font-face {
+			font-family: CaviarDreams;
+			src: url(fonts/CaviarDreams.ttf);
+		}
+		@font-face {
+			font-family: BerlinSans;
+			src: url(fonts/BRLNSR.ttf);
+		}
+		@font-face {
+			font-family: BebasNeue;
+			src: url(fonts/BebasNeue.otf);
+		}
             ._heading{
-                text-align: center;
+               text-align:center;
             }
             .main_heading h2{
                 margin:0;
                 padding:10px;
                 text-align: center;
-            }
+				font-family:Arial;
+				font-size:26px;
+			}
             ._heading h4{
-                color:#1ba39c;
+                color:#225169;
                 padding:10px 0;
-                margin-bottom:30px;
+                margin-bottom:15px;
                 margin-top:10px;
-                text-align: left;
-                border-bottom: 1px solid #1ba39c;
-            }
+				font-family:Arial;
+             }
             .col-sm-4.control-label {
                 text-align: left;
+				font-family:CenturyGothict;
             }
             .navigation{
                 margin-top:15px;
                 padding:15px;
-                //text-align: center;
-				height:60px;
-                background-color:#1ba39c;
+                height:60px;
+                background-color:#225169;
 
             }
 
@@ -486,7 +520,8 @@ function countAge(object, birthDay){
                 margin-bottom:20px;
             }
             .main_heading{
-                background-color:#1ba39c;
+                background-color:#225169;
+				border-bottom: 2px solid orangered;
             }
             .main_form{
                 border:2px solid #1ba39c;
@@ -503,6 +538,27 @@ function countAge(object, birthDay){
             #id05 .tab-content{
                 padding-top:20px;
             }
+			
+	.form-panel:not(.active) {
+		display:none;
+	}
+	.steps{
+		margin-top:420px;
+		border:1px solid #000;
+		border-radius:25px;
+		background-color: black;
+		opacity: 0.4; 
+		padding:50px;
+	}
+	.hied_border{
+		border-style:hidden; 
+		border-top-style:hidden;
+		border-bottom-style:groove;
+		background-color:#F8F8F9;
+		border-radius:0px;
+		box-shadow:none;
+	}
+	
 
         </style>
         <script language="Javascript" type="text/javascript">
@@ -516,7 +572,7 @@ function countAge(object, birthDay){
                     var charCode = e.which;
                 }
                 else { return true; }
-                if ((charCode > 64 && charCode < 91) || (charCode > 96 && charCode < 123))
+                if ((charCode > 64 && charCode < 91) || (charCode > 96 && charCode < 123) || charCode == 32 )
                     return true;
                 else
                     return false;
@@ -526,6 +582,24 @@ function countAge(object, birthDay){
             }
         }
  
+ function onlyAlphabetsHobbies(e, t) {
+            try {
+                if (window.event) {
+                    var charCode = window.event.keyCode;
+                }
+                else if (e) {
+                    var charCode = e.which;
+                }
+                else { return true; }
+                if ((charCode > 64 && charCode < 91) || (charCode > 96 && charCode < 123) || charCode == 32 || charCode == 44)
+                    return true;
+                else
+                    return false;
+            }
+            catch (err) {
+                alert(err.Description);
+            }
+        }
     </script>
     <script language="Javascript" type="text/javascript">
  
@@ -548,35 +622,115 @@ function countAge(object, birthDay){
             }
         }
  
+  
+  	document.addEventListener('DOMContentLoaded', function() {
+	  
+	  var input = document.getElementById('txtNumeric');
+	  input.addEventListener('keydown', function(e){      
+	       var input = e.target;
+	       var val = input.value;
+	       var end = input.selectionEnd;
+	       if(e.keyCode == 32 && (val[end - 1] == " " || val[end] == " ")) {
+	         e.preventDefault();
+	         return false;
+	      }      
+	    });
+	});
+	
+	
+	document.addEventListener('DOMContentLoaded', function() {
+	  
+	  var input = document.getElementById('txtNumeric1');
+	  input.addEventListener('keydown', function(e){      
+	       var input = e.target;
+	       var val = input.value;
+	       var end = input.selectionEnd;
+	       if(e.keyCode == 32 && (val[end - 1] == " " || val[end] == " ")) {
+	         e.preventDefault();
+	         return false;
+	      }      
+	    });
+	});
+	
+	document.addEventListener('DOMContentLoaded', function() {
+	  
+	  var input = document.getElementById('hobbies');
+	  input.addEventListener('keydown', function(e){      
+	       var input = e.target;
+	       var val = input.value;
+	       var end = input.selectionEnd;
+	       if(e.keyCode == 32 && (val[end - 1] == " " || val[end] == " ")) {
+	         e.preventDefault();
+	         return false;
+	      }      
+	    });
+	});
+	
+	document.addEventListener('DOMContentLoaded', function() {
+	  
+	  var input = document.getElementById('txtNumeric2');
+	  input.addEventListener('keydown', function(e){      
+	       var input = e.target;
+	       var val = input.value;
+	       var end = input.selectionEnd;
+	       if(e.keyCode == 32 && (val[end - 1] == " " || val[end] == " ")) {
+	         e.preventDefault();
+	         return false;
+	      }      
+	    });
+	});
     </script>
    
 
 </head>
 <body style="color:#0d0e0e" onLoad="activate('frm01', arr);"> 
-<header class="main__header" style="background-image:url(img/header.png)">
-  <div class="container">
-    <nav class="navbar navbar-default" role="navigation"> 
-      <div class="navbar-header">
-        <h1 class="navbar-brand"><a href="index.php">MATRIMONY</a></h1>
-        <a href="#" class="submenu">Menus</a> </div>
-      <div class="menuBar">
-        <ul class="menu">
-          <li class="active"><a href="index.php">Home</a></li>
-           <li><a href="login.php">Login</a></li>
-        </ul>
-      </div>
-      <!-- /.navbar-collapse --> 
-    </nav>
-  </div>
-</header>
 
-        <section class="main__middle__container homepage" style="margin-top:100px;">
-            <div class="container main_form" style="width:600px">
-                <div class="col-sm-12 main_heading">
-                    <h2 style="color:#fff">REGISTRATION FORM</h2>
-                </div>
-                <form class="form-horizontal" name="form1" action="registration_professlonal.php".php".php" method="post"> 
-               	<?php
+<header class="main__header" >
+	<div style="background-color:#225169; height:50px">&nbsp;</div>
+		<div class="container">
+			<nav class="navbar navbar-default" role="navigation"> 
+			<div class="navbar-header">
+				<h1 class="navbar-brand" style="font-family:CenturyGothict; font-size:30px"><a href="index.php"><span style="color:#FF4500">MALI</span> <span style="color:#225169">MATRIMONY</span></a></h1>
+				<a href="#" class="submenu" style="background-image:url(img/default-logo.png); width:40px; height:40px">Menus</a> 
+			</div>
+			<div class="menuBar">
+				<ul class="menu">
+					<li ><a href="index.php">Home</a></li>
+					<li ><a href="login.php">Login</a></li>
+          			</ul>
+			</div>
+			<!-- /.navbar-collapse --> 
+		</nav>
+	</div>
+</header>
+<div class="reg_container col-sm-12" style="background-image:url(img/RegisterpagePreview.jpg); background-repeat:round; margin-top:120px;">
+	<div class="container" style="margin-top:150px; margin-bottom:100px;">
+		<div class="container col-md-7 steps" style="">
+			<div class="form-panel active">
+				<h2 class='list-h2'>How To Register</h2>
+				<h4 class='list-h4'><strong>Step 1</strong></h4>
+				<p class='list-p'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Fill all forms carefully.All fields are mandatory of each form. </p>
+			</div>
+			<div class="form-panel">
+				<h2 class='list-h2'>How To Register</h2>
+				<h4 class='list-h4'><strong>Step 2</strong></h4>
+				<p class='list-p'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Check all information filled by you. </p>
+			</div>
+			<div class="form-panel">
+				<h2 class='list-h2'>How To Register</h2>
+				<h4 class='list-h4'><strong>Step 3</strong></h4>
+				<p class='list-p'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Make payment and signup. </p>
+			</div>
+			
+			<img align="right" class="next" src="img/ICON 1/next.png" height="50" width="50" style="cursor:pointer;">
+			<img align="right" class="previous" src="img/ICON 1/Prev.png" height="50" width="50" style="cursor:pointer;">
+		</div>
+		<div class="container col-md-offset-8 reg-form" style="background-color:#F8F8F9">
+			<div class="col-sm-12 main_heading">
+				<h2 style="color:#fff">REGISTRATION FORM</h2>
+			</div>
+			 <form class="form-horizontal" name="form1" action="registration_professlonal.php" method="post"> 
+			 <?php
 				
 				if(isset($_POST['first_name'])){$first_name = $_SESSION['first_name']=$_POST['first_name'];}
 				if(isset($_POST['middle_name'])){$middle_name = $_SESSION['middle_name'] = $_POST['middle_name'];}
@@ -594,7 +748,7 @@ function countAge(object, birthDay){
 				if(isset($_POST['birth_city'])){$birth_city = $_SESSION['birth_city'] = $_POST['birth_city'];}
 				if(isset($_POST['birth_district'])){$birth_district = $_SESSION['birth_district'] =$_POST['birth_district'];}
 				if(isset($_POST['birth_state'])){$birth_state = $_SESSION['birth_state'] = $_POST['birth_state'];}
-				?>
+			?>
                           <input name="first_name" type="hidden" value="<?php echo $first_name;  ?>"  >
                           <input name="middle_name" type="hidden" value="<?php echo $middle_name;  ?>" >
                           <input name="last_name" type="hidden" value="<?php echo $last_name;  ?>">
@@ -611,27 +765,38 @@ function countAge(object, birthDay){
                           <input name="birth_city" type="hidden" value="<?php echo $birth_city;  ?>" >
                           <input name="birth_district" type="hidden" value="<?php echo $birth_district;  ?>">
                           <input type="hidden" name="birth_state" value="<?php echo $birth_state;  ?>">
-                        
-                    <div id="frm02">
-                        <div class="col-sm-12">
-                            <div class="col-sm-12 _heading">
-                                <h4><img src="img/ICON 1/name-people-person-user-icon--icon-search-engine-1.png" style="width:50px;height:50px;">
-                                Personal Information</h4>
-                            </div>
-                            
-                             <div class="form-group">
-                                    <label class="col-sm-4 control-label" >Cast</label>  
-                                    <div class="col-md-8">
-                                        <input type="text" name="cast"  value="Bhavsar"  readonly="" class="form-control input-md" value="<?php echo $_SESSION['cast']; ?>">
-                              		</div>
+                          
+				<div class="col-sm-12">
+					<div class="col-sm-12 _heading">
+						<h4><img src="img/ICON 1/name-people-person-user-icon--icon-search-engine-1.png" style="width:25px;height:25px;margin-top: -10px"> &nbsp;Personal Information</h4>
+					</div>
+					<h5 style="font-size:14px;text-transform:none; color:red;text-align:right;margin-bottom:15px;font-family:Arial;">* All fields are mandatory</h5>
+					
+
+	                            <div class="form-group">
+                                    <label class="col-sm-4 control-label" >Caste</label>  
+                                   	 <div class="col-md-8">
+                                        <input type="text" name="cast"  value="Mali"  readonly="" class="form-control input-md hied_border" value="<?php echo $_SESSION['cast']; ?>">
+                              	    </div>
+                                </div>
+								<div class="form-group">
+                                    <label class="col-sm-4 control-label" >Sub-Caste</label>  
+                                   	 <div class="col-md-8">
+                                       <select name="subcast" class="form-control input-md hied_border"  required>
+                                           <option value="">Select Sub-Caste</option>
+                                            <option value="Full Mali"<?php if($_SESSION['subcast']=='Full Mali') echo "selected";?>>Full Mali</option>
+                                            <option value="Jire Mali"<?php if($_SESSION['subcast']=='Jire Mali') echo "selected";?>>Jire Mali</option>
+											<option value="Kach Mali"<?php if($_SESSION['subcast']=='Kach Mali') echo "selected";?>>Kach Mali</option>
+                                        </select>
+                              	    </div>
                                 </div>
                               
                                 <div class="form-group">
                                     <label class="col-sm-4 control-label" for="height">Height</label>  
                                     <div class="col-md-4">Fit
-                                        <select name="fit" class="form-control input-md"  required>
-                                        	<option></option>
-                                        	<option value="4"<?php if($_SESSION['fit']=='4') echo "selected";?>>4</option>
+                                        <select name="fit" class="form-control input-md hied_border"  required>
+                                           <option value="">Select</option>
+                                            <option value="4"<?php if($_SESSION['fit']=='4') echo "selected";?>>4</option>
                                             <option value="5"<?php if($_SESSION['fit']=='5') echo "selected";?>>5</option>
                                             <option value="6"<?php if($_SESSION['fit']=='6') echo "selected";?>>6</option>
                                             <option value="7"<?php if($_SESSION['fit']=='7') echo "selected";?>>7</option>
@@ -639,9 +804,10 @@ function countAge(object, birthDay){
                                         </select>
                                     </div>
                                     <div class="col-md-4">Inches
-                                        <select name="inches" class="form-control input-md" required>
-                                        <option></option>
-                                       		<option value="1"<?php if($_SESSION['inches']=='1') echo "selected";?>>1</option>
+                                        <select name="inches" class="form-control input-md hied_border" required>
+                                        <option value="">Select</option>
+                                             <option value="0"<?php if($_SESSION['inches']=='0') echo "selected";?>>0</option>
+                                       	     <option value="1"<?php if($_SESSION['inches']=='1') echo "selected";?>>1</option>
                                             <option value="2"<?php if($_SESSION['inches']=='2') echo "selected";?>>2</option>
                                             <option value="3"<?php if($_SESSION['inches']=='3') echo "selected";?>>3</option>
                                             <option value="4"<?php if($_SESSION['inches']=='4') echo "selected";?>>4</option>
@@ -652,51 +818,49 @@ function countAge(object, birthDay){
                                             <option value="9"<?php if($_SESSION['inches']=='9') echo "selected";?>>9</option>
                                             <option value="10"<?php if($_SESSION['inches']=='10') echo "selected";?>>10</option>
                                             <option value="11"<?php if($_SESSION['inches']=='11') echo "selected";?>>11</option>
-                                            <option value="12"<?php if($_SESSION['inches']=='12') echo "selected";?>>12</option>
+                                           
                                         </select>
                                     </div>
                                 </div>
                                 <div class="form-group">
                                     <label class="col-sm-4 control-label" for="body_weight">Weight (kg) </label>  
                                     <div class="col-md-8">
-                                        <input type="text" class="form-control input-md" id="body_weight" name="body_weight" onKeyPress="return onlyNos(event,this);" placeholder="eg.50" value="<?php echo $_SESSION['body_weight'];?>" required>
+                                        <input type="text" class="form-control input-md hied_border" id="body_weight" name="body_weight"  maxlength="3" onKeyPress="return onlyNos(event,this);" placeholder="eg.50" value="<?php echo $_SESSION['body_weight'];?>" required>
                                         	 
                                     </div>
                                 </div>
                                 <div class="form-group">
-                                    <label class="col-sm-4 control-label" for="skin_tone">Skin tone  </label>  
+                                    <label class="col-sm-4 control-label" for="skin_tone">Skin Tone  </label>  
                                     <div class="col-md-8">
                                         <!--<input id="skin_tone" name="skin_tone" type="text"  class="form-control input-md" >-->
-										<select class="form-control input-md" id="skin_tone" name="skin_tone" required>
-                                        	<option></option>
+										<select class="form-control input-md hied_border" id="skin_tone" name="skin_tone" required>
+                                        	<option value="">Select</option>
                                             <option value="Fair"<?php if($_SESSION['skin_tone']=='Fair') echo "selected";?>>Fair</option>
                                             <option value="Wheatish"<?php if($_SESSION['skin_tone']=='Wheatish') echo "selected";?>>Wheatish</option>
                                         </select>
                                     </div>
                                 </div>
-
-
                                 <div class="form-group">
-                                    <label class="col-sm-4 control-label" for="blood_group">Blood group  </label>  
+                                    <label class="col-sm-4 control-label" for="blood_group">Blood Group  </label>  
                                     <div class="col-md-8">
-                                        <select id="blood_group" name="blood_group" class="form-control input-md" required>
-                                        	<option ></option>
+                                        <select id="blood_group" name="blood_group" class="form-control input-md hied_border" required>
+                                        	<option value="">Select</option>
                                         	<option value="A+"<?php if($_SESSION['blood_group']=='A+') echo "selected";?>>A+</option>
-                                            <option value="O+"<?php if($_SESSION['blood_group']=='O+') echo "selected";?>>O+</option>
-                                            <option value="B+"<?php if($_SESSION['blood_group']=='B+') echo "selected";?>>B+</option>
-                                            <option value="AB+"<?php if($_SESSION['blood_group']=='AB+') echo "selected";?>>AB+</option>
-                                            <option value="A-"<?php if($_SESSION['blood_group']=='A-') echo "selected";?>>A-</option>
-                                            <option value="O-"<?php if($_SESSION['blood_group']=='O-') echo "selected";?>>O-</option>
-                                            <option value="B-"<?php if($_SESSION['blood_group']=='B-') echo "selected";?>>B-</option>
-                                            <option value="AB-"<?php if($_SESSION['blood_group']=='AB-') echo "selected";?>>AB-</option>
+	                                        <option value="O+"<?php if($_SESSION['blood_group']=='O+') echo "selected";?>>O+</option>
+	                                        <option value="B+"<?php if($_SESSION['blood_group']=='B+') echo "selected";?>>B+</option>
+	                                        <option value="AB+"<?php if($_SESSION['blood_group']=='AB+') echo "selected";?>>AB+</option>
+	                                        <option value="A-"<?php if($_SESSION['blood_group']=='A-') echo "selected";?>>A-</option>
+	                                        <option value="O-"<?php if($_SESSION['blood_group']=='O-') echo "selected";?>>O-</option>
+	                                        <option value="B-"<?php if($_SESSION['blood_group']=='B-') echo "selected";?>>B-</option>
+	                                        <option value="AB-"<?php if($_SESSION['blood_group']=='AB-') echo "selected";?>>AB-</option>
                                         </select>
                                     </div>
                                 </div>
                                 <div class="form-group">
                                     <label class="col-sm-4 control-label" for="spectacles">Spectacles </label>
                                     <div class="col-md-8">
-                                        <select id="spectacles" name="spectacles" class="form-control" required>
-                                        	<option></option>
+                                        <select id="spectacles" name="spectacles" class="form-control hied_border" required>
+                                        	<option value="">Select</option>
                                             <option value="yes"<?php if($_SESSION['spectacles']=='yes') echo "selected";?>>Yes</option>
                                             <option value="no"<?php if($_SESSION['spectacles']=='no') echo "selected";?>>No</option>
                                         </select>
@@ -706,7 +870,7 @@ function countAge(object, birthDay){
                                 <div class="form-group">
                                     <label class="col-sm-4 control-label" for="Hobbies">Hobbies </label>
                                     <div class="col-md-8">                     
-                                        <textarea class="form-control" id="hobbies" name="hobbies" rows="1" required><?php echo $_SESSION['hobbies'];?></textarea>
+                                        <textarea class="form-control hied_border" id="hobbies" name="hobbies" rows="1" required onKeyPress="return onlyAlphabetsHobbies(event,this);"><?php echo $_SESSION['hobbies'];?></textarea>
                                     </div>
                                 </div>
                                  <script>
@@ -715,10 +879,13 @@ function countAge(object, birthDay){
 										  if ( this.value == 'yes')
 										  {
 											$("#description").show();
+											$("#txtNumeric2").prop('required',true);
+											
 										  }
 										  else
 										  {
 											$("#description").hide();
+											$("#txtNumeric2").prop('required',false);
 										  }
 										});
 									});
@@ -727,44 +894,64 @@ function countAge(object, birthDay){
                                 <div class="form-group">
                                     <label class="col-sm-4 control-label" for="any_disability">Any Disability  </label>
                                     <div class="col-md-8">                     
-                                        <select id="any_disability" name="any_disability" class="form-control input-md" required>
-                                        	<option></option>
+                                        <select id="any_disability" name="any_disability" class="form-control input-md hied_border" required>
+                                        	<option value="">Select</option>
                                         	<option value="yes"<?php if($_SESSION['any_disability']=='yes') echo "selected";?>>Yes</option>
                                             <option value="no"<?php if($_SESSION['any_disability']=='no') echo "selected";?>>No</option>
                                         </select>
                                         <div id="description" style="display:none;">Add Description
-                                        <input type="text" name="any_disability_desc" class="form-control" onKeyPress="return onlyAlphabets(event,this);" value="<?php echo $_SESSION['any_disability_desc'];?>">
+                                        <input type="text" id="txtNumeric2" name="any_disability_desc" class="form-control hied_border" onKeyPress="return onlyAlphabets(event,this);" value="<?php echo $_SESSION['any_disability_desc'];?>" >
                                         </div>
                                     </div>
                                 </div> 
                                 <div class="form-group">
-                                    <label class="col-sm-4 control-label" for="acceptation">Acceptations</label>
+                                    <label class="col-sm-4 control-label" for="acceptation">Expectations</label>
                                     <div class="col-md-8">                     
-                                        <textarea class="form-control" id="acceptation" name="acceptation" required rows="2"><?php echo $_SESSION['acceptation'];?></textarea>
+                                        <textarea class="form-control hied_border" id="txtNumeric" name="acceptation" onKeyPress="return onlyAlphabetsHobbies(event,this);" required rows="2"><?php echo $_SESSION['acceptation'];?></textarea>
                                     </div>
                                 </div>
                                 <div class="form-group">
                                     <label class="col-sm-4 control-label" for="describe_yourself">Describe Yourself </label>
                                     <div class="col-md-8">                     
-                                        <textarea class="form-control" id="describe_yourself" name="describe_yourself" required rows="2"><?php echo $_SESSION['describe_yourself'];?></textarea>
+                                        <textarea class="form-control hied_border" id="txtNumeric1" name="describe_yourself" onKeyPress="return onlyAlphabetsHobbies(event,this);" required rows="2"><?php echo $_SESSION['describe_yourself'];?></textarea>
                                     </div>
-                                </div> 
-
-                        </div>
-                        <div class="navigation col-sm-6" align="right">
-                           <a href="registration_personal.php">
-                           <button type="button" name="prev" class="btn btn-danger" style="background-color:#054c48;border-color:#1ba39c">Previous</button></a>
-                           <button type="submit" name="submit" class="btn btn-danger" style="background-color:#054c48;border-color:#1ba39c">Next</button></div>
-						    <div class="navigation col-sm-6"  align="right" style="padding-top:20px;">
-						   <a href="reset.php" style="color:#FFFFFF; font-size:13px; font-weight:bold">Reset</a>
-                        </div>
-                    </div>                   
-                    
-                </form>
-
-            </div>           
-        </section>
-  <?php include "main/footer.php" ; ?>
-     </body>
+                                </div>       
+				<div class="form-group" style="margin-bottom:0px">
+					<div class="navigation col-sm-6" align="left" style="padding-top:15px;">
+						<a class="btn" href="reset.php" style="color:#FFFFFF; font-size:15px; font-weight:bold; text-align:right; border:1px solid;">Reset</a>
+					</div>
+					<div class="navigation col-sm-6" align="right">
+						<button class="btn" type="submit" name="submit" style="float:right; color:#ffffff; background-color:#4b6a79; padding:0px; width:90px"> <img align="right" src="img/ICON 1/RegistrationFormNext.png" style="height:35px;width:90px"> </button>
+						<a href="registration_personal.php" name="prev" style="float:right; margin-right:15px;">
+							<img align="right" src="img/ICON 1//RegistrationFormPrevious.png" style="height:37px">
+						</a>
+					</div>
+				</div>
+			</form>  
+		</div> 
+	</div> 
+</div>
+	       
+<script src="js/jquery.min.js"></script>
+<script>
+	$('.previous').click(function () {
+		var cur = $('.form-panel').index($('.form-panel.active'));
+		if (cur!=0) {
+			$('.form-panel').removeClass('active');
+			$('.form-panel').eq(cur-1).addClass('active');
+		}
+	});
+	$('.next').click(function () {
+		var cur = $('.form-panel').index($('.form-panel.active'));
+		if (cur!=$('.form-panel').length-1) {
+			$('.form-panel').removeClass('active');
+			$('.form-panel').eq(cur+1).addClass('active');
+		}
+	});
+</script>
+      
+  
+       </body>
+       <?php include "main/footer.php" ; ?>
 </html>
 

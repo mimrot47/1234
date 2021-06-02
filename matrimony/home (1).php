@@ -256,9 +256,9 @@ header("Location:http://bhavsar.org/Matrimonial/Matrimonial%20Template%20&%20Ima
                             	<select class="form-control " name="states" >
                                     <option></option>
                                     <?php 
-											 $show1=mysql_query("select DISTINCT state from city ORDER BY state  ASC");
+											 $show1=mysqli_query($conn,"select DISTINCT state from city ORDER BY state  ASC");
 														
-												while($rw1=mysql_fetch_array($show1))
+												while($rw1=mysqli_fetch_array($show1))
 													{ 
 													echo"<option  value='".$rw1['state']."'>"; echo $rw1['state']; echo"</option>";
 													}
@@ -284,8 +284,8 @@ header("Location:http://bhavsar.org/Matrimonial/Matrimonial%20Template%20&%20Ima
                      <div class="navi">
                       <?php
 					   $email;
-					  $show_gender=mysql_query("select * from matrimonialall where email='$email' and is_del='no'   ") or die(mysql_error());
-										while($row_gender=mysql_fetch_array($show_gender))
+					  $show_gender=mysqli_query($conn,"select * from matrimonialall where email='$email' and is_del='no'   ") or die(mysqli_error($conn));
+										while($row_gender=mysqli_fetch_array($show_gender))
 										{
 											 $gender_1=$row_gender['gender'];
 										
@@ -305,11 +305,11 @@ header("Location:http://bhavsar.org/Matrimonial/Matrimonial%20Template%20&%20Ima
 								$start=($id-1)*$limit;
 								}
 								
-						  $show_b=mysql_query("select * from matrimonialall where gender='Groom' and is_del='no' LIMIT $start, $limit ") or die(mysql_error());
+						  $show_b=mysqli_query($conn,"select * from matrimonialall where gender='Groom' and is_del='no' LIMIT $start, $limit ") or die(mysqli_error($conn));
 										
 										$image_mime_type="image/png|image/jpeg|image/gif";
 										
-										while($row_b=mysql_fetch_array($show_b))
+										while($row_b=mysqli_fetch_array($show_b))
 										{
 												
 											 '<img src="data:'.$image_mime_type.';base64,'.base64_encode($row_b['profile_pic']).'" 
@@ -335,7 +335,7 @@ header("Location:http://bhavsar.org/Matrimonial/Matrimonial%20Template%20&%20Ima
 						<?php
 						
 						echo'<hr>';
-$rows=mysql_num_rows(mysql_query("select * from matrimonialall where gender='Groom' and is_del='no'  "));
+$rows=mysqli_num_rows(mysqli_query($conn,"select * from matrimonialall where gender='Groom' and is_del='no'  "));
 $total=ceil($rows/$limit);
 echo'<table>';
 if($id>1)
@@ -390,11 +390,11 @@ echo'</table>';
 								$start=($id-1)*$limit;
 								}
 								
-						  $show_g=mysql_query("select * from matrimonialall where gender='Bride' and is_del='no' LIMIT $start, $limit ") or die(mysql_error());
+						  $show_g=mysqli_query($conn,"select * from matrimonialall where gender='Bride' and is_del='no' LIMIT $start, $limit ") or die(mysqli_error($conn));
 										
 										$image_mime_type="image/png|image/jpeg|image/gif";
 										
-										while($row_g=mysql_fetch_array($show_g))
+										while($row_g=mysqli_fetch_array($show_g))
 										{
 												
 											 '<img src="data:'.$image_mime_type.';base64,'.base64_encode($row_g['profile_pic']).'" 
@@ -421,7 +421,7 @@ echo'</table>';
 						<?php
 						
 												echo'<hr>';
-$rows=mysql_num_rows(mysql_query("select * from matrimonialall where gender='Bride' and is_del='no' "));
+$rows=mysqli_num_rows(mysqli_query($conn,"select * from matrimonialall where gender='Bride' and is_del='no' "));
 $total=ceil($rows/$limit);
 echo'<table>';
 if($id>1)
@@ -474,9 +474,9 @@ echo'</table>';
 	// Your SQL query go here. This query will display all record by setting the Limit.
 
 	/*$sql = "SELECT * FROM city  LIMIT ".$pageLimit." , ".$setLimit;
-	$query = mysql_query($sql);
+	$query = mysqli_query($conn,$sql);
 
-	while ($rec = mysql_fetch_array($query)) {
+	while ($rec = mysqli_fetch_array($query)) {
 	?>
 	<div class="show"><a href="#<?php echo $rec["city"];?>.htm" target="_blank"><?php echo $rec['city'];?></a></div>
 	<?php }	?>
